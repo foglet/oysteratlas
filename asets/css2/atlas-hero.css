@@ -1,0 +1,236 @@
+/* Design by Fogday Studios, fogday.com */
+/* Be kind, don't steal. */
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+* { margin: 0, padding: 0 }
+
+img, a { border:none, outline: none; }
+
+body { border-top: .9em solid #FFF; }
+body { font-family: 'Source Sans Pro', sans-serif; font-weight: 400; font-size: 1.2em;
+    color: #cfcfcf;  }
+body, #map { background: #021724; }    
+
+    #fly, #regions { /* flyto and REGIONS */
+            display: block;
+            position: relative;
+            top: 0; 
+            left: 1em; /* 1em */
+            margin: .1em;  
+            padding: .3em; /* .3 */
+            width: 14em; 
+            height: 3em;
+            border: .5em; /* .5em */
+            border-color: none;
+            font-size: .65em;  
+         /* font-weight: 400; */
+            text-align: center; /* center */
+            color: #b2b200; /* chartreuse */
+            opacity: 0.9;
+            background: none; }
+
+            .mobileLegend {
+               top: 5em; 
+            left: 1em; 
+            margin: 5em;  
+            padding: .3em; 
+            width: 14em; 
+            height: 3em;}
+
+        #home { /* title: the Oyster Atlas; */
+            display: block;
+            position: relative;
+            top: -12em; /* -12 em */
+            margin: 0 auto; 
+            padding: 0;
+            width: 10em; 
+            height: 2em;
+            border: .1em; 
+            border-radius: .2em; 
+            font-size: 1.4em; 
+            font-weight: 600;
+            text-align: center;
+            opacity: 0.9; 
+            background: #001420; }
+
+        #fly:hover, #home:hover {
+            border: .1em; 
+            border-radius: .2em;
+            font-weight: 700; 
+            color: #001420;
+            opacity: 0.9;
+            background: #b7c3d0; }
+  
+        #regions { /* REGIONS */
+            left: 0;
+            font-size: .75em;
+            font-weight: 600; }
+
+        .fixedLegend, .attribution { /* oyster species/attribution */
+            position: fixed;
+            font-size: .75em; 
+       /*   font-weight:400; */
+            opacity: 0.9; 
+            background: none; }
+
+        .fixedLegend { /* the legend */
+            bottom: 3.2em; 
+            left: 22px; /* 2.5em */
+            width: 15em; 
+            height: 14em; }
+
+        .fixedLegend h4 {
+            margin-left: 10px; /* .75em */
+            letter-spacing: .05em; }
+
+        .attribution {
+            bottom: 30px; 
+            left: 30px; /* 3.2em */
+         /* font-weight: 400; */
+            text-align: center; }
+
+        #home, #regions, /* title, oyster species/credits */
+        .fixedLegend,
+        .attribution, 
+        .attribution a:link, 
+        .attribution a:visited,
+        .attribution a:active,
+        .attribution a:hover {
+            color: #cfcfcf; }
+
+        .attribution a:link, 
+        .attribution a:visited {
+            text-decoration: none; }
+
+        .attribution a:active, 
+        .attribution a:focus, 
+        .attribution a:hover {
+            text-decoration: underline;
+            color: #b2b200; }
+
+        li {
+            width: 20em; }
+
+        .title h4, 
+        .mobNavigation #regions, 
+        .mobNavigation #fly {
+          display:none; }
+
+
+/* footer {
+    position: relative;
+    left: 0; bottom: -1.5em;
+    width: 100%;  height: 1.5em;
+    clear:both; } */
+
+/* viewport and media queries */
+    @viewport{zoom: 2.0; width: device-width; }
+    @viewport{zoom: 2.0; width: extend-to-zoom; }
+    @-ms-viewport{width: extend-to-zoom; zoom: 2.0; }
+    @viewport {width: 640px; max-zoom: 3; min-zoom: 0.50; }
+
+    @media all and (max-width: 640px) {
+  
+    .fixedLegend, #fly, #regions {
+          display:none; }
+
+       .title h4 {
+            display: block;
+            position: fixed;
+            top: -10px;
+            left: 20px;
+            text-align: left;
+            padding: 5px; 
+            width: 160px; 
+            height: 40px;
+            font-size: 20px; 
+            font-weight: 600;     
+            opacity: 0.9; 
+            background: #001420; }
+
+      .mobNavigation #fly, .mobNavigation #regions {
+           display: block;
+            position: relative;
+            /* top: -40px; */
+            top: 200px;
+            left: 20px; 
+            margin: .1em;  
+            padding: .5em; 
+            width: 14em;
+            height: 1.8em; 
+            font-size: .7em;  
+         /* font-weight: 400; */
+            text-align: left;
+            color: #abc; /* chartreuse */
+        }
+
+        .mobNavigation #regions {color: #cfcfcf; }  
+
+        .mobNavigation #fly:hover {
+            color: #b2b200; /* #b2b200 */
+            font-weight: 400; 
+            background: none; }   
+
+            } /* end of max-width 640px */
+
+/* expand REGION toggle navigaiton */
+/* http://codepen.io/anon/pen/jfAoa */
+
+        label {
+          cursor: pointer; }
+
+        #menu-toggle {
+          display: none; /* hide the checkbox */ }
+
+        #menu {
+          display: none; }
+
+        #menu-toggle:checked + #menu {
+          display: block; }
+
+/* http://sylvain-hamel.github.io/simple-expand/ */
+.content {display:none;}
+
+    #container.expanded .expander {
+            padding-left: 13px;
+            background-position: left center;
+            background-repeat: no-repeat;
+            background-image: url(images/expanded.gif); }
+
+    #container.collapsed .expander {
+            padding-left: 13px;
+            background-position: left center;
+            background-repeat: no-repeat;
+            background-image: url(images/collapsed.gif); }
+            
+
+
+
+  /*Opera Fix*/
+    body:before {
+        content:"";
+        height:100%;
+        float:left;
+        width:0;
+        margin-top:-32767px;/ }
+
+    .left {
+        position: absolute;
+        top: 10px; left: 20px;
+        text-align: left; }
+
+    .right {
+        position: absolute;
+        top: 0px; right: 5px; }
+
+    .right a { padding-right: 0 !important; } 
+
+    .center {
+       text-align: center;
+        margin: 15px; }
+
+    .right a { padding-right: 0 !important; } 
