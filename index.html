@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--[if !IE 7]>
+    <style type="text/css">
+        #wrap {display:table;height:100%}
+    </style>
+<![endif]-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" -->
+
+<html dir="ltr" lang="en">
+
+<html>
+
+<head>
+
+    <title>The Oyster Atlas</title> 
+
+    <meta property="og:title" content="The Oyster Atlas: Oyster Lovers United!" />
+    <meta property="og:description" content="Welcome to the Oyster Atlas! We map the world's oysters" />
+    <meta property="og:determiner" content="the" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="robots" content="index,follow">
+    
+    <!-- revised 04 Mar 2021 --> 
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet'/>
+
+   
+    <!-- Google fonts  --> 
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
+    
+    <!--  font-awesome for fixedLegend -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+
+    <!-- atlas-hero.css -->   
+     <!-- <link rel='stylesheet' href='https://db.tt/ppFKyWsG'> -->
+     <link rel='stylesheet' href='http://fogday.com/assets/css2/atlas-hero.css' rel="stylesheet" type="text/css" />
+     
+
+     <style>
+        body { margin:0; padding:0; } /* default mapbox settings */
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+
+</head>
+
+<body class="oyster">    
+
+    <div id='map'></div> <br/>
+
+    <div class="navigation">
+        <button onclick='' id='regions'>REGIONS</button>
+        <button onclick='fly1();' id='fly'>Washington &bull;<br/> British Columbia</button>
+        <button onclick='fly7();' id='fly'>Tomales Bay</button>
+        <button onclick='fly2();' id='fly'>Maritime Provinces</button>
+        <button onclick='fly3();' id='fly'>Cape Cod &bull; Long Island  </button>
+        <button onclick='fly4();' id='fly'>Chesapeake Bay</button>
+        <button onclick='fly5();' id='fly'>Gulf Coast</button>
+        <button onclick='fly6();' id='fly'>France</button>
+        <button onclick='home();' id='home'>The Oyster Atlas</button>
+    </div>
+
+
+    <div class="fixedLegend"><h4><strong>OYSTER SPECIES</strong></h4>
+        <ul class="fa-ul">
+            <li><i class="fa-li fa fa-circle" style="font-size: 1em; color: #7D12B3;"></i>Belon <i>(Ostrea edulis)</i></li>
+            <li><i class="fa-li fa fa-circle" style="font-size: 1em; color: #C72052;"></i>Eastern <i>(Crassostrea virginica)</i></li>
+            <li><i class="fa-li fa fa-circle" style="font-size: 1em; color: #C7A15B;"></i>Kumamoto <i>(Crassostrea sikamea)</i></li>
+            <li><i class="fa-li fa fa-circle" style="font-size: 1em; color: #A2BC13;"></i>Olympia <i>(Ostrea lurida)</i></li>
+            <li><i class="fa-li fa fa-circle" style="font-size: 1em; color: #2A7889;"></i>Pacific <i>(Crassostrea gigas)</i></li>
+        </ul>
+    </div>
+
+    <div class="attribution">&#169; <a href="http://fogday.com">Fogday Studios</a> | @fogfish
+    </div>    
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZm9nZmlzaCIsImEiOiJOeXZlMF9FIn0.I3vP7TOUVxyKTaW27p_IqA';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/fogfish/cifta9e28000ztgkpe46j4rh8', // glow
+
+          center: [-95.484415,40.987548], // starting position
+            zoom: 3 // starting zoom
+                });
+
+        //  zoom and rotation map controls
+            map.addControl(new mapboxgl.Navigation());
+
+        // fly to locations
+        function home() { // fly home
+            map.flyTo({
+            center: [-95.484415, 40.987548],
+            zoom: 3, bearing: 0, 
+            speed: 3, curve: 1,
+            easing: function(t) {
+             return t;
+                  }
+                }); } 
+
+        function fly1() { // Washington
+            map.flyTo({
+            center: [-123.05, 49], // Point Roberts, WA
+            zoom: 6, bearing: 6, 
+            speed: 1.2, curve: 1.42,
+            easing: function(t) {
+             return t;
+                  }
+                }); }
+
+        function fly2() { // Maritime
+            map.flyTo({
+            center: [-63.8, 46.7],
+            zoom: 7, bearing: 5, 
+            speed: 1, curve: 1,
+            easing: function(t) {
+             return t;
+                  }
+                }); }
+
+        function fly3() { // Cape Cod/Long Island
+            map.flyTo({
+            center: [-72.2, 41.5],
+            zoom: 7, bearing: 0, 
+            speed: 1, curve: 1,
+            easing: function(t) {
+             return t;
+                  }
+                }); }
+
+            function fly4() { // Chesapeake
+            map.flyTo({
+            center: [-76.2, 37.5],
+            zoom: 7, bearing: 0, 
+            speed: 1, curve: 1,
+            easing: function(t) {
+             return t;
+                  }
+                }); }
+
+            function fly5() { // Gulf Coast
+            map.flyTo({
+            center: [-90, 29],
+            zoom: 6, bearing: 6, 
+            speed: 1, curve: 1,
+            easing: function(t) {
+             return t;
+                  }
+                }); }
+
+            function fly6() { // France
+            map.flyTo({
+            center: [-1.1,45.80,],
+            zoom: 11, bearing: 0, 
+            speed: 1, curve: 1,
+            easing: function(t) {
+             return t;
+                  }
+                }); }
+
+            function fly7() { // Tomales Bay
+            map.flyTo({
+            center: [-122.84,38.10,],
+            zoom: 7, bearing: 0, 
+            speed: 1, curve: 1,
+            easing: function(t) {
+             return t;
+                  }
+                }); }
+    </script>
+
+</body>
+
+</html>
+
