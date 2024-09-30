@@ -13,7 +13,7 @@
 
 <head>
 
-    <title>The Oyster Atlas</title> 
+    <title>The Oyster Atlas</title>
 
     <meta property="og:title" content="The Oyster Atlas: Oyster Lovers United!" />
     <meta property="og:description" content="Welcome to the Oyster Atlas! We map the world's oysters" />
@@ -26,21 +26,22 @@
     <!-------- CSS Goodies -------->
         <!-- Josh's CSS Reset custom-reset.css -->
         <link rel='stylesheet' href='https://gist.github.com/foglet/5cf88ab6b5d28e2a01d8d81ead04bff0' rel="stylesheet" type="text/css" />
-        
-        <!-- revised 03 April 2024 -->
-        <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
-        <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
-    
-        <!-- Google fonts  --> 
+
+  
+        <!-- revised 30 September 2024 -->
+        <script src='https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css' rel='stylesheet' />
+
+        <!-- Google fonts  -->
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
-        
+
         <!--  font-awesome for fixedLegend -->
         <!-- revised 03 April 2024 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
-        <!-- atlas-hero.css -->  
+
+        <!-- atlas-hero.css -->
         <link rel='stylesheet' href='https://foglet.github.io/oysteratlas/assets/css/atlas-hero.css' rel="stylesheet" type="text/css" />
-         
+
     <style>
         body { margin:0; padding:0; } /* default mapbox settings */
         #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -48,10 +49,10 @@
 
 </head>
 
-<body class="oyster">    
+<body class="oyster">
 
     <div id='map'></div> <br/>
-    
+
     <div class="navigation">
         <button onclick='' id='regions'>REGIONS</button>
         <button onclick='fly1();' id='fly'>Washington &bull;<br/> British Columbia</button>
@@ -75,7 +76,7 @@
     </div>
 
     <div class="attribution">&#169; <a href="http://fogday.com">Fogday Studios</a> | @fogfish
-    </div>    
+    </div>
 
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiZm9nZmlzaCIsImEiOiJOeXZlMF9FIn0.I3vP7TOUVxyKTaW27p_IqA';
@@ -94,17 +95,17 @@
         function home() { // fly home
             map.flyTo({
             center: [-95.484415, 40.987548],
-            zoom: 3, bearing: 0, 
+            zoom: 3, bearing: 0,
             speed: 3, curve: 1,
             easing: function(t) {
              return t;
                   }
-                }); } 
+                }); }
 
         function fly1() { // Washington
             map.flyTo({
             center: [-123.05, 49], // Point Roberts, WA
-            zoom: 6, bearing: 6, 
+            zoom: 6, bearing: 6,
             speed: 1.2, curve: 1.42,
             easing: function(t) {
              return t;
@@ -114,7 +115,7 @@
         function fly2() { // Maritime
             map.flyTo({
             center: [-63.8, 46.7],
-            zoom: 7, bearing: 5, 
+            zoom: 7, bearing: 5,
             speed: 1, curve: 1,
             easing: function(t) {
              return t;
@@ -124,7 +125,7 @@
         function fly3() { // Cape Cod/Long Island
             map.flyTo({
             center: [-72.2, 41.5],
-            zoom: 7, bearing: 0, 
+            zoom: 7, bearing: 0,
             speed: 1, curve: 1,
             easing: function(t) {
              return t;
@@ -134,7 +135,7 @@
             function fly4() { // Chesapeake
             map.flyTo({
             center: [-76.2, 37.5],
-            zoom: 7, bearing: 0, 
+            zoom: 7, bearing: 0,
             speed: 1, curve: 1,
             easing: function(t) {
              return t;
@@ -144,7 +145,7 @@
             function fly5() { // Gulf Coast
             map.flyTo({
             center: [-90, 29],
-            zoom: 6, bearing: 6, 
+            zoom: 6, bearing: 6,
             speed: 1, curve: 1,
             easing: function(t) {
              return t;
@@ -154,7 +155,7 @@
             function fly6() { // France
             map.flyTo({
             center: [-1.1,45.80,],
-            zoom: 11, bearing: 0, 
+            zoom: 11, bearing: 0,
             speed: 1, curve: 1,
             easing: function(t) {
              return t;
@@ -164,7 +165,7 @@
             function fly7() { // Tomales Bay
             map.flyTo({
             center: [-122.84,38.10,],
-            zoom: 7, bearing: 0, 
+            zoom: 7, bearing: 0,
             speed: 1, curve: 1,
             easing: function(t) {
              return t;
@@ -175,4 +176,3 @@
 </body>
 
 </html>
-
