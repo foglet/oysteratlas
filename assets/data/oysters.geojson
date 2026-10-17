@@ -15,7 +15,7 @@
         "region": "Maritime",
         "waterBody": "Miramichi Bay",
         "cityCounty": "Neguac",
-        "st": "New Brunswick",
+        "st": "New Brunswick",w
         "locale": "Miramichi Bay-Neguac, New Brunswick,"
       },
       "geometry": {
@@ -558,7 +558,7 @@
         "marketName": "Shoal Bay Olympia",
         "species": "Ostrea lurida",
         "speciesCode": "OL",
-        "speciesName": "",
+        "speciesName": "Olympia",
         "cultivation": "Rack-and-bag",
         "salinity": "Briny",
         "size": "Tiny",
@@ -583,7 +583,7 @@
         "marketName": "Shoal Bay Flats",
         "species": "Ostrea edulis",
         "speciesCode": "OE",
-        "speciesName": "European flat",
+        "speciesName": "European Flat",
         "cultivation": "Bags-to-Beach",
         "salinity": "Briny",
         "size": "Average",
@@ -2476,7 +2476,7 @@
         ]
       }
     },
-     {
+    {
       "type": "Feature",
       "properties": {
         "rank": 64,
@@ -4280,31 +4280,6 @@
       "type": "Feature",
       "properties": {
         "rank": 64,
-        "marketName": "Tom Tom Reef",
-        "species": "Crassostrea virginica",
-        "speciesCode": "CV",
-        "speciesName": "Eastern",
-        "cultivation": "Wild",
-        "salinity": "Briny",
-        "size": "",
-        "region": "Gulf Coast",
-        "waterBody": "Stephenson Reef",
-        "cityCounty": "",
-        "st": "Texas",
-        "locale": "East Bay, Galveston Bay, Texas"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -94.786,
-          29.471
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "rank": 64,
         "marketName": "Bull Hill Reef",
         "species": "Crassostrea virginica",
         "speciesCode": "CV",
@@ -4926,31 +4901,6 @@
         ]
       }
     },
-        {
-      "type": "Feature",
-      "properties": {
-        "rank": 64,
-        "marketName": "South Lake",
-        "species": "Crassostrea virginica",
-        "speciesCode": "CV",
-        "speciesName": "Eastern",
-        "cultivation": "Off-Bottom Cages",
-        "salinity": "Briny",
-        "size": "Average",
-        "region": "Maritime",
-        "waterBody": "MacVanes Pond",
-        "cityCounty": "South Lake",
-        "st": "Prince Edward Island",
-        "locale": "South Lake, Prince Edward Island"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          62.0333333,
-          46.4166667
-        ]
-      }
-    },
     {
       "type": "Feature",
       "properties": {
@@ -4973,31 +4923,6 @@
         "coordinates": [
           -73.248,
           40.643
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "rank": 64,
-        "marketName": "Oak Beach",
-        "species": "Crassostrea virginica",
-        "speciesCode": "CV",
-        "speciesName": "Eastern",
-        "cultivation": "",
-        "salinity": "",
-        "size": "Average",
-        "region": "Long Island",
-        "waterBody": "Great South Bay",
-        "cityCounty": "Gilgo-Oak Beach-Captree",
-        "st": "New York",
-        "locale": "Great South Bay, Long Island, New York"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.248,
-          40.644
         ]
       }
     },
@@ -5908,7 +5833,7 @@
         "marketName": "French Hog",
         "species": "Ostrea edulis",
         "speciesCode": "OE",
-        "speciesName": "European flat",
+        "speciesName": "European Flat",
         "cultivation": "Rack-and-bag",
         "salinity": "Briny",
         "size": "Average",
@@ -6323,31 +6248,6 @@
         "coordinates": [
           -62.707,
           45.741
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "rank": 64,
-        "marketName": "Cape North",
-        "species": "Crassostrea virginica",
-        "speciesCode": "CV",
-        "speciesName": "Eastern",
-        "cultivation": "",
-        "salinity": "",
-        "size": "",
-        "region": "Maritime",
-        "waterBody": "Duggans Cove",
-        "cityCounty": "Cape Breton Island",
-        "st": "Nova Scotia",
-        "locale": "Cape Breton Island, Nova Scotia"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -60.464,
-          46.884
         ]
       }
     },
@@ -8648,31 +8548,6 @@
         "coordinates": [
           -75.2999,
           37.9833
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "rank": 64,
-        "marketName": "Olde Salt",
-        "species": "Crassostrea virginica",
-        "speciesCode": "CV",
-        "speciesName": "Eastern",
-        "cultivation": "Off-Bottom Cages",
-        "salinity": "Oceanic",
-        "size": "Average",
-        "region": "Southeast",
-        "waterBody": "Chincoteague Bay",
-        "cityCounty": "",
-        "st": "Maryland",
-        "locale": "Assateague Island, Chincoteague Bay, Maryland"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.29999,
-          37.98329
         ]
       }
     },
@@ -12826,7 +12701,7 @@
         ]
       }
     },
-        {
+    {
       "type": "Feature",
       "properties": {
         "rank": 64,
@@ -13148,31 +13023,6 @@
         "coordinates": [
           -63.8013,
           46.3517
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "rank": 64,
-        "marketName": "Bedeque Bay",
-        "species": "Crassostrea virginica",
-        "speciesCode": "CV",
-        "speciesName": "Eastern",
-        "cultivation": "",
-        "salinity": "",
-        "size": "",
-        "region": "Maritime",
-        "waterBody": "Bedeque Bay",
-        "cityCounty": "",
-        "st": "Prince Edward Island",
-        "locale": "Bedeque Bay, Northumberland Strait, Prince Edward Island"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -63.793,
-          46.345
         ]
       }
     },
