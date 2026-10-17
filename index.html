@@ -1,178 +1,227 @@
-<!DOCTYPE html>
-<!--[if !IE 7]>
-    <style type="text/css">
-        #wrap {display:table;height:100%}
-    </style>
-<![endif]-->
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" -->
-
-<html dir="ltr" lang="en">
-
-<html>
-
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Oyster Atlas</title>
+<meta name="description" content="The world's oysters mapped by market name — 520 and counting, mostly North America. By Fogday Studios.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="The Oyster Atlas: Oyster Lovers United!">
+<meta property="og:description" content="Welcome to the Oyster Atlas! We map the world's oysters">
+<meta property="og:determiner" content="the">
+<meta property="og:locale" content="en_US">
+<meta name="theme-color" content="#021724">
 
-    <title>The Oyster Atlas</title>
+<!-- Mapbox GL JS (revised 17 October 2026) -->
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.33.0/mapbox-gl.css">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.33.0/mapbox-gl.js" defer></script>
 
-    <meta property="og:title" content="The Oyster Atlas: Oyster Lovers United!" />
-    <meta property="og:description" content="Welcome to the Oyster Atlas! We map the world's oysters" />
-    <meta property="og:determiner" content="the" />
-    <meta property="og:locale" content="en_US" />
+<!-- Source Sans 3 (the current version of the site's original Source Sans Pro) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <meta name="robots" content="index,follow">
+<style>
+  /* The Oyster Atlas — one self-contained page. Always dark: the glowing oyster names only read on a dark map. */
+  :root {
+    --bg: #021724;        /* deep navy, the original page color */
+    --panel: #0b2233;
+    --ink: #e3eaee;
+    --muted: #8fa3b1;
+    --line: #23394a;
+    --accent: #b2b200;    /* the original chartreuse */
+    --font: "Source Sans 3", "Source Sans Pro", Seravek, Calibri, "Segoe UI", Ubuntu, Arial, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 400 1rem/1.4 var(--font); }
+  body { overflow: hidden; }
+  #map { position: fixed; inset: 0; }
 
-    <!-------- CSS Goodies -------->
-        <!-- Josh's CSS Reset custom-reset.css -->
-        <link rel='stylesheet' href='https://gist.github.com/foglet/5cf88ab6b5d28e2a01d8d81ead04bff0' rel="stylesheet" type="text/css" />
+  /* Panels floating over the map */
+  .map-places button, .map-legend, .title {
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    color: var(--ink); border: 1px solid var(--line);
+  }
 
-  
-        <!-- revised 30 September 2024 -->
-        <script src='https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js'></script>
-        <link href='https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css' rel='stylesheet' />
+  /* Title, top left: tap it to return to the overview */
+  .top { position: absolute; z-index: 3; top: calc(12px + env(safe-area-inset-top, 0px)); left: 0; right: 0; pointer-events: none; }
+  .title {
+    pointer-events: auto; display: inline-block; margin: 0 0 10px 12px; padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    font: 700 .95rem/1 var(--font); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
+  }
+  .title:hover { color: var(--accent); }
+  .title:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-        <!-- Google fonts  -->
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
+  /* Region pills: one row. If they don't fit, the row scrolls sideways (swipe, trackpad or mouse wheel)
+     and the edge with more regions fades out as a hint. */
+  .map-places-wrap {
+    --fl: 0px; --fr: 0px;  /* fade widths, set by the script below */
+    pointer-events: auto; width: fit-content; max-width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fl), #000 calc(100% - var(--fr)), transparent);
+            mask-image: linear-gradient(to right, transparent, #000 var(--fl), #000 calc(100% - var(--fr)), transparent);
+  }
+  .map-places {
+    display: flex; gap: 8px; padding: 0 12px; scroll-padding-inline: 12px;
+    overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity; scrollbar-width: none; overscroll-behavior-x: contain;
+    touch-action: pan-x;  /* a finger swipe on the row scrolls the regions, not the map */
+  }
+  .map-places::-webkit-scrollbar { display: none; }
+  .map-places button {
+    flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; cursor: pointer;
+    font: 600 .95rem/1.2 var(--font); white-space: nowrap; scroll-snap-align: start;
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: background-color .15s ease, color .15s ease;
+  }
+  .map-places button:hover { color: var(--accent); }
+  .map-places button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
+  /* Selected region: solid white, bold */
+  .map-places button[aria-pressed="true"] { background: #edf1f2; color: #1c2830; border-color: #edf1f2; font-weight: 700; }
+  .map-places button[aria-pressed="true"]:hover { color: #1c2830; }
+  /* Reserve each pill's bold width up front, so selecting one doesn't nudge its neighbors */
+  .map-places button::after { content: attr(data-name); font-weight: 700; height: 0; overflow: hidden; visibility: hidden; }
+  @media (min-width: 760px) {
+    .top { top: calc(16px + env(safe-area-inset-top, 0px)); }
+    .title { margin-left: 16px; }
+    .map-places { padding: 0 16px; scroll-padding-inline: 16px; }
+    .map-places button { min-height: 36px; }
+  }
 
-        <!--  font-awesome for fixedLegend -->
-        <!-- revised 03 April 2024 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-        <!-- atlas-hero.css -->
-        <link rel='stylesheet' href='https://foglet.github.io/oysteratlas/assets/css/atlas-hero.css' rel="stylesheet" type="text/css" />
-
-    <style>
-        body { margin:0; padding:0; } /* default mapbox settings */
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
-
+  /* Legend: collapsible card, bottom left above the Mapbox logo. Closed on phones, open on big screens. */
+  .map-legend {
+    position: absolute; z-index: 2; left: 12px; bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+    max-width: calc(100% - 24px); max-height: calc(100% - 170px); overflow-y: auto; border-radius: 8px;
+  }
+  .map-legend summary {
+    list-style: none; cursor: pointer; padding: 10px 14px; min-height: 40px;
+    font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .map-legend summary::-webkit-details-marker { display: none; }
+  .map-legend summary::after { content: " +"; color: var(--muted); }
+  .map-legend[open] summary::after { content: " –"; }
+  .map-legend summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 8px; }
+  .map-legend ul { list-style: none; margin: 0; padding: 0 14px 12px; display: grid; gap: 6px; font-size: .9rem; }
+  .map-legend li { display: flex; align-items: center; gap: 10px; }
+  .map-legend li i { color: var(--muted); }
+  .dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+</style>
 </head>
+<body>
 
-<body class="oyster">
+<div id="map" role="region" aria-label="Map of the world's oysters"></div>
 
-    <div id='map'></div> <br/>
+<div class="top">
+  <h1 style="margin:0"><button type="button" class="title" data-home title="Back to the overview">The Oyster Atlas</button></h1>
+  <div class="map-places-wrap">
+    <nav class="map-places" aria-label="Fly to a region">
+      <!-- name · center [longitude, latitude] · zoom · bearing (map rotation, degrees) · optional speed/curve (default 1 / 1) — same as the original site -->
+      <button type="button" data-name="Washington • British Columbia" data-center="[-123.05, 49]"   data-zoom="6"  data-bearing="6" data-speed="1.2" data-curve="1.42">Washington • British Columbia</button>
+      <button type="button" data-name="Tomales Bay"                   data-center="[-122.84, 38.10]" data-zoom="7"  data-bearing="0">Tomales Bay</button>
+      <button type="button" data-name="Maritime Provinces"            data-center="[-63.8, 46.7]"    data-zoom="7"  data-bearing="5">Maritime Provinces</button>
+      <button type="button" data-name="Cape Cod • Long Island"        data-center="[-72.2, 41.5]"    data-zoom="7"  data-bearing="0">Cape Cod • Long Island</button>
+      <button type="button" data-name="Chesapeake Bay"                data-center="[-76.2, 37.5]"    data-zoom="7"  data-bearing="0">Chesapeake Bay</button>
+      <button type="button" data-name="Gulf Coast"                    data-center="[-90, 29]"        data-zoom="6"  data-bearing="6">Gulf Coast</button>
+      <button type="button" data-name="France"                        data-center="[-1.1, 45.80]"    data-zoom="11" data-bearing="0">France</button>
+    </nav>
+  </div>
+</div>
 
-    <div class="navigation">
-        <button onclick='' id='regions'>REGIONS</button>
-        <button onclick='fly1();' id='fly'>Washington &bull;<br/> British Columbia</button>
-        <button onclick='fly7();' id='fly'>Tomales Bay</button>
-        <button onclick='fly2();' id='fly'>Maritime Provinces</button>
-        <button onclick='fly3();' id='fly'>Cape Cod &bull; Long Island  </button>
-        <button onclick='fly4();' id='fly'>Chesapeake Bay</button>
-        <button onclick='fly5();' id='fly'>Gulf Coast</button>
-        <button onclick='fly6();' id='fly'>France</button>
-        <button onclick='home();' id='home'>The Oyster Atlas</button>
-    </div>
+<details class="map-legend">
+  <summary>Oyster species</summary>
+  <ul>
+    <li><span class="dot" style="--c:#7D12B3"></span>Belon <i>(Ostrea edulis)</i></li>
+    <li><span class="dot" style="--c:#C72052"></span>Eastern <i>(Crassostrea virginica)</i></li>
+    <li><span class="dot" style="--c:#C7A15B"></span>Kumamoto <i>(Crassostrea sikamea)</i></li>
+    <li><span class="dot" style="--c:#A2BC13"></span>Olympia <i>(Ostrea lurida)</i></li>
+    <li><span class="dot" style="--c:#2A7889"></span>Pacific <i>(Crassostrea gigas)</i></li>
+  </ul>
+</details>
 
-    <div class="fixedLegend"><h4><strong>OYSTER SPECIES</strong></h4>
-        <ul class="fa-ul">
-            <li><span class="fa-li"><i class="fa-li fa fa-circle" style="font-size: 1em; color: #7D12B3;"></i></span>Belon <i>(Ostrea edulis)</i></li>
-            <li><span class="fa-li"><i class="fa-li fa fa-circle" style="font-size: 1em; color: #C72052;"></i></span>Eastern <i>(Crassostrea virginica)</i></li>
-            <li><span class="fa-li"><i class="fa-li fa fa-circle" style="font-size: 1em; color: #C7A15B;"></i></span>Kumamoto <i>(Crassostrea sikamea)</i></li>
-            <li><span class="fa-li"><i class="fa-li fa fa-circle" style="font-size: 1em; color: #A2BC13;"></i></span>Olympia <i>(Ostrea lurida)</i></li>
-            <li><span class="fa-li"><i class="fa-li fa fa-circle" style="font-size: 1em; color: #2A7889;"></i></span>Pacific <i>(Crassostrea gigas)</i></li>
-        </ul>
-    </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var HOME = { center: [-95.484415, 40.987548], zoom: 3, bearing: 0, speed: 3, curve: 1 };  /* opening view: all of North America; quick flight home */
+  var FLY = { speed: 1, curve: 1, easing: function (t) { return t; } };  /* default: slow, steady (linear) glide, as on the original site */
 
-    <div class="attribution">&#169; <a href="http://fogday.com">Fogday Studios</a> | @fogfish
-    </div>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZm9nZmlzaCIsImEiOiJOeXZlMF9FIn0.I3vP7TOUVxyKTaW27p_IqA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/fogfish/cifta9e28000ztgkpe46j4rh8',  /* "glow" */
+    center: HOME.center, zoom: HOME.zoom,
+    customAttribution: '<a href="https://fogday.com/">© Fogday Studios</a> | <a href="https://www.instagram.com/fogfish/">@fogfish</a>'  /* our credit, in Mapbox's credit line */
+  });
+  map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');  /* zoom + compass */
 
-    <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZm9nZmlzaCIsImEiOiJOeXZlMF9FIn0.I3vP7TOUVxyKTaW27p_IqA';
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/fogfish/cifta9e28000ztgkpe46j4rh8', // glow
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function go(view) {
+    if (calm.matches) map.jumpTo(view);
+    else map.flyTo(Object.assign({}, FLY, view));  /* a region's own speed/curve override the default */
+  }
 
-          center: [-95.484415,40.987548], // starting position
-            zoom: 3 // starting zoom
-                });
+  /* Region pills */
+  var row = document.querySelector('.map-places');
+  var pills = row.querySelectorAll('button');
+  Array.prototype.forEach.call(pills, function (b) {
+    b.addEventListener('click', function () {
+      Array.prototype.forEach.call(pills, function (x) { x.removeAttribute('aria-pressed'); });
+      b.setAttribute('aria-pressed', 'true');
+      b.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: calm.matches ? 'auto' : 'smooth' });
+      go({ center: JSON.parse(b.dataset.center), zoom: +b.dataset.zoom, bearing: +b.dataset.bearing || 0,
+           speed: +b.dataset.speed || FLY.speed, curve: +b.dataset.curve || FLY.curve });
+    });
+  });
 
-        //  zoom and rotation map controls
-            map.addControl(new mapboxgl.Navigation());
+  /* Title: back to the overview */
+  document.querySelector('[data-home]').addEventListener('click', function () {
+    Array.prototype.forEach.call(pills, function (x) { x.removeAttribute('aria-pressed'); });
+    row.scrollTo({ left: 0, behavior: calm.matches ? 'auto' : 'smooth' });
+    go(HOME);
+  });
 
-        // fly to locations
-        function home() { // fly home
-            map.flyTo({
-            center: [-95.484415, 40.987548],
-            zoom: 3, bearing: 0,
-            speed: 3, curve: 1,
-            easing: function(t) {
-             return t;
-                  }
-                }); }
+  /* Edge fades: only the side with more regions past it */
+  function edges() {
+    var more = row.scrollWidth - row.clientWidth;
+    row.parentNode.style.setProperty('--fl', row.scrollLeft > 2 ? '28px' : '0px');
+    row.parentNode.style.setProperty('--fr', row.scrollLeft < more - 2 ? '28px' : '0px');
+  }
+  row.addEventListener('scroll', edges, { passive: true });
+  window.addEventListener('resize', edges);
+  if (window.ResizeObserver) new ResizeObserver(edges).observe(row);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(edges);
+  edges();
 
-        function fly1() { // Washington
-            map.flyTo({
-            center: [-123.05, 49], // Point Roberts, WA
-            zoom: 6, bearing: 6,
-            speed: 1.2, curve: 1.42,
-            easing: function(t) {
-             return t;
-                  }
-                }); }
+  /* Mouse wheel scrolls the row sideways */
+  row.addEventListener('wheel', function (e) {
+    if (row.scrollWidth > row.clientWidth && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      row.scrollLeft += e.deltaY;
+      e.preventDefault();
+    }
+  }, { passive: false });
 
-        function fly2() { // Maritime
-            map.flyTo({
-            center: [-63.8, 46.7],
-            zoom: 7, bearing: 5,
-            speed: 1, curve: 1,
-            easing: function(t) {
-             return t;
-                  }
-                }); }
+  /* Backup for phones: if a sideways finger swipe doesn't scroll the row by itself
+     (some iPhone Safari versions), move it with the finger. Does nothing when normal swiping works. */
+  var t = null;
+  row.addEventListener('scroll', function () { if (t && t.mode !== 'manual') t.native = true; }, { passive: true });
+  row.addEventListener('touchstart', function (e) {
+    var p = e.touches[0];
+    t = { x: p.clientX, y: p.clientY, left: row.scrollLeft, mode: null, native: false };
+  }, { passive: true });
+  row.addEventListener('touchmove', function (e) {
+    if (!t) return;
+    var p = e.touches[0], dx = t.x - p.clientX, dy = t.y - p.clientY;
+    if (!t.mode) {
+      if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) t.mode = 'native';   /* up/down: not ours */
+      else if (Math.abs(dx) > 30) t.mode = t.native ? 'native' : 'manual';      /* 30px sideways and still no scroll: take over */
+    }
+    if (t.mode === 'manual') { row.scrollLeft = t.left + dx; if (e.cancelable) e.preventDefault(); }
+  }, { passive: false });
+  row.addEventListener('touchend', function () { t = null; }, { passive: true });
+  row.addEventListener('touchcancel', function () { t = null; }, { passive: true });
 
-        function fly3() { // Cape Cod/Long Island
-            map.flyTo({
-            center: [-72.2, 41.5],
-            zoom: 7, bearing: 0,
-            speed: 1, curve: 1,
-            easing: function(t) {
-             return t;
-                  }
-                }); }
-
-            function fly4() { // Chesapeake
-            map.flyTo({
-            center: [-76.2, 37.5],
-            zoom: 7, bearing: 0,
-            speed: 1, curve: 1,
-            easing: function(t) {
-             return t;
-                  }
-                }); }
-
-            function fly5() { // Gulf Coast
-            map.flyTo({
-            center: [-90, 29],
-            zoom: 6, bearing: 6,
-            speed: 1, curve: 1,
-            easing: function(t) {
-             return t;
-                  }
-                }); }
-
-            function fly6() { // France
-            map.flyTo({
-            center: [-1.1,45.80,],
-            zoom: 11, bearing: 0,
-            speed: 1, curve: 1,
-            easing: function(t) {
-             return t;
-                  }
-                }); }
-
-            function fly7() { // Tomales Bay
-            map.flyTo({
-            center: [-122.84,38.10,],
-            zoom: 7, bearing: 0,
-            speed: 1, curve: 1,
-            easing: function(t) {
-             return t;
-                  }
-                }); }
-    </script>
-
+  /* Legend starts open on big screens, closed on phones */
+  if (window.matchMedia('(min-width: 760px) and (min-height: 600px)').matches) document.querySelector('.map-legend').open = true;
+});
+</script>
 </body>
-
 </html>
