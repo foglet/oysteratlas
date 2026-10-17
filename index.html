@@ -141,8 +141,10 @@
     <li><span class="sp-name">Belon</span><span class="dot" style="--c:#7D12B3"></span><i>(Ostrea edulis)</i></li>
     <li><span class="sp-name">Eastern</span><span class="dot" style="--c:#C72052"></span><i>(Crassostrea virginica)</i></li>
     <li><span class="sp-name">Kumamoto</span><span class="dot" style="--c:#C7A15B"></span><i>(Crassostrea sikamea)</i></li>
+    <li><span class="sp-name">New Zealand Flat</span><span class="dot" style="--c:#4E79D6"></span><i>(Ostrea chilensis)</i></li>
     <li><span class="sp-name">Olympia</span><span class="dot" style="--c:#A2BC13"></span><i>(Ostrea lurida)</i></li>
     <li><span class="sp-name">Pacific</span><span class="dot" style="--c:#2A7889"></span><i>(Crassostrea gigas)</i></li>
+    <li><span class="sp-name">Sydney Rock</span><span class="dot" style="--c:#E8743B"></span><i>(Saccostrea glomerata)</i></li>
   </ul>
 </details>
 
@@ -185,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* Search by market name. Adds its own pin layer on top; the style's heatmap and labels are left alone.
      Point url at the oyster GeoJSON; set nameKey / speciesKey if its properties are named differently. */
   OysterSearch.init({ map: map, url: 'assets/data/oysters.geojson', nameKey: 'marketName', speciesKey: 'species', fly: go });
-  
+
   /* Region pills */
   var row = document.querySelector('.map-places');
   var pills = row.querySelectorAll('button');
