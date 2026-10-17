@@ -16,6 +16,10 @@
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.33.0/mapbox-gl.css">
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.33.0/mapbox-gl.js" defer></script>
 
+<!-- Search by market name (sits under the species legend) -->
+<link rel="stylesheet" href="assets/css/oyster-search.css">
+<script src="assets/js/oyster-search.js" defer></script>
+
 <!-- Source Sans 3 (the current version of the site's original Source Sans Pro) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +43,7 @@
   #map { position: fixed; inset: 0; }
 
   /* Panels floating over the map */
-  .map-places button, .map-legend, .title {
+  .map-places button, .map-legend-panel, .title {
     background: color-mix(in srgb, var(--bg) 80%, transparent);
     -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
     color: var(--ink); border: 1px solid var(--line);
@@ -89,8 +93,8 @@
     .map-places button { min-height: 36px; }
   }
 
-  /* Legend: collapsible card, bottom left above the Mapbox logo. Closed on phones, open on big screens. */
-  .map-legend {
+  /* Legend + search: one card, bottom left above the Mapbox logo. Legend closed on phones, open on big screens; search always shows. */
+  .map-legend-panel {
     position: absolute; z-index: 2; left: 12px; bottom: calc(50px + env(safe-area-inset-bottom, 0px));  /* clears the credit line */
     max-width: calc(100% - 24px); max-height: calc(100% - 180px); overflow-y: auto; border-radius: 8px;
   }
@@ -102,8 +106,9 @@
   .map-legend summary::after { content: " +"; color: var(--muted); }
   .map-legend[open] summary::after { content: " –"; }
   .map-legend summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 8px; }
+  .map-legend-panel { width: 320px; }
   .map-legend ul { list-style: none; margin: 0; padding: 0 14px 12px; display: grid; gap: 6px; font-size: .9rem; }
-  .map-legend li { display: flex; align-items: center; gap: 10px; }
+  .map-legend li { display: flex; align-items: center; gap: 8px; }  /* name, then its color dot, then the Latin name */
   .map-legend li i { color: var(--muted); }
   .dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
 </style>
@@ -128,16 +133,34 @@
   </div>
 </div>
 
+<div class="map-legend-panel">
 <details class="map-legend">
   <summary>Oyster species</summary>
+  <!-- One place to edit species: search reads names, Latin names and colors from these rows -->
   <ul>
-    <li><span class="dot" style="--c:#7D12B3"></span>Belon <i>(Ostrea edulis)</i></li>
-    <li><span class="dot" style="--c:#C72052"></span>Eastern <i>(Crassostrea virginica)</i></li>
-    <li><span class="dot" style="--c:#C7A15B"></span>Kumamoto <i>(Crassostrea sikamea)</i></li>
-    <li><span class="dot" style="--c:#A2BC13"></span>Olympia <i>(Ostrea lurida)</i></li>
-    <li><span class="dot" style="--c:#2A7889"></span>Pacific <i>(Crassostrea gigas)</i></li>
+    <li><span class="sp-name">Belon</span><span class="dot" style="--c:#7D12B3"></span><i>(Ostrea edulis)</i></li>
+    <li><span class="sp-name">Eastern</span><span class="dot" style="--c:#C72052"></span><i>(Crassostrea virginica)</i></li>
+    <li><span class="sp-name">Kumamoto</span><span class="dot" style="--c:#C7A15B"></span><i>(Crassostrea sikamea)</i></li>
+    <li><span class="sp-name">Olympia</span><span class="dot" style="--c:#A2BC13"></span><i>(Ostrea lurida)</i></li>
+    <li><span class="sp-name">Pacific</span><span class="dot" style="--c:#2A7889"></span><i>(Crassostrea gigas)</i></li>
   </ul>
 </details>
+
+<div class="oa-search" role="search">
+  <label for="oa-search-input" class="oa-search-label">Find an oyster</label>
+  <div class="oa-field">
+    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="oa-search-input" class="oa-input" type="search"
+           role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="oa-search-results"
+           autocomplete="off" spellcheck="false" placeholder="Market name, e.g. Kumamoto">
+    <button id="oa-search-clear" class="oa-clear" type="button" aria-label="Clear search" hidden>
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <p id="oa-search-status" class="oa-status" aria-live="polite"></p>
+  <ul id="oa-search-results" class="oa-results" role="listbox" aria-label="Matching oysters"></ul>
+</div>
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -158,6 +181,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (calm.matches) map.jumpTo(view);
     else map.flyTo(Object.assign({}, FLY, view));  /* a region's own speed/curve override the default */
   }
+
+  /* Search by market name. Adds its own pin layer on top; the style's heatmap and labels are left alone.
+     Point url at the oyster GeoJSON; set nameKey / speciesKey if its properties are named differently. */
+  OysterSearch.init({ map: map, url: 'assets/data/oysters.geojson', nameKey: 'name', speciesKey: 'species', fly: go });
 
   /* Region pills */
   var row = document.querySelector('.map-places');
