@@ -194,8 +194,8 @@
         var dot = el('span', 'dot');
         dot.setAttribute('aria-hidden', 'true');
 
+        li.appendChild(dot);   // same order as the legend: dot, name, species at right
         li.appendChild(name);
-        li.appendChild(dot);
         li.appendChild(el('span', 'oa-species', it.species));
         list.appendChild(li);
       });
