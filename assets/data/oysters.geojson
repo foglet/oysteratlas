@@ -3255,32 +3255,6 @@
       "type": "Feature",
       "properties": {
         "rank": 64,
-        "marketName": "Evening Cove",
-        "species": "Crassostrea gigas",
-        "speciesCode": "CG",
-        "speciesName": "Pacific",
-        "color": "#2A7889",
-        "cultivation": "Suspended",
-        "salinity": "Moderate",
-        "size": "Average",
-        "region": "British Columbia",
-        "waterBody": "Strait of Georgia",
-        "cityCounty": "",
-        "st": "British Columbia",
-        "locale": "Texada Island, Strait of Georgia, BC"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.77,
-          48.987
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "rank": 64,
         "marketName": "Pacific Kiss",
         "species": "Crassostrea gigas",
         "speciesCode": "CG",
@@ -12782,7 +12756,7 @@
         "region": "British Columbia",
         "waterBody": "Strait of Georgia",
         "cityCounty": "Ladysmith",
-        "st": "BC",
+        "st": "British Columbia",
         "locale": "Stuart Channel, Vancouver Island, Ladysmith, BC"
       },
       "geometry": {
