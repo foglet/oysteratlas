@@ -9,8 +9,8 @@
 }
 
 .oa-field {
-  display: flex; align-items: center; gap: 8px;
-  height: 44px; padding: 0 12px;
+  display: flex; align-items: center; gap: 5px;
+  width: 100px; height: 44px; padding: 0 8px;
   background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
 }
 .oa-field:focus-within { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent); }
@@ -21,7 +21,7 @@
   border: 0; background: transparent; color: var(--ink);
   font: 400 16px/1 var(--font); /* 16px keeps iPhone Safari from zooming on focus */
 }
-.oa-input::placeholder { color: var(--muted); }
+.oa-input::placeholder { color: var(--muted); font-size: 13px; }  /* small enough for "Hog Island" in the 100px bar; typed text stays 16px */
 .oa-input:focus { outline: none; }
 .oa-input::-webkit-search-cancel-button { display: none; }
 .oa-input:disabled { opacity: .5; }
