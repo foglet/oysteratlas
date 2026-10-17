@@ -30,7 +30,7 @@
     maxResults: 50,
     flyZoom: 10,
     fallbackColor: '#8fa3b1',
-    hintText: 'Type part of a market name.'
+    hintText: ''               // shown when the box is empty; blank = nothing
   };
 
   var HIT_ID = 'oa-search-hit';
