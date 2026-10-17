@@ -119,9 +119,7 @@
         id: HIT_ID, type: 'circle', source: HIT_ID,
         paint: {
           'circle-radius': 9,
-          'circle-color': ['get', 'color'],
-          'circle-stroke-width': 3,
-          'circle-stroke-color': '#edf1f2'
+          'circle-color': ['get', 'color']   // species color fill only, no outline
         }
       }); // no beforeId → above every style layer, heatmap included
     }
