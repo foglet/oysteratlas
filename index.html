@@ -108,8 +108,8 @@
   .map-legend summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 8px; }
   .map-legend-panel { width: 320px; }
   .map-legend ul { list-style: none; margin: 0; padding: 0 14px 12px; display: grid; gap: 6px; font-size: .9rem; }
-  .map-legend li { display: flex; align-items: center; gap: 8px; }  /* name, then its color dot, then the Latin name */
-  .map-legend li i { color: var(--muted); }
+  .map-legend li { display: flex; align-items: center; gap: 8px; }  /* color dot far left, name, Latin name far right */
+  .map-legend li i { color: var(--muted); margin-left: auto; padding-left: 12px; white-space: nowrap; }
   .dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
 </style>
 </head>
@@ -138,13 +138,13 @@
   <summary>Oyster species</summary>
   <!-- One place to edit species: search reads names, Latin names and colors from these rows -->
   <ul>
-    <li><span class="sp-name">Belon</span><span class="dot" style="--c:#7D12B3"></span><i>(Ostrea edulis)</i></li>
-    <li><span class="sp-name">Eastern</span><span class="dot" style="--c:#C72052"></span><i>(Crassostrea virginica)</i></li>
-    <li><span class="sp-name">Kumamoto</span><span class="dot" style="--c:#C7A15B"></span><i>(Crassostrea sikamea)</i></li>
-    <li><span class="sp-name">New Zealand Flat</span><span class="dot" style="--c:#4E79D6"></span><i>(Ostrea chilensis)</i></li>
-    <li><span class="sp-name">Olympia</span><span class="dot" style="--c:#A2BC13"></span><i>(Ostrea lurida)</i></li>
-    <li><span class="sp-name">Pacific</span><span class="dot" style="--c:#2A7889"></span><i>(Crassostrea gigas)</i></li>
-    <li><span class="sp-name">Sydney Rock</span><span class="dot" style="--c:#E8743B"></span><i>(Saccostrea glomerata)</i></li>
+    <li><span class="dot" style="--c:#7D12B3"></span><span class="sp-name">Belon</span><i>(Ostrea edulis)</i></li>
+    <li><span class="dot" style="--c:#C72052"></span><span class="sp-name">Eastern</span><i>(Crassostrea virginica)</i></li>
+    <li><span class="dot" style="--c:#C7A15B"></span><span class="sp-name">Kumamoto</span><i>(Crassostrea sikamea)</i></li>
+    <li><span class="dot" style="--c:#4E79D6"></span><span class="sp-name">New Zealand Flat</span><i>(Ostrea chilensis)</i></li>
+    <li><span class="dot" style="--c:#A2BC13"></span><span class="sp-name">Olympia</span><i>(Ostrea lurida)</i></li>
+    <li><span class="dot" style="--c:#2A7889"></span><span class="sp-name">Pacific</span><i>(Crassostrea gigas)</i></li>
+    <li><span class="dot" style="--c:#E8743B"></span><span class="sp-name">Sydney Rock</span><i>(Saccostrea glomerata)</i></li>
   </ul>
 </details>
 
