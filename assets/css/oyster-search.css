@@ -1,0 +1,77 @@
+/* The Oyster Atlas — search by market name. Fogday Studios, fogday.com
+   Uses the page tokens from index.html (--panel, --ink, --muted, --line, --accent, --font). */
+
+.oa-search { padding: 10px 14px 12px; border-top: 1px solid var(--line); }
+
+.oa-search-label {
+  display: block; margin: 0 0 8px;
+  font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+}
+
+.oa-field {
+  display: flex; align-items: center; gap: 8px;
+  height: 44px; padding: 0 2px 0 12px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+}
+.oa-field:focus-within { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent); }
+.oa-field svg { flex: none; color: var(--muted); }
+
+.oa-input {
+  flex: 1; min-width: 0; height: 100%;
+  border: 0; background: transparent; color: var(--ink);
+  font: 400 16px/1 var(--font); /* 16px keeps iPhone Safari from zooming on focus */
+}
+.oa-input::placeholder { color: var(--muted); }
+.oa-input:focus { outline: none; }
+.oa-input::-webkit-search-cancel-button { display: none; }
+.oa-input:disabled { opacity: .5; }
+
+.oa-clear {
+  width: 40px; height: 40px; border: 0; border-radius: 6px;
+  background: transparent; color: var(--muted); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.oa-clear:hover { color: var(--accent); }
+.oa-clear:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.oa-clear[hidden] { display: none; }
+
+.oa-status { margin: 8px 2px 4px; font-size: .8rem; color: var(--muted); }
+
+.oa-results {
+  list-style: none; margin: 0; padding: 0;
+  max-height: min(40vh, 320px); overflow-y: auto; overscroll-behavior: contain;
+}
+.oa-results:empty { display: none; }
+
+.oa-result {
+  display: flex; align-items: center; gap: 10px;
+  min-height: 40px; padding: 6px 8px; border-radius: 6px; cursor: pointer;
+}
+.oa-result:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
+.oa-result[aria-selected="true"] { background: color-mix(in srgb, var(--ink) 14%, transparent); }
+
+/* Market name in its species color, lifted toward white so the darker species colors stay readable */
+.oa-name {
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-weight: 600; color: color-mix(in srgb, var(--c) 55%, #ffffff);
+}
+.oa-name mark { background: transparent; color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.oa-result .dot { margin-right: auto; } /* species dot sits right of the name, species label at the far right */
+.oa-species { font-size: .8rem; color: var(--muted); white-space: nowrap; }
+
+/* Popup for a picked oyster */
+.oa-popup-wrap .mapboxgl-popup-content {
+  background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 8px;
+  padding: 10px 28px 10px 12px; font: 400 .9rem/1.35 var(--font);
+}
+.oa-popup-wrap.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+.oa-popup-wrap.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+.oa-popup-wrap.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip { border-top-color: var(--panel); }
+.oa-popup-wrap.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+.oa-popup-wrap.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+.oa-popup-wrap.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip { border-bottom-color: var(--panel); }
+.oa-popup-wrap.mapboxgl-popup-anchor-left .mapboxgl-popup-tip { border-right-color: var(--panel); }
+.oa-popup-wrap.mapboxgl-popup-anchor-right .mapboxgl-popup-tip { border-left-color: var(--panel); }
+.oa-popup-wrap .mapboxgl-popup-close-button { color: var(--muted); font-size: 18px; }
+.oa-popup strong { display: block; font-size: 1rem; }
+.oa-popup span { color: var(--muted); }
