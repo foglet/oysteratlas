@@ -89,7 +89,7 @@
 /* Details of the chosen oyster: in their own card above the legend (index.html), or under the search bar if that card is missing */
 .oa-detail { margin: 8px 2px 2px; font-size: .9rem; line-height: 1.35; }
 .oa-detail[hidden] { display: none; }
-.oa-detail-name { display: flex; align-items: center; gap: 8px; color: var(--ink); }
+.oa-detail-name { display: flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700; }  /* the picked oyster, bold */
 .oa-detail-name .dot { background: var(--c); }
 .oa-detail-locale { margin-top: 2px; padding-left: 20px; color: var(--ink); }
 .oa-detail-region { padding-left: 20px; color: var(--muted); }
