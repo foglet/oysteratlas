@@ -13,11 +13,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Scarborough River",
         "cityCounty": "Scarborough",
-        "st": "Maine",
-        "locale": "Scarborough River, Maine"
+        "st": "ME",
+        "locale": "Scarborough River, ME"
       },
       "geometry": {
         "type": "Point",
@@ -42,8 +42,8 @@
         "region": "Gulf Coast",
         "waterBody": "Gulf of Mexico",
         "cityCounty": "",
-        "st": "Alabama",
-        "locale": "Gulf Coast, Alabama"
+        "st": "AL",
+        "locale": "Gulf Coast, AL"
       },
       "geometry": {
         "type": "Point",
@@ -68,8 +68,8 @@
         "region": "Southeast",
         "waterBody": "North River",
         "cityCounty": "",
-        "st": "North Carolina",
-        "locale": "North River, North Carolina"
+        "st": "NC",
+        "locale": "North River, NC"
       },
       "geometry": {
         "type": "Point",
@@ -94,8 +94,8 @@
         "region": "Cape Cod",
         "waterBody": "Duxbury Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Saquish, Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Saquish, Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -172,8 +172,8 @@
         "region": "Gulf Coast",
         "waterBody": "Copano Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Copano Bay, Texas"
+        "st": "TX",
+        "locale": "Copano Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -198,8 +198,8 @@
         "region": "Gulf Coast",
         "waterBody": "Aransas Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Aransas Bay, Texas"
+        "st": "TX",
+        "locale": "Aransas Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -224,8 +224,8 @@
         "region": "Cape Cod",
         "waterBody": "Barnstable Harbor",
         "cityCounty": "Barnstable",
-        "st": "Massachusetts",
-        "locale": "Barnstable Harbor, Massachusetts"
+        "st": "MA",
+        "locale": "Barnstable Harbor, MA"
       },
       "geometry": {
         "type": "Point",
@@ -247,11 +247,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "New Meadows River",
         "cityCounty": "",
-        "st": "Maine",
-        "locale": "New Meadows River, Maine"
+        "st": "ME",
+        "locale": "New Meadows River, ME"
       },
       "geometry": {
         "type": "Point",
@@ -302,8 +302,8 @@
         "region": "Puget Sound",
         "waterBody": "South Puget Sound",
         "cityCounty": "Harstine Island",
-        "st": "Washington",
-        "locale": "Harstine Island, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Harstine Island, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -328,8 +328,8 @@
         "region": "Southeast",
         "waterBody": "Pamlico Sound",
         "cityCounty": "Cedar Island",
-        "st": "North Carolina",
-        "locale": "Cedar Island, North Carolina"
+        "st": "NC",
+        "locale": "Cedar Island, NC"
       },
       "geometry": {
         "type": "Point",
@@ -380,8 +380,8 @@
         "region": "Gulf Coast",
         "waterBody": "Aransas Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Aransas Bay, Texas"
+        "st": "TX",
+        "locale": "Aransas Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -406,8 +406,8 @@
         "region": "Gulf Coast",
         "waterBody": "Copano Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Copano Bay, Texas"
+        "st": "TX",
+        "locale": "Copano Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -432,8 +432,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Dennis",
-        "st": "Massachusetts",
-        "locale": "Cape Cod Bay, Barnstable–Dennis, Massachusetts"
+        "st": "MA",
+        "locale": "Cape Cod Bay, Barnstable–Dennis, MA"
       },
       "geometry": {
         "type": "Point",
@@ -458,8 +458,8 @@
         "region": "Salish Sea",
         "waterBody": "Discovery Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Discovery Bay, Washington"
+        "st": "WA",
+        "locale": "Discovery Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -484,8 +484,8 @@
         "region": "Southeast",
         "waterBody": "Topsail Sound",
         "cityCounty": "",
-        "st": "North Carolina",
-        "locale": "Topsail Sound, North Carolina"
+        "st": "NC",
+        "locale": "Topsail Sound, NC"
       },
       "geometry": {
         "type": "Point",
@@ -533,11 +533,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Robinhood Cove",
         "cityCounty": "Georgetown",
-        "st": "Maine",
-        "locale": "Robinhood Cove, Georgetown Island, Maine"
+        "st": "ME",
+        "locale": "Robinhood Cove, Georgetown Island, ME"
       },
       "geometry": {
         "type": "Point",
@@ -562,8 +562,8 @@
         "region": "Willapa Bay",
         "waterBody": "Willapa Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Willapa Bay, Washington"
+        "st": "WA",
+        "locale": "Willapa Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -588,8 +588,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Hood Canal (north end), Washington"
+        "st": "WA",
+        "locale": "Hood Canal (north end), WA"
       },
       "geometry": {
         "type": "Point",
@@ -611,11 +611,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Point Judith Pond",
         "cityCounty": "",
-        "st": "Rhode Island",
-        "locale": "Point Judith Pond, Rhode Island"
+        "st": "RI",
+        "locale": "Point Judith Pond, RI"
       },
       "geometry": {
         "type": "Point",
@@ -666,8 +666,8 @@
         "region": "Cape Cod",
         "waterBody": "Duxbury Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -692,8 +692,8 @@
         "region": "Willapa Bay",
         "waterBody": "Willapa Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Willapa Bay, Washington"
+        "st": "WA",
+        "locale": "Willapa Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -741,11 +741,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Alaska",
+        "region": "AK",
         "waterBody": "Hump Island Passage",
         "cityCounty": "Ketchikan",
-        "st": "Alaska",
-        "locale": "Hump Island, Ketchikan, Alaska"
+        "st": "AK",
+        "locale": "Hump Island, Ketchikan, AK"
       },
       "geometry": {
         "type": "Point",
@@ -874,8 +874,8 @@
         "region": "Gulf Coast",
         "waterBody": "Aransas Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Aransas Bay, Texas"
+        "st": "TX",
+        "locale": "Aransas Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -900,8 +900,8 @@
         "region": "Puget Sound",
         "waterBody": "Skagit Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Skagit Bay, Washington"
+        "st": "WA",
+        "locale": "Skagit Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -926,8 +926,8 @@
         "region": "Puget Sound",
         "waterBody": "Skagit Bay",
         "cityCounty": "Similk Bay",
-        "st": "Washington",
-        "locale": "Similk Bay, Skagit Bay, Washington"
+        "st": "WA",
+        "locale": "Similk Bay, Skagit Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -949,11 +949,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Casco Bay",
         "cityCounty": "",
-        "st": "Maine",
-        "locale": "Casco Bay, Maine"
+        "st": "ME",
+        "locale": "Casco Bay, ME"
       },
       "geometry": {
         "type": "Point",
@@ -978,8 +978,8 @@
         "region": "Puget Sound",
         "waterBody": "South Puget Sound",
         "cityCounty": "Little Skookum Inlet",
-        "st": "Washington",
-        "locale": "Little Skookum Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Little Skookum Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1030,8 +1030,8 @@
         "region": "Salish Sea",
         "waterBody": "Shoal Bay",
         "cityCounty": "Lopez Island",
-        "st": "Washington",
-        "locale": "Shoal Bay, Lopez Island, Washington"
+        "st": "WA",
+        "locale": "Shoal Bay, Lopez Island, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1056,8 +1056,8 @@
         "region": "Gulf Coast",
         "waterBody": "Matagorda Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Matagorda Bay, Texas"
+        "st": "TX",
+        "locale": "Matagorda Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -1108,8 +1108,8 @@
         "region": "Hood Canal",
         "waterBody": "Port Townsend Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Port Townsend Bay, Washington"
+        "st": "WA",
+        "locale": "Port Townsend Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1134,8 +1134,8 @@
         "region": "Puget Sound",
         "waterBody": "Skagit Bay",
         "cityCounty": "Similk Bay",
-        "st": "Washington",
-        "locale": "Similk Bay, Skagit Bay, Washington"
+        "st": "WA",
+        "locale": "Similk Bay, Skagit Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1160,8 +1160,8 @@
         "region": "Cape Cod",
         "waterBody": "Buzzards Bay",
         "cityCounty": "Bourne",
-        "st": "Massachusetts",
-        "locale": "Bourne Cove, Buzzards Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Bourne Cove, Buzzards Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -1316,8 +1316,8 @@
         "region": "Puget Sound",
         "waterBody": "Case Inlet",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Case Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Case Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1342,8 +1342,8 @@
         "region": "Cape Cod",
         "waterBody": "Duxbury Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -1368,8 +1368,8 @@
         "region": "Southeast",
         "waterBody": "Port Royal Sound",
         "cityCounty": "Daws Island",
-        "st": "South Carolina",
-        "locale": "Daws Island, South Carolina"
+        "st": "SC",
+        "locale": "Daws Island, SC"
       },
       "geometry": {
         "type": "Point",
@@ -1446,8 +1446,8 @@
         "region": "Cape Cod",
         "waterBody": "Barnstable Harbor",
         "cityCounty": "Barnstable",
-        "st": "Massachusetts",
-        "locale": "Barnstable Harbor, Cape Cod, Massachusetts"
+        "st": "MA",
+        "locale": "Barnstable Harbor, Cape Cod, MA"
       },
       "geometry": {
         "type": "Point",
@@ -1498,8 +1498,8 @@
         "region": "Puget Sound",
         "waterBody": "Skagit Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Skagit Bay, Washington"
+        "st": "WA",
+        "locale": "Skagit Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1521,11 +1521,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Quahog Bay",
         "cityCounty": "Harpswell",
-        "st": "Maine",
-        "locale": "Quahog Bay, Harpswell, Maine"
+        "st": "ME",
+        "locale": "Quahog Bay, Harpswell, ME"
       },
       "geometry": {
         "type": "Point",
@@ -1576,8 +1576,8 @@
         "region": "Hood Canal",
         "waterBody": "Port Townsend Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Port Townsend Bay, Washington"
+        "st": "WA",
+        "locale": "Port Townsend Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1602,8 +1602,8 @@
         "region": "Puget Sound",
         "waterBody": "Skagit Bay",
         "cityCounty": "Similk Bay",
-        "st": "Washington",
-        "locale": "Similk Bay, Skagit Bay, Washington"
+        "st": "WA",
+        "locale": "Similk Bay, Skagit Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1628,8 +1628,8 @@
         "region": "Gulf Coast",
         "waterBody": "Caminada Bay",
         "cityCounty": "",
-        "st": "Louisiana",
-        "locale": "Caminada Bay, Louisiana"
+        "st": "LA",
+        "locale": "Caminada Bay, LA"
       },
       "geometry": {
         "type": "Point",
@@ -1703,11 +1703,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Point Judith Pond",
         "cityCounty": "",
-        "st": "Rhode Island",
-        "locale": "Point Judith Pond, Rhode Island"
+        "st": "RI",
+        "locale": "Point Judith Pond, RI"
       },
       "geometry": {
         "type": "Point",
