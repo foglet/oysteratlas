@@ -17,7 +17,7 @@
         "waterBody": "Miramichi Bay",
         "cityCounty": "Neguac",
         "st": "New Brunswick",
-        "locale": "Miramichi Bay-Neguac, New Brunswick,"
+        "locale": "Miramichi Bay-Neguac, New Brunswick"
       },
       "geometry": {
         "type": "Point",
@@ -39,11 +39,11 @@
         "cultivation": "Wild",
         "salinity": "Moderate",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Casco Bay",
         "cityCounty": "Harpswell",
-        "st": "Maine",
-        "locale": "Harpswell, Maine"
+        "st": "ME",
+        "locale": "Harpswell, ME"
       },
       "geometry": {
         "type": "Point",
@@ -91,11 +91,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Damariscotta River",
         "cityCounty": "Newcastle",
-        "st": "Maine",
-        "locale": "Damariscotta River, Newcastle, Maine"
+        "st": "ME",
+        "locale": "Damariscotta River, Newcastle, ME"
       },
       "geometry": {
         "type": "Point",
@@ -117,11 +117,11 @@
         "cultivation": "Longline",
         "salinity": "Briny",
         "size": "Small",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Humboldt Bay",
         "cityCounty": "Eureka",
-        "st": "California",
-        "locale": "Humboldt Bay, Eureka, California"
+        "st": "CA",
+        "locale": "Humboldt Bay, Eureka, CA"
       },
       "geometry": {
         "type": "Point",
@@ -143,11 +143,11 @@
         "cultivation": "Beach",
         "salinity": "Moderate",
         "size": "Small",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Humboldt Bay",
         "cityCounty": "Eureka",
-        "st": "California",
-        "locale": "Humboldt Bay, Eureka, California"
+        "st": "CA",
+        "locale": "Humboldt Bay, Eureka, CA"
       },
       "geometry": {
         "type": "Point",
@@ -169,7 +169,7 @@
         "cultivation": "Longline",
         "salinity": "Oceanic",
         "size": "Small",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Laguna Manuela",
         "cityCounty": "Laguna Manuela",
         "st": "Baja Peninsula",
@@ -195,7 +195,7 @@
         "cultivation": "",
         "salinity": "Oceanic",
         "size": "",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Laguna Manuela",
         "cityCounty": "Laguna Manuela",
         "st": "Baja Peninsula",
@@ -221,11 +221,11 @@
         "cultivation": "Rack-and-bag",
         "salinity": "Briny",
         "size": "Small",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Tomales Bay",
         "cityCounty": "Eureka",
-        "st": "California",
-        "locale": "Tomales Bay, Marshall, California"
+        "st": "CA",
+        "locale": "Tomales Bay, Marshall, CA"
       },
       "geometry": {
         "type": "Point",
@@ -247,11 +247,11 @@
         "cultivation": "",
         "salinity": "Briny",
         "size": "",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Drakes Estero",
         "cityCounty": "Marin",
-        "st": "California",
-        "locale": "Drakes Estero, Marin, California"
+        "st": "CA",
+        "locale": "Drakes Estero, Marin, CA"
       },
       "geometry": {
         "type": "Point",
@@ -273,11 +273,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "California",
+        "region": "CA",
         "waterBody": "San Francisco Bay",
         "cityCounty": "Marin",
-        "st": "California",
-        "locale": "San Quentin, California"
+        "st": "CA",
+        "locale": "San Quentin, CA"
       },
       "geometry": {
         "type": "Point",
@@ -299,11 +299,11 @@
         "cultivation": "Off-Bottom Cages",
         "salinity": "Moderate",
         "size": "Small",
-        "region": "Oregon",
+        "region": "OR",
         "waterBody": "Yaquina Bay",
         "cityCounty": "Yaquina Bay",
-        "st": "Oregon",
-        "locale": "Yaquina Bay, Oregon"
+        "st": "OR",
+        "locale": "Yaquina Bay, OR"
       },
       "geometry": {
         "type": "Point",
@@ -328,8 +328,8 @@
         "region": "South Puget Sound",
         "waterBody": "Little Skookum Inlet",
         "cityCounty": "Little Skookum Inlet",
-        "st": "Washington",
-        "locale": "Little Skookum Inlet, Washington"
+        "st": "WA",
+        "locale": "Little Skookum Inlet, WA"
       },
       "geometry": {
         "type": "Point",
@@ -351,11 +351,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Small",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Morro Bay",
         "cityCounty": "Los Osos",
-        "st": "California",
-        "locale": "Morro Bay, Los Osos, California"
+        "st": "CA",
+        "locale": "Morro Bay, Los Osos, CA"
       },
       "geometry": {
         "type": "Point",
@@ -377,11 +377,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Small",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Morro Bay",
         "cityCounty": "Los Osos",
-        "st": "California",
-        "locale": "Morro Bay, Los Osos, California"
+        "st": "CA",
+        "locale": "Morro Bay, Los Osos, CA"
       },
       "geometry": {
         "type": "Point",
@@ -403,11 +403,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Large",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Point Judith Pond",
         "cityCounty": "Point Judith Pond",
-        "st": "Rhode Island",
-        "locale": "Point Judith Pond, Rhode Island"
+        "st": "RI",
+        "locale": "Point Judith Pond, RI"
       },
       "geometry": {
         "type": "Point",
@@ -458,8 +458,8 @@
         "region": "Puget Sound",
         "waterBody": "South Puget Sound",
         "cityCounty": "Totten Inlet",
-        "st": "Washington",
-        "locale": "Totten Inlet, South Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Totten Inlet, South Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -484,8 +484,8 @@
         "region": "Puget Sound",
         "waterBody": "South Puget Sound",
         "cityCounty": "Totten Inlet",
-        "st": "Washington",
-        "locale": "Totten Inlet, South Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Totten Inlet, South Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -510,8 +510,8 @@
         "region": "Puget Sound",
         "waterBody": "South Puget Sound",
         "cityCounty": "Totten Inlet",
-        "st": "Washington",
-        "locale": "Totten Inlet, Washington"
+        "st": "WA",
+        "locale": "Totten Inlet, WA"
       },
       "geometry": {
         "type": "Point",
@@ -536,13 +536,13 @@
         "region": "Puget Sound",
         "waterBody": "South Puget Sound",
         "cityCounty": "Totten Inlet",
-        "st": "Washington",
-        "locale": "Totten Inlet, South Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Totten Inlet, South Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.000,
+          -123.0,
           47.161
         ]
       }
@@ -562,8 +562,8 @@
         "region": "Puget Sound",
         "waterBody": "South Puget Sound",
         "cityCounty": "Totten Inlet",
-        "st": "Washington",
-        "locale": "Totten Inlet, South Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Totten Inlet, South Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -588,13 +588,13 @@
         "region": "Salish Sea",
         "waterBody": "Shoal Bay",
         "cityCounty": "Lopez Island",
-        "st": "Washington",
-        "locale": "Shoal Bay, Lopez Island, Washington"
+        "st": "WA",
+        "locale": "Shoal Bay, Lopez Island, WA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -122.87380,
+          -122.8738,
           48.55211
         ]
       }
@@ -614,8 +614,8 @@
         "region": "Salish Sea",
         "waterBody": "Shoal Bay",
         "cityCounty": "Lopez Island",
-        "st": "Washington",
-        "locale": "Shoal Bay, Lopez Island, Washington"
+        "st": "WA",
+        "locale": "Shoal Bay, Lopez Island, WA"
       },
       "geometry": {
         "type": "Point",
@@ -640,13 +640,13 @@
         "region": "Salish Sea",
         "waterBody": "Samish Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Samish Bay, Bow, Washington"
+        "st": "WA",
+        "locale": "Samish Bay, Bow, WA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -122.460,
+          -122.46,
           48.589
         ]
       }
@@ -666,8 +666,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "Topping",
-        "st": "Virginia",
-        "locale": "Topping, Virginia"
+        "st": "VA",
+        "locale": "Topping, VA"
       },
       "geometry": {
         "type": "Point",
@@ -692,8 +692,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Rappahannock River",
         "cityCounty": "Urbanna",
-        "st": "Virginia",
-        "locale": "Urbanna Creek, Urbanna, Virginia"
+        "st": "VA",
+        "locale": "Urbanna Creek, Urbanna, VA"
       },
       "geometry": {
         "type": "Point",
@@ -718,8 +718,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "Topping",
-        "st": "Virginia",
-        "locale": "Topping, Virginia"
+        "st": "VA",
+        "locale": "Topping, VA"
       },
       "geometry": {
         "type": "Point",
@@ -744,8 +744,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Fleet's Bay",
         "cityCounty": "White Stone",
-        "st": "Virginia",
-        "locale": "Fleet's Bay, Virginia"
+        "st": "VA",
+        "locale": "Fleet's Bay, VA"
       },
       "geometry": {
         "type": "Point",
@@ -770,8 +770,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Chesapeake Bay, Virginia"
+        "st": "VA",
+        "locale": "Chesapeake Bay, VA"
       },
       "geometry": {
         "type": "Point",
@@ -796,8 +796,8 @@
         "region": "South Puget Sound",
         "waterBody": "Totten Inlet",
         "cityCounty": "Olympia",
-        "st": "Washington",
-        "locale": "Totten Inlet, Olympia, Washington"
+        "st": "WA",
+        "locale": "Totten Inlet, Olympia, WA"
       },
       "geometry": {
         "type": "Point",
@@ -822,8 +822,8 @@
         "region": "Salish Sea",
         "waterBody": "Samish Bay",
         "cityCounty": "Samish",
-        "st": "Washington",
-        "locale": "Samish Bay, Washington"
+        "st": "WA",
+        "locale": "Samish Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -848,8 +848,8 @@
         "region": "Salish Sea",
         "waterBody": "Samish Bay",
         "cityCounty": "Bow",
-        "st": "Washington",
-        "locale": "Samish Bay, Washington"
+        "st": "WA",
+        "locale": "Samish Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -874,8 +874,8 @@
         "region": "Salish Sea",
         "waterBody": "Samish Bay",
         "cityCounty": "Bow",
-        "st": "Washington",
-        "locale": "Samish Bay, Washington"
+        "st": "WA",
+        "locale": "Samish Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -900,8 +900,8 @@
         "region": "Salish Sea",
         "waterBody": "Samish Bay",
         "cityCounty": "Samish",
-        "st": "Washington",
-        "locale": "Samish Bay, Washington"
+        "st": "WA",
+        "locale": "Samish Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -926,8 +926,8 @@
         "region": "Salish Sea",
         "waterBody": "Samish Bay",
         "cityCounty": "Samish",
-        "st": "Washington",
-        "locale": "Samish Bay, Bow, Washington"
+        "st": "WA",
+        "locale": "Samish Bay, Bow, WA"
       },
       "geometry": {
         "type": "Point",
@@ -952,8 +952,8 @@
         "region": "Salish Sea",
         "waterBody": "Samish Bay",
         "cityCounty": "Samish",
-        "st": "Washington",
-        "locale": "Samish Bay, Washington"
+        "st": "WA",
+        "locale": "Samish Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -978,8 +978,8 @@
         "region": "Salish Sea",
         "waterBody": "Samish Bay",
         "cityCounty": "Samish",
-        "st": "Washington",
-        "locale": "Samish Bay, Washington"
+        "st": "WA",
+        "locale": "Samish Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1004,8 +1004,8 @@
         "region": "Salish Sea",
         "waterBody": "Samish Bay",
         "cityCounty": "Samish",
-        "st": "Washington",
-        "locale": "Samish Bay, Washington"
+        "st": "WA",
+        "locale": "Samish Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1030,8 +1030,8 @@
         "region": "Salish Sea",
         "waterBody": "Samish Bay",
         "cityCounty": "Samish",
-        "st": "Washington",
-        "locale": "Samish Bay, Washington"
+        "st": "WA",
+        "locale": "Samish Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1056,8 +1056,8 @@
         "region": "Salish Sea",
         "waterBody": "Discovery Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Discovery Bay, Washington"
+        "st": "WA",
+        "locale": "Discovery Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1082,8 +1082,8 @@
         "region": "Salish Sea",
         "waterBody": "Discovery Bay",
         "cityCounty": "Port Townsend",
-        "st": "Washington",
-        "locale": "Discovery Bay, Washington"
+        "st": "WA",
+        "locale": "Discovery Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1108,8 +1108,8 @@
         "region": "Salish Sea",
         "waterBody": "Discovery Bay",
         "cityCounty": "Woodmans",
-        "st": "Washington",
-        "locale": "Discovery Bay, Washington"
+        "st": "WA",
+        "locale": "Discovery Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1134,8 +1134,8 @@
         "region": "Salish Sea",
         "waterBody": "Discovery Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Discovery Bay, Washington"
+        "st": "WA",
+        "locale": "Discovery Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1160,8 +1160,8 @@
         "region": "Hood Canal",
         "waterBody": "Port Townsend Bay",
         "cityCounty": "Port Hadlock-Irondale",
-        "st": "Washington",
-        "locale": "Port Townsend Bay, Washington"
+        "st": "WA",
+        "locale": "Port Townsend Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1186,8 +1186,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1212,8 +1212,8 @@
         "region": "Hood Canal",
         "waterBody": "South Hood Canal",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Pebble Beach, Washington"
+        "st": "WA",
+        "locale": "Pebble Beach, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1238,8 +1238,8 @@
         "region": "Hood Canal",
         "waterBody": "South Hood Canal",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Tekiu Point, Seabeck, Washington"
+        "st": "WA",
+        "locale": "Tekiu Point, Seabeck, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1262,10 +1262,10 @@
         "salinity": "Moderate",
         "size": "Large",
         "region": "Hood Canal",
-        "waterBody": " Hood Canal",
+        "waterBody": "Hood Canal",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1290,8 +1290,8 @@
         "region": "Gulf Coast",
         "waterBody": "Apalachicola Bay",
         "cityCounty": "Apalachicola Bay",
-        "st": "Florida",
-        "locale": "Apalachicola Bay, Florida"
+        "st": "FL",
+        "locale": "Apalachicola Bay, FL"
       },
       "geometry": {
         "type": "Point",
@@ -1313,16 +1313,16 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Large",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "Aquidneck Island",
-        "st": "Rhode Island",
-        "locale": "Aquidneck Island, Narragansett Bay, Rhode Island"
+        "st": "RI",
+        "locale": "Aquidneck Island, Narragansett Bay, RI"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.317120,
+          -71.31712,
           41.542419
         ]
       }
@@ -1339,11 +1339,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "Dutch Island",
-        "st": "Rhode Island",
-        "locale": "West Passage, Narragansett Bay, Rhode Island"
+        "st": "RI",
+        "locale": "West Passage, Narragansett Bay, RI"
       },
       "geometry": {
         "type": "Point",
@@ -1365,11 +1365,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Point Judith Pond",
         "cityCounty": "Jonathan Island",
-        "st": "Rhode Island",
-        "locale": "Jonathan Island, Narragansett, Rhode Island"
+        "st": "RI",
+        "locale": "Jonathan Island, Narragansett, RI"
       },
       "geometry": {
         "type": "Point",
@@ -1391,11 +1391,11 @@
         "cultivation": "Off-Bottom",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Winnapaug Pond",
         "cityCounty": "Westerly",
-        "st": "Rhode Island",
-        "locale": "Winnapaug Pond, Westerly, Rhode Island"
+        "st": "RI",
+        "locale": "Winnapaug Pond, Westerly, RI"
       },
       "geometry": {
         "type": "Point",
@@ -1417,11 +1417,11 @@
         "cultivation": "Wild",
         "salinity": "Moderate",
         "size": "Average",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "",
-        "st": "Rhode Island",
-        "locale": "Narragansett Bay, Rhode Island"
+        "st": "RI",
+        "locale": "Narragansett Bay, RI"
       },
       "geometry": {
         "type": "Point",
@@ -1443,11 +1443,11 @@
         "cultivation": "Rack-and-bag",
         "salinity": "Moderate",
         "size": "Small",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "",
-        "st": "Rhode Island",
-        "locale": "Narragansett Bay, Rhode Island"
+        "st": "RI",
+        "locale": "Narragansett Bay, RI"
       },
       "geometry": {
         "type": "Point",
@@ -1469,11 +1469,11 @@
         "cultivation": "Off-Bottom Cages",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "",
-        "st": "Rhode Island",
-        "locale": "West Passage, Narragansett Bay, Rhode Island"
+        "st": "RI",
+        "locale": "West Passage, Narragansett Bay, RI"
       },
       "geometry": {
         "type": "Point",
@@ -1495,11 +1495,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Bagaduce River",
         "cityCounty": "Bagaduce River",
-        "st": "Maine",
-        "locale": "Bagaduce River, Maine"
+        "st": "ME",
+        "locale": "Bagaduce River, ME"
       },
       "geometry": {
         "type": "Point",
@@ -1521,11 +1521,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Mill River",
         "cityCounty": "Harrington",
-        "st": "Maine",
-        "locale": "Mill River, Harrington, Maine"
+        "st": "ME",
+        "locale": "Mill River, Harrington, ME"
       },
       "geometry": {
         "type": "Point",
@@ -1547,11 +1547,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Broad Cove",
         "cityCounty": "Bremen",
-        "st": "Maine",
-        "locale": "Broad Cove, Muscongus Bay, Bremen, Maine"
+        "st": "ME",
+        "locale": "Broad Cove, Muscongus Bay, Bremen, ME"
       },
       "geometry": {
         "type": "Point",
@@ -1573,11 +1573,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "New Hampshire",
+        "region": "NH",
         "waterBody": "Upper Little Bay",
         "cityCounty": "Little Bay",
-        "st": "New Hampshire",
-        "locale": "Upper Little Bay, New Hampshire"
+        "st": "NH",
+        "locale": "Upper Little Bay, NH"
       },
       "geometry": {
         "type": "Point",
@@ -1599,11 +1599,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "New Hampshire",
+        "region": "NH",
         "waterBody": "Upper Little Bay",
         "cityCounty": "Little Bay",
-        "st": "New Hampshire",
-        "locale": "Upper Little Bay, New Hampshire"
+        "st": "NH",
+        "locale": "Upper Little Bay, NH"
       },
       "geometry": {
         "type": "Point",
@@ -1625,11 +1625,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Bagaduce River",
         "cityCounty": "Bagaduce River",
-        "st": "Maine",
-        "locale": "Bagaduce River, Maine"
+        "st": "ME",
+        "locale": "Bagaduce River, ME"
       },
       "geometry": {
         "type": "Point",
@@ -1651,11 +1651,11 @@
         "cultivation": "Suspended",
         "salinity": "Moderate",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Taunton Bay",
         "cityCounty": "Taunton Bay",
-        "st": "Maine",
-        "locale": "Taunton Bay, Maine"
+        "st": "ME",
+        "locale": "Taunton Bay, ME"
       },
       "geometry": {
         "type": "Point",
@@ -1677,11 +1677,11 @@
         "cultivation": "Suspended",
         "salinity": "Low",
         "size": "Small",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Bagaduce River",
         "cityCounty": "Penobscot",
-        "st": "Maine",
-        "locale": "Bagaduce River, Maine"
+        "st": "ME",
+        "locale": "Bagaduce River, ME"
       },
       "geometry": {
         "type": "Point",
@@ -1706,8 +1706,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "Bald Point",
-        "st": "Washington",
-        "locale": "Bald Point, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Bald Point, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1732,8 +1732,8 @@
         "region": "Hood Canal",
         "waterBody": "South Hood Canal",
         "cityCounty": "Tahuya",
-        "st": "Washington",
-        "locale": "Tahuya, Washington"
+        "st": "WA",
+        "locale": "Tahuya, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1758,13 +1758,13 @@
         "region": "Hood Canal",
         "waterBody": "South Hood Canal",
         "cityCounty": "Belfair",
-        "st": "Washington",
-        "locale": "Belfair, Washington"
+        "st": "WA",
+        "locale": "Belfair, WA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.0520,
+          -123.052,
           47.3606
         ]
       }
@@ -1784,8 +1784,8 @@
         "region": "Hood Canal",
         "waterBody": "South Hood Canal",
         "cityCounty": "Belfair",
-        "st": "Washington",
-        "locale": "Belfair, Washington"
+        "st": "WA",
+        "locale": "Belfair, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1810,8 +1810,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "Lilliwaup",
-        "st": "Washington",
-        "locale": "Hamma Hamma River, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Hamma Hamma River, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1836,8 +1836,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "Lilliwaup",
-        "st": "Washington",
-        "locale": "Eagle Creek, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Eagle Creek, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1862,8 +1862,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "Jefferson County",
-        "st": "Washington",
-        "locale": "Triton Cove, Washington"
+        "st": "WA",
+        "locale": "Triton Cove, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1888,8 +1888,8 @@
         "region": "Puget Sound",
         "waterBody": "Pickering Passage",
         "cityCounty": "Shelton",
-        "st": "Washington",
-        "locale": "Pickering Passage, Shelton, Washington"
+        "st": "WA",
+        "locale": "Pickering Passage, Shelton, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1914,7 +1914,7 @@
         "region": "North Puget Sound",
         "waterBody": "",
         "cityCounty": "Jefferson",
-        "st": "Washington",
+        "st": "WA",
         "locale": "Marrowstone Island, Puget Sound, WA"
       },
       "geometry": {
@@ -1940,8 +1940,8 @@
         "region": "South Puget Sound",
         "waterBody": "Chapman Cove",
         "cityCounty": "Shelton",
-        "st": "Washington",
-        "locale": "Chapman Cove, Oakland Bay, Shelton, Washington"
+        "st": "WA",
+        "locale": "Chapman Cove, Oakland Bay, Shelton, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1966,8 +1966,8 @@
         "region": "Puget Sound",
         "waterBody": "Pickering Passage",
         "cityCounty": "Shelton",
-        "st": "Washington",
-        "locale": "Pickering Passage, Shelton, Washington"
+        "st": "WA",
+        "locale": "Pickering Passage, Shelton, WA"
       },
       "geometry": {
         "type": "Point",
@@ -1992,8 +1992,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Barnstable Harbor",
-        "st": "Massachusetts",
-        "locale": "Barnstable Harbor, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Barnstable Harbor, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2018,8 +2018,8 @@
         "region": "Cape Cod",
         "waterBody": "",
         "cityCounty": "",
-        "st": "Massachusetts",
-        "locale": "Bass River, Yarmouth, Massachusetts"
+        "st": "MA",
+        "locale": "Bass River, Yarmouth, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2044,8 +2044,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Barnstable Harbor",
-        "st": "Massachusetts",
-        "locale": "Barnstable Harbor, The Cove, Horseshoe Shoal, Massachusetts"
+        "st": "MA",
+        "locale": "Barnstable Harbor, The Cove, Horseshoe Shoal, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2070,8 +2070,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Barnstable Harbor",
-        "st": "Massachusetts",
-        "locale": "Barnstable Harbor, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Barnstable Harbor, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2096,14 +2096,14 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Eastham",
-        "st": "Massachusetts",
-        "locale": "Sunken Meadow Beach, Eastham, Massachusetts"
+        "st": "MA",
+        "locale": "Sunken Meadow Beach, Eastham, MA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -70.0127,
-          41.8760
+          41.876
         ]
       }
     },
@@ -2122,8 +2122,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Eastham",
-        "st": "Massachusetts",
-        "locale": "Eastham, Massachusetts"
+        "st": "MA",
+        "locale": "Eastham, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2148,8 +2148,8 @@
         "region": "Cape Cod",
         "waterBody": "Nauset Bay",
         "cityCounty": "Eastham",
-        "st": "Massachusetts",
-        "locale": "Nauset Bay, Eastham, Massachusetts"
+        "st": "MA",
+        "locale": "Nauset Bay, Eastham, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2174,8 +2174,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod",
         "cityCounty": "Orleans",
-        "st": "Massachusetts",
-        "locale": "Nauset Beach, Massachusetts"
+        "st": "MA",
+        "locale": "Nauset Beach, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2200,8 +2200,8 @@
         "region": "Cape Cod",
         "waterBody": "Wellfleet Harbor",
         "cityCounty": "Wellfleet",
-        "st": "Massachusetts",
-        "locale": "Wellfleet, Massachusetts"
+        "st": "MA",
+        "locale": "Wellfleet, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2226,8 +2226,8 @@
         "region": "Cape Cod",
         "waterBody": "Wellfleet",
         "cityCounty": "Wellfleet",
-        "st": "Massachusetts",
-        "locale": "Wellfleet, Massachusetts"
+        "st": "MA",
+        "locale": "Wellfleet, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2252,8 +2252,8 @@
         "region": "Cape Cod",
         "waterBody": "Mayo Beach",
         "cityCounty": "Wellfleet",
-        "st": "Massachusetts",
-        "locale": "Wellfleet, Massachusetts"
+        "st": "MA",
+        "locale": "Wellfleet, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2278,8 +2278,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Barnstable Harbor",
-        "st": "Massachusetts",
-        "locale": "Barnstable Harbor, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Barnstable Harbor, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2304,8 +2304,8 @@
         "region": "Cape Cod",
         "waterBody": "Great Salt Marsh",
         "cityCounty": "Barnstable Harbor",
-        "st": "Massachusetts",
-        "locale": "Great Salt Marsh of Sandy Neck, Barnstable, Massachusetts"
+        "st": "MA",
+        "locale": "Great Salt Marsh of Sandy Neck, Barnstable, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2330,8 +2330,8 @@
         "region": "Cape Cod",
         "waterBody": "Little Pleasant Bay",
         "cityCounty": "Orleans",
-        "st": "Massachusetts",
-        "locale": "Little Pleasant Bay, Orleans, Massachusetts"
+        "st": "MA",
+        "locale": "Little Pleasant Bay, Orleans, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2356,8 +2356,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Barnstable Harbor",
-        "st": "Massachusetts",
-        "locale": "Barnstable Harbor, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Barnstable Harbor, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2382,13 +2382,13 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Plymouth",
-        "st": "Massachusetts",
-        "locale": "Kingston Bay, Plymouth, Massachusetts"
+        "st": "MA",
+        "locale": "Kingston Bay, Plymouth, MA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -70.7020,
+          -70.702,
           42.0002
         ]
       }
@@ -2486,8 +2486,8 @@
         "region": "Cape Cod",
         "waterBody": "Pine Island Pond",
         "cityCounty": "Mattapoisett",
-        "st": "Massachusetts",
-        "locale": "Pine Island Pond, Mattapoisett, Massachusetts"
+        "st": "MA",
+        "locale": "Pine Island Pond, Mattapoisett, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2512,8 +2512,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Plymouth",
-        "st": "Massachusetts",
-        "locale": "Kingston Bay, Plymouth, Massachusetts"
+        "st": "MA",
+        "locale": "Kingston Bay, Plymouth, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2538,14 +2538,14 @@
         "region": "Cape Cod",
         "waterBody": "White Flat, Cape Cod Bay",
         "cityCounty": "Plymouth",
-        "st": "Massachusetts",
-        "locale": "White Flat, Plymouth, Massachusetts"
+        "st": "MA",
+        "locale": "White Flat, Plymouth, MA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -70.666,
-          41.980
+          41.98
         ]
       }
     },
@@ -2564,13 +2564,13 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -70.6640,
+          -70.664,
           42.0243
         ]
       }
@@ -2590,8 +2590,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2616,8 +2616,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2642,14 +2642,14 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -70.669313,
-          42.037680
+          42.03768
         ]
       }
     },
@@ -2668,8 +2668,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2694,8 +2694,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "South Shore, Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "South Shore, Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2720,8 +2720,8 @@
         "region": "Cape Cod",
         "waterBody": "Duxbury Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Hunts Flats, Duxbury Harbor, Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Hunts Flats, Duxbury Harbor, Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2746,8 +2746,8 @@
         "region": "Cape Cod",
         "waterBody": "Duxbury Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Hunts Flats, Duxbury Harbor, Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Hunts Flats, Duxbury Harbor, Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2772,8 +2772,8 @@
         "region": "Cape Cod",
         "waterBody": "Duxbury Bay",
         "cityCounty": "Duxbury",
-        "st": "Massachusetts",
-        "locale": "Hunts Flats, Duxbury Harbor, Duxbury Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Hunts Flats, Duxbury Harbor, Duxbury Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2798,8 +2798,8 @@
         "region": "Cape Cod",
         "waterBody": "Duxbury Bay",
         "cityCounty": "Plymouth",
-        "st": "Massachusetts",
-        "locale": "Plymouth Harbor, Plymouth Bay, Plymouth, Massachusetts"
+        "st": "MA",
+        "locale": "Plymouth Harbor, Plymouth Bay, Plymouth, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2824,8 +2824,8 @@
         "region": "Cape Cod",
         "waterBody": "Duxbury Bay",
         "cityCounty": "Plymouth",
-        "st": "Massachusetts",
-        "locale": "Plymouth Harbor, Plymouth Bay, Plymouth, Massachusetts"
+        "st": "MA",
+        "locale": "Plymouth Harbor, Plymouth Bay, Plymouth, MA"
       },
       "geometry": {
         "type": "Point",
@@ -2848,16 +2848,16 @@
         "salinity": "Briny",
         "size": "Average",
         "region": "Cape Cod",
-        "waterBody": "Popponesset Bay ",
+        "waterBody": "Popponesset Bay",
         "cityCounty": "Mashpee",
-        "st": "Massachusetts",
-        "locale": "Popponesset Bay, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Popponesset Bay, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -70.45793,
-          41.58820
+          41.5882
         ]
       }
     },
@@ -2873,11 +2873,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Small",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Casco Bay",
         "cityCounty": "Basket Island",
-        "st": "Maine",
-        "locale": "Basket Island, Casco Bay, Maine"
+        "st": "ME",
+        "locale": "Basket Island, Casco Bay, ME"
       },
       "geometry": {
         "type": "Point",
@@ -2899,16 +2899,16 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Casco Bay",
         "cityCounty": "Peaks Island",
-        "st": "Maine",
-        "locale": "Peaks Island, Casco Bay, Maine"
+        "st": "ME",
+        "locale": "Peaks Island, Casco Bay, ME"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -70.197210,
+          -70.19721,
           43.663858
         ]
       }
@@ -2934,7 +2934,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -124.847810,
+          -124.84781,
           49.531165
         ]
       }
@@ -3142,7 +3142,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -124.7400,
+          -124.74,
           50.0349
         ]
       }
@@ -3578,8 +3578,8 @@
         "region": "Hood Canal",
         "waterBody": "Thorndyke Bay",
         "cityCounty": "Thorndyke Bay",
-        "st": "Washington",
-        "locale": "Thorndyke Bay, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Thorndyke Bay, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -3604,8 +3604,8 @@
         "region": "Hood Canal",
         "waterBody": "Thorndyke Bay",
         "cityCounty": "Thorndyke Bay",
-        "st": "Washington",
-        "locale": "Thorndyke Bay, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Thorndyke Bay, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -3630,8 +3630,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Barnstable Harbor",
-        "st": "Massachusetts",
-        "locale": "Barnstable Harbor, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Barnstable Harbor, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -3656,8 +3656,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Barnstable Harbor",
-        "st": "Massachusetts",
-        "locale": "Barnstable Harbor, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Barnstable Harbor, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -3682,8 +3682,8 @@
         "region": "Gulf Coast",
         "waterBody": "Caminada Bay",
         "cityCounty": "Caminada Bay",
-        "st": "Louisiana",
-        "locale": "Beauregard Island, Caminada Bay, Louisiana"
+        "st": "LA",
+        "locale": "Beauregard Island, Caminada Bay, LA"
       },
       "geometry": {
         "type": "Point",
@@ -3708,8 +3708,8 @@
         "region": "Gulf Coast",
         "waterBody": "Creole Bay",
         "cityCounty": "Creole Bay",
-        "st": "Louisiana",
-        "locale": "Creole Bay, Louisiana"
+        "st": "LA",
+        "locale": "Creole Bay, LA"
       },
       "geometry": {
         "type": "Point",
@@ -3734,8 +3734,8 @@
         "region": "Gulf Coast",
         "waterBody": "Breton Sound",
         "cityCounty": "Breton Sound",
-        "st": "Louisiana",
-        "locale": "Breton Sound, Louisiana"
+        "st": "LA",
+        "locale": "Breton Sound, LA"
       },
       "geometry": {
         "type": "Point",
@@ -3760,8 +3760,8 @@
         "region": "Gulf Coast",
         "waterBody": "Gulf Coast",
         "cityCounty": "Gulf Coast",
-        "st": "Louisiana",
-        "locale": "Gulf Coast, Louisiana"
+        "st": "LA",
+        "locale": "Gulf Coast, LA"
       },
       "geometry": {
         "type": "Point",
@@ -3786,8 +3786,8 @@
         "region": "Gulf Coast",
         "waterBody": "Trinity Bay",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Trinity Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Trinity Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -3812,8 +3812,8 @@
         "region": "Gulf Coast",
         "waterBody": "Hawkin's Camp Reef",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Trinity Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Trinity Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -3838,8 +3838,8 @@
         "region": "Gulf Coast",
         "waterBody": "Hodges Reef",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Trinity Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Trinity Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -3864,8 +3864,8 @@
         "region": "Gulf Coast",
         "waterBody": "Lone Oak Reef",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Trinity Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Trinity Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -3890,8 +3890,8 @@
         "region": "Gulf Coast",
         "waterBody": "Lonesome Reef",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Trinity Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Trinity Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -3916,8 +3916,8 @@
         "region": "Gulf Coast",
         "waterBody": "Old Yellow Reef",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Trinity Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Trinity Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -3942,8 +3942,8 @@
         "region": "Gulf Coast",
         "waterBody": "Smith Pass",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Trinity Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Trinity Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -3968,8 +3968,8 @@
         "region": "Gulf Coast",
         "waterBody": "Espiritu Santos Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Espiritu Santos Bay, Texas"
+        "st": "TX",
+        "locale": "Espiritu Santos Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -3994,8 +3994,8 @@
         "region": "Gulf Coast",
         "waterBody": "Matagorda Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Matagorda, Texas"
+        "st": "TX",
+        "locale": "Matagorda, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4020,8 +4020,8 @@
         "region": "Gulf Coast",
         "waterBody": "San Antonio Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "San Antonio Bay, Texas"
+        "st": "TX",
+        "locale": "San Antonio Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4046,8 +4046,8 @@
         "region": "Gulf Coast",
         "waterBody": "Found Reef",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Found Reef, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Found Reef, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4072,8 +4072,8 @@
         "region": "Gulf Coast",
         "waterBody": "Lost Reef",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Lost Reef, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Lost Reef, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4098,8 +4098,8 @@
         "region": "Gulf Coast",
         "waterBody": "Lost Reef",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "South Redfish Reef, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "South Redfish Reef, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4124,8 +4124,8 @@
         "region": "Gulf Coast",
         "waterBody": "Todd's Dump",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Todd's Dump, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Todd's Dump, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4150,8 +4150,8 @@
         "region": "Gulf Coast",
         "waterBody": "Copano Bay",
         "cityCounty": "Copano Bay",
-        "st": "Texas",
-        "locale": "Copano Bay, Texas"
+        "st": "TX",
+        "locale": "Copano Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4176,8 +4176,8 @@
         "region": "Gulf Coast",
         "waterBody": "Galveston Bay",
         "cityCounty": "Galveston Bay",
-        "st": "Texas",
-        "locale": "Resignation Reef, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Resignation Reef, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4202,8 +4202,8 @@
         "region": "Gulf Coast",
         "waterBody": "Galveston Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Ladies Pass, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "Ladies Pass, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4228,8 +4228,8 @@
         "region": "Gulf Coast",
         "waterBody": "Aransas Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Aransas Bay, Texas"
+        "st": "TX",
+        "locale": "Aransas Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4254,8 +4254,8 @@
         "region": "Gulf Coast",
         "waterBody": "Pepper Grove Reef",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "East Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "East Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4280,8 +4280,8 @@
         "region": "Gulf Coast",
         "waterBody": "Drum Village Reef",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "East Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "East Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4306,8 +4306,8 @@
         "region": "Gulf Coast",
         "waterBody": "Elm Grove Reef",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "East Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "East Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4332,8 +4332,8 @@
         "region": "Gulf Coast",
         "waterBody": "Hannah Reef",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "East Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "East Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4358,8 +4358,8 @@
         "region": "Gulf Coast",
         "waterBody": "Sheldon Reef",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "East Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "East Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4384,8 +4384,8 @@
         "region": "Gulf Coast",
         "waterBody": "Stephenson Reef",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "East Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "East Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4410,8 +4410,8 @@
         "region": "Gulf Coast",
         "waterBody": "Stephenson Reef",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "East Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "East Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4436,8 +4436,8 @@
         "region": "Gulf Coast",
         "waterBody": "Bull Hill Reef",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "East Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "East Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4462,8 +4462,8 @@
         "region": "Gulf Coast",
         "waterBody": "Whitehead Reef",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "East Bay, Galveston Bay, Texas"
+        "st": "TX",
+        "locale": "East Bay, Galveston Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4488,14 +4488,14 @@
         "region": "Southeast",
         "waterBody": "Harbor River",
         "cityCounty": "Beaufort County",
-        "st": "South Carolina",
-        "locale": "Lady's Island, ACE Basin, South Carolina"
+        "st": "SC",
+        "locale": "Lady's Island, ACE Basin, SC"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.5020,
-          32.4880
+          -80.502,
+          32.488
         ]
       }
     },
@@ -4514,13 +4514,13 @@
         "region": "Southeast",
         "waterBody": "",
         "cityCounty": "Colleton",
-        "st": "South Carolina",
-        "locale": "ACE Basin, South Carolina "
+        "st": "SC",
+        "locale": "ACE Basin, SC"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.430,
+          -80.43,
           32.482
         ]
       }
@@ -4540,13 +4540,13 @@
         "region": "Southeast",
         "waterBody": "Bull Creek",
         "cityCounty": "Bluffton",
-        "st": "South Carolina",
-        "locale": "Low Country, Bluffton, South Carolina"
+        "st": "SC",
+        "locale": "Low Country, Bluffton, SC"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.850,
+          -80.85,
           32.151
         ]
       }
@@ -4566,8 +4566,8 @@
         "region": "Southeast",
         "waterBody": "Bull Creek",
         "cityCounty": "Bluffton",
-        "st": "South Carolina",
-        "locale": "Low Country, Bluffton, South Carolina"
+        "st": "SC",
+        "locale": "Low Country, Bluffton, SC"
       },
       "geometry": {
         "type": "Point",
@@ -4592,8 +4592,8 @@
         "region": "Southeast",
         "waterBody": "Charleston Harbor",
         "cityCounty": "Bluffton",
-        "st": "South Carolina",
-        "locale": "Low Country, Bluffton, South Carolina"
+        "st": "SC",
+        "locale": "Low Country, Bluffton, SC"
       },
       "geometry": {
         "type": "Point",
@@ -4618,8 +4618,8 @@
         "region": "Gulf Coast",
         "waterBody": "Lavaca Bay",
         "cityCounty": "",
-        "st": "Texas",
-        "locale": "Lavaca Bay, Texas"
+        "st": "TX",
+        "locale": "Lavaca Bay, TX"
       },
       "geometry": {
         "type": "Point",
@@ -4644,8 +4644,8 @@
         "region": "Gulf Coast",
         "waterBody": "Gulf Coast",
         "cityCounty": "Dauphin Island",
-        "st": "Alabama",
-        "locale": "Dauphin Island, Alabama"
+        "st": "AL",
+        "locale": "Dauphin Island, AL"
       },
       "geometry": {
         "type": "Point",
@@ -4670,8 +4670,8 @@
         "region": "Gulf Coast",
         "waterBody": "Mobile Bay",
         "cityCounty": "",
-        "st": "Alabama",
-        "locale": "Mobile Bay, Alabama"
+        "st": "AL",
+        "locale": "Mobile Bay, AL"
       },
       "geometry": {
         "type": "Point",
@@ -4696,8 +4696,8 @@
         "region": "Gulf Coast",
         "waterBody": "Gulf Coast",
         "cityCounty": "",
-        "st": "Alabama",
-        "locale": "Grand Bay, Alabama"
+        "st": "AL",
+        "locale": "Grand Bay, AL"
       },
       "geometry": {
         "type": "Point",
@@ -4722,8 +4722,8 @@
         "region": "Gulf Coast",
         "waterBody": "Portersville Bay",
         "cityCounty": "",
-        "st": "Alabama",
-        "locale": "Fowl River Bay, Alabama"
+        "st": "AL",
+        "locale": "Fowl River Bay, AL"
       },
       "geometry": {
         "type": "Point",
@@ -4748,8 +4748,8 @@
         "region": "Gulf Coast",
         "waterBody": "Portersville Bay",
         "cityCounty": "",
-        "st": "Alabama",
-        "locale": "Fowl River Bay, Alabama"
+        "st": "AL",
+        "locale": "Fowl River Bay, AL"
       },
       "geometry": {
         "type": "Point",
@@ -4774,8 +4774,8 @@
         "region": "Gulf Coast",
         "waterBody": "",
         "cityCounty": "Cedar Key",
-        "st": "Florida",
-        "locale": "Pelican Reef, Cedar Key, Florida"
+        "st": "FL",
+        "locale": "Pelican Reef, Cedar Key, FL"
       },
       "geometry": {
         "type": "Point",
@@ -4800,8 +4800,8 @@
         "region": "Gulf Coast",
         "waterBody": "",
         "cityCounty": "",
-        "st": "Florida",
-        "locale": "East Point, Apalachicola Bay, Florida"
+        "st": "FL",
+        "locale": "East Point, Apalachicola Bay, FL"
       },
       "geometry": {
         "type": "Point",
@@ -4823,11 +4823,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "East Passage",
-        "st": "Rhode Island",
-        "locale": "East Passage, Narragansett Bay, Rhode Island"
+        "st": "RI",
+        "locale": "East Passage, Narragansett Bay, RI"
       },
       "geometry": {
         "type": "Point",
@@ -4849,11 +4849,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "Regular",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Sakonnet River",
         "cityCounty": "Tiverton",
-        "st": "Rhode Island",
-        "locale": "Tiverton, Rhode Island"
+        "st": "RI",
+        "locale": "Tiverton, RI"
       },
       "geometry": {
         "type": "Point",
@@ -4875,11 +4875,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Small",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "East Passage",
-        "st": "Rhode Island",
-        "locale": "East Passage, Narragansett Bay, Rhode Island"
+        "st": "RI",
+        "locale": "East Passage, Narragansett Bay, RI"
       },
       "geometry": {
         "type": "Point",
@@ -4901,11 +4901,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "East Passage",
-        "st": "Rhode Island",
-        "locale": "East Passage, Narragansett Bay, Rhode Island"
+        "st": "RI",
+        "locale": "East Passage, Narragansett Bay, RI"
       },
       "geometry": {
         "type": "Point",
@@ -5008,8 +5008,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "East Dennis",
-        "st": "Massachusetts",
-        "locale": "East Dennis, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "East Dennis, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -5034,8 +5034,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "Dennis",
-        "st": "Massachusetts",
-        "locale": "Cape Cod Bay, Dennis, Massachusetts"
+        "st": "MA",
+        "locale": "Cape Cod Bay, Dennis, MA"
       },
       "geometry": {
         "type": "Point",
@@ -5086,8 +5086,8 @@
         "region": "Long Island",
         "waterBody": "Great South Bay",
         "cityCounty": "Gilgo-Oak Beach-Captree",
-        "st": "New York",
-        "locale": "Great South Bay, Long Island, New York"
+        "st": "NY",
+        "locale": "Great South Bay, Long Island, NY"
       },
       "geometry": {
         "type": "Point",
@@ -5112,8 +5112,8 @@
         "region": "Long Island",
         "waterBody": "Great South Bay",
         "cityCounty": "Gilgo-Oak Beach-Captree",
-        "st": "New York",
-        "locale": "Great South Bay, Long Island, New York"
+        "st": "NY",
+        "locale": "Great South Bay, Long Island, NY"
       },
       "geometry": {
         "type": "Point",
@@ -5138,8 +5138,8 @@
         "region": "Long Island Sound",
         "waterBody": "Great South Bay",
         "cityCounty": "Sexton Island",
-        "st": "New York",
-        "locale": "Great South Bay, Sexton Island, New York"
+        "st": "NY",
+        "locale": "Great South Bay, Sexton Island, NY"
       },
       "geometry": {
         "type": "Point",
@@ -5164,8 +5164,8 @@
         "region": "Long Island Sound",
         "waterBody": "Long Island Sound",
         "cityCounty": "Old Field",
-        "st": "New York",
-        "locale": "Long Island Sound, New York"
+        "st": "NY",
+        "locale": "Long Island Sound, NY"
       },
       "geometry": {
         "type": "Point",
@@ -5190,8 +5190,8 @@
         "region": "Long Island Sound",
         "waterBody": "Mount Sinai Harbor",
         "cityCounty": "Mount Sinai Harbor",
-        "st": "New York",
-        "locale": "Long Island Sound, Mount Sinai Harbor, New York"
+        "st": "NY",
+        "locale": "Long Island Sound, Mount Sinai Harbor, NY"
       },
       "geometry": {
         "type": "Point",
@@ -5216,8 +5216,8 @@
         "region": "Long Island Sound",
         "waterBody": "Long Island Sound",
         "cityCounty": "Norwalk",
-        "st": "Connecticut",
-        "locale": "Long Island Sound, Norwalk, Connecticut"
+        "st": "CT",
+        "locale": "Long Island Sound, Norwalk, CT"
       },
       "geometry": {
         "type": "Point",
@@ -5242,8 +5242,8 @@
         "region": "Long Island Sound",
         "waterBody": "Long Island Sound",
         "cityCounty": "Norwalk",
-        "st": "Connecticut",
-        "locale": "Chimon Island, Long Island Sound, Connecticut"
+        "st": "CT",
+        "locale": "Chimon Island, Long Island Sound, CT"
       },
       "geometry": {
         "type": "Point",
@@ -5268,8 +5268,8 @@
         "region": "Long Island Sound",
         "waterBody": "Long Island Sound",
         "cityCounty": "Norwalk",
-        "st": "Connecticut",
-        "locale": "Long Island Sound, Norwalk, Connecticut"
+        "st": "CT",
+        "locale": "Long Island Sound, Norwalk, CT"
       },
       "geometry": {
         "type": "Point",
@@ -5294,8 +5294,8 @@
         "region": "South Long Island Shore",
         "waterBody": "Great South Bay",
         "cityCounty": "Sexton Island",
-        "st": "New York",
-        "locale": "Great South Bay, Sexton Island, New York"
+        "st": "NY",
+        "locale": "Great South Bay, Sexton Island, NY"
       },
       "geometry": {
         "type": "Point",
@@ -5320,14 +5320,14 @@
         "region": "Long Island Sound",
         "waterBody": "Fishers Island Sound",
         "cityCounty": "Fishers Island",
-        "st": "New York",
-        "locale": "West Harbor, Fishers Island, New York"
+        "st": "NY",
+        "locale": "West Harbor, Fishers Island, NY"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -71.99663,
-          41.27070
+          41.2707
         ]
       }
     },
@@ -5346,8 +5346,8 @@
         "region": "Long Island Sound",
         "waterBody": "Long Island Sound",
         "cityCounty": "Rocky Point",
-        "st": "New York",
-        "locale": "Rocky Point, New York"
+        "st": "NY",
+        "locale": "Rocky Point, NY"
       },
       "geometry": {
         "type": "Point",
@@ -5372,8 +5372,8 @@
         "region": "Chesapeake",
         "waterBody": "York River",
         "cityCounty": "Yorktown",
-        "st": "Virginia",
-        "locale": "York River, Yorktown, Virginia"
+        "st": "VA",
+        "locale": "York River, Yorktown, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5398,8 +5398,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Poquoson River",
         "cityCounty": "Seaford",
-        "st": "Virginia",
-        "locale": "Poquoson River, Seaford, Virginia"
+        "st": "VA",
+        "locale": "Poquoson River, Seaford, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5424,8 +5424,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Nomini Bay",
         "cityCounty": "Montross",
-        "st": "Virginia",
-        "locale": "Nomini Creek, Nomini Bay, Montross, Virginia"
+        "st": "VA",
+        "locale": "Nomini Creek, Nomini Bay, Montross, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5450,8 +5450,8 @@
         "region": "Chesapeake",
         "waterBody": "",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Parramore Island, Virginia"
+        "st": "VA",
+        "locale": "Parramore Island, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5476,8 +5476,8 @@
         "region": "Chesapeake",
         "waterBody": "Morris Bay",
         "cityCounty": "Shacklefords",
-        "st": "Virginia",
-        "locale": "Morris Bay, York River, Virginia"
+        "st": "VA",
+        "locale": "Morris Bay, York River, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5502,8 +5502,8 @@
         "region": "Chesapeake",
         "waterBody": "Cobbs Creek",
         "cityCounty": "Piankatank",
-        "st": "Virginia",
-        "locale": "Cobbs Creek, Piankatank River, Virginia"
+        "st": "VA",
+        "locale": "Cobbs Creek, Piankatank River, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5528,8 +5528,8 @@
         "region": "Chesapeake",
         "waterBody": "Little Wicomico River",
         "cityCounty": "Heathsville",
-        "st": "Virginia",
-        "locale": "Heathsville, Virginia"
+        "st": "VA",
+        "locale": "Heathsville, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5554,8 +5554,8 @@
         "region": "Chesapeake",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "Bayford",
-        "st": "Virginia",
-        "locale": "Chesapeake Bay, Bayford, Virginia"
+        "st": "VA",
+        "locale": "Chesapeake Bay, Bayford, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5580,8 +5580,8 @@
         "region": "Chesapeake",
         "waterBody": "",
         "cityCounty": "Revels Island",
-        "st": "Virginia",
-        "locale": "Revels Island, Virginia"
+        "st": "VA",
+        "locale": "Revels Island, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5606,8 +5606,8 @@
         "region": "Chesapeake",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Pungoteague Creek, Virginia"
+        "st": "VA",
+        "locale": "Pungoteague Creek, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5632,8 +5632,8 @@
         "region": "Chesapeake",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Chesapeake Bay, Virginia"
+        "st": "VA",
+        "locale": "Chesapeake Bay, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5658,8 +5658,8 @@
         "region": "Chesapeake",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Hog Island Bay, Virginia"
+        "st": "VA",
+        "locale": "Hog Island Bay, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5684,8 +5684,8 @@
         "region": "Chesapeake",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Hog Island Bay, Virginia"
+        "st": "VA",
+        "locale": "Hog Island Bay, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5710,14 +5710,14 @@
         "region": "Chesapeake",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Chesapeake Bay, Virginia"
+        "st": "VA",
+        "locale": "Chesapeake Bay, VA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -76.0144,
-          37.2820
+          37.282
         ]
       }
     },
@@ -5736,8 +5736,8 @@
         "region": "Chesapeake",
         "waterBody": "York River",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "York River, Virginia"
+        "st": "VA",
+        "locale": "York River, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5762,8 +5762,8 @@
         "region": "Chesapeake",
         "waterBody": "Mobjack Bay",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Mobjack Bay, Chesapeake Bay, Virginia"
+        "st": "VA",
+        "locale": "Mobjack Bay, Chesapeake Bay, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5788,13 +5788,13 @@
         "region": "Chesapeake",
         "waterBody": "Ware River",
         "cityCounty": "Gloucester Courthouse",
-        "st": "Virginia",
-        "locale": "Ware River, Virginia"
+        "st": "VA",
+        "locale": "Ware River, VA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.44030,
+          -76.4403,
           37.37961
         ]
       }
@@ -5814,8 +5814,8 @@
         "region": "Chesapeake",
         "waterBody": "James River",
         "cityCounty": "Hampton Roads",
-        "st": "Virginia",
-        "locale": "Hampton Roads, James River, Virginia"
+        "st": "VA",
+        "locale": "Hampton Roads, James River, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5840,8 +5840,8 @@
         "region": "Chesapeake",
         "waterBody": "Lynnhaven River",
         "cityCounty": "Lynnhaven Roads",
-        "st": "Virginia",
-        "locale": "Lynnhaven River, Virginia"
+        "st": "VA",
+        "locale": "Lynnhaven River, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5866,8 +5866,8 @@
         "region": "Chesapeake",
         "waterBody": "With Duck",
         "cityCounty": "Virginia Beach",
-        "st": "Virginia",
-        "locale": "Lynnhaven, Virginia"
+        "st": "VA",
+        "locale": "Lynnhaven, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5892,8 +5892,8 @@
         "region": "Chesapeake",
         "waterBody": "Lynnhaven River",
         "cityCounty": "Virginia Beach",
-        "st": "Virginia",
-        "locale": "Wolfsnare Creek, Lynnhaven River, Virginia"
+        "st": "VA",
+        "locale": "Wolfsnare Creek, Lynnhaven River, VA"
       },
       "geometry": {
         "type": "Point",
@@ -5918,8 +5918,8 @@
         "region": "Hood Canal",
         "waterBody": "Hamma Hamma River",
         "cityCounty": "Hood Canal",
-        "st": "Washington",
-        "locale": "Hamma Hamma River, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Hamma Hamma River, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -5944,8 +5944,8 @@
         "region": "Long Island Sound",
         "waterBody": "Great South Bay",
         "cityCounty": "Great South Bay",
-        "st": "New York",
-        "locale": "Great South Bay, Long Island Sound, New York"
+        "st": "NY",
+        "locale": "Great South Bay, Long Island Sound, NY"
       },
       "geometry": {
         "type": "Point",
@@ -5970,8 +5970,8 @@
         "region": "Southeast",
         "waterBody": "May River",
         "cityCounty": "Bluffton",
-        "st": "South Carolina",
-        "locale": "Bluffton, South Carolina"
+        "st": "SC",
+        "locale": "Bluffton, SC"
       },
       "geometry": {
         "type": "Point",
@@ -5993,11 +5993,11 @@
         "cultivation": "Longline",
         "salinity": "Briny",
         "size": "Average",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Tomales Bay",
         "cityCounty": "Marshall",
-        "st": "California",
-        "locale": "Tomales Bay, California"
+        "st": "CA",
+        "locale": "Tomales Bay, CA"
       },
       "geometry": {
         "type": "Point",
@@ -6019,11 +6019,11 @@
         "cultivation": "Rack-and-bag",
         "salinity": "Oceanic",
         "size": "Average",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Tomales Bay",
         "cityCounty": "Marshall",
-        "st": "California",
-        "locale": "Tomales Bay, California"
+        "st": "CA",
+        "locale": "Tomales Bay, CA"
       },
       "geometry": {
         "type": "Point",
@@ -6045,11 +6045,11 @@
         "cultivation": "Rack-and-bag",
         "salinity": "Briny",
         "size": "Average",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Tomales Bay",
         "cityCounty": "Marshall",
-        "st": "California",
-        "locale": "Tomales Bay, California"
+        "st": "CA",
+        "locale": "Tomales Bay, CA"
       },
       "geometry": {
         "type": "Point",
@@ -6071,11 +6071,11 @@
         "cultivation": "Rack-and-bag",
         "salinity": "Moderate",
         "size": "Small",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Tomales Bay",
         "cityCounty": "Tomales Bay",
-        "st": "California",
-        "locale": "Tomales Bay, Marshall, California"
+        "st": "CA",
+        "locale": "Tomales Bay, Marshall, CA"
       },
       "geometry": {
         "type": "Point",
@@ -6097,11 +6097,11 @@
         "cultivation": "Longline",
         "salinity": "Briny",
         "size": "Average",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Tomales Bay",
         "cityCounty": "Tomales Bay",
-        "st": "California",
-        "locale": "Tomales Bay, Marshall, California"
+        "st": "CA",
+        "locale": "Tomales Bay, Marshall, CA"
       },
       "geometry": {
         "type": "Point",
@@ -6123,16 +6123,16 @@
         "cultivation": "Rack-and-bag",
         "salinity": "Briny",
         "size": "Average",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Tomales Bay",
         "cityCounty": "Marshall",
-        "st": "California",
-        "locale": "Tomales Bay, Marshall, California"
+        "st": "CA",
+        "locale": "Tomales Bay, Marshall, CA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -122.91110,
+          -122.9111,
           38.18367
         ]
       }
@@ -6149,11 +6149,11 @@
         "cultivation": "Tumbled",
         "salinity": "Moderate",
         "size": "Small",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Tomales Bay",
         "cityCounty": "Marshall",
-        "st": "California",
-        "locale": "Tomales Bay, Marshall, California"
+        "st": "CA",
+        "locale": "Tomales Bay, Marshall, CA"
       },
       "geometry": {
         "type": "Point",
@@ -6175,11 +6175,11 @@
         "cultivation": "Rack-and-bag",
         "salinity": "Moderate",
         "size": "Average",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Tomales Bay",
         "cityCounty": "Marshall",
-        "st": "California",
-        "locale": "Tomales Bay, California"
+        "st": "CA",
+        "locale": "Tomales Bay, CA"
       },
       "geometry": {
         "type": "Point",
@@ -6204,8 +6204,8 @@
         "region": "Southeast",
         "waterBody": "Outer Banks",
         "cityCounty": "Nags Head",
-        "st": "North Carolina",
-        "locale": "Nags Head, Bodie Island, Outer Banks, North Carolina"
+        "st": "NC",
+        "locale": "Nags Head, Bodie Island, Outer Banks, NC"
       },
       "geometry": {
         "type": "Point",
@@ -6230,8 +6230,8 @@
         "region": "Southeast",
         "waterBody": "New River",
         "cityCounty": "Sneads Ferry",
-        "st": "North Carolina",
-        "locale": "Sneads Ferry, North Carolina"
+        "st": "NC",
+        "locale": "Sneads Ferry, NC"
       },
       "geometry": {
         "type": "Point",
@@ -6256,8 +6256,8 @@
         "region": "Southeast",
         "waterBody": "Stump Sound",
         "cityCounty": "Holly Ridge",
-        "st": "North Carolina",
-        "locale": "Stump Sound, north of Topsail Island, North Carolina"
+        "st": "NC",
+        "locale": "Stump Sound, north of Topsail Island, NC"
       },
       "geometry": {
         "type": "Point",
@@ -6282,8 +6282,8 @@
         "region": "Southeast",
         "waterBody": "Outer Banks",
         "cityCounty": "Wanchese",
-        "st": "North Carolina",
-        "locale": "Oregon Inlet, Wanchese, Outer Banks, North Carolina"
+        "st": "NC",
+        "locale": "Oregon Inlet, Wanchese, Outer Banks, NC"
       },
       "geometry": {
         "type": "Point",
@@ -6704,7 +6704,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -60.400,
+          -60.4,
           46.9
         ]
       }
@@ -6782,7 +6782,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -65.90500,
+          -65.905,
           43.82674
         ]
       }
@@ -6802,8 +6802,8 @@
         "region": "Cape Cod",
         "waterBody": "Brewster Flats",
         "cityCounty": "Brewster",
-        "st": "Massachusetts",
-        "locale": "Brewster, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Brewster, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -6828,8 +6828,8 @@
         "region": "Chesapeake",
         "waterBody": "Magothy Bay",
         "cityCounty": "Cape Charles",
-        "st": "Virginia",
-        "locale": "Occohannock Creek, Magothy Bay, Cape Charles, Virginia"
+        "st": "VA",
+        "locale": "Occohannock Creek, Magothy Bay, Cape Charles, VA"
       },
       "geometry": {
         "type": "Point",
@@ -6854,8 +6854,8 @@
         "region": "Chesapeake",
         "waterBody": "Cherrystone Creek",
         "cityCounty": "Cape Charles",
-        "st": "Virginia",
-        "locale": "Cape Charles, Virginia"
+        "st": "VA",
+        "locale": "Cape Charles, VA"
       },
       "geometry": {
         "type": "Point",
@@ -6964,7 +6964,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -124.7300,
+          -124.73,
           49.4635
         ]
       }
@@ -6984,8 +6984,8 @@
         "region": "Southeast",
         "waterBody": "Bulls Bay",
         "cityCounty": "Bulls Bay",
-        "st": "South Carolina",
-        "locale": "Bulls Bay, South Carolina"
+        "st": "SC",
+        "locale": "Bulls Bay, SC"
       },
       "geometry": {
         "type": "Point",
@@ -7189,11 +7189,11 @@
         "cultivation": "Suspended",
         "salinity": "Moderate",
         "size": "Small",
-        "region": "Alaska",
+        "region": "AK",
         "waterBody": "Kachemak Bay",
         "cityCounty": "Fritz Creek",
-        "st": "Alaska",
-        "locale": "Fritz Creek, Kachemak Bay, Alaska"
+        "st": "AK",
+        "locale": "Fritz Creek, Kachemak Bay, AK"
       },
       "geometry": {
         "type": "Point",
@@ -7215,11 +7215,11 @@
         "cultivation": "Suspended",
         "salinity": "Moderate",
         "size": "Small",
-        "region": "Alaska",
+        "region": "AK",
         "waterBody": "Sea Otter Sound",
         "cityCounty": "Craig",
-        "st": "Alaska",
-        "locale": "Prince of Wales Island, Alaska"
+        "st": "AK",
+        "locale": "Prince of Wales Island, AK"
       },
       "geometry": {
         "type": "Point",
@@ -7241,11 +7241,11 @@
         "cultivation": "Suspended",
         "salinity": "",
         "size": "",
-        "region": "Alaska",
+        "region": "AK",
         "waterBody": "Ward Cove",
         "cityCounty": "Etolin Island",
-        "st": "Alaska",
-        "locale": "Etolin Island, Ward Cove, Alaska"
+        "st": "AK",
+        "locale": "Etolin Island, Ward Cove, AK"
       },
       "geometry": {
         "type": "Point",
@@ -7267,11 +7267,11 @@
         "cultivation": "Suspended",
         "salinity": "Moderate",
         "size": "Small",
-        "region": "Alaska",
+        "region": "AK",
         "waterBody": "Cordova",
         "cityCounty": "Cordova",
-        "st": "Alaska",
-        "locale": "Hawkins Island, Cordova, Alaska"
+        "st": "AK",
+        "locale": "Hawkins Island, Cordova, AK"
       },
       "geometry": {
         "type": "Point",
@@ -7293,11 +7293,11 @@
         "cultivation": "Suspended",
         "salinity": "Moderate",
         "size": "Small",
-        "region": "Alaska",
+        "region": "AK",
         "waterBody": "",
         "cityCounty": "Heceta Island",
-        "st": "Alaska",
-        "locale": "Heceta Island, Alaska"
+        "st": "AK",
+        "locale": "Heceta Island, AK"
       },
       "geometry": {
         "type": "Point",
@@ -7319,11 +7319,11 @@
         "cultivation": "Suspended",
         "salinity": "Moderate",
         "size": "",
-        "region": "Alaska",
+        "region": "AK",
         "waterBody": "Coffman Cove",
         "cityCounty": "Coffman Cove",
-        "st": "Alaska",
-        "locale": "Coffman Cove, Alaska"
+        "st": "AK",
+        "locale": "Coffman Cove, AK"
       },
       "geometry": {
         "type": "Point",
@@ -7345,11 +7345,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Alaska",
+        "region": "AK",
         "waterBody": "Clarence Strait",
         "cityCounty": "Tongass National Forest",
-        "st": "Alaska",
-        "locale": "Clarence Strait, The Tongass National Forest, Alaska"
+        "st": "AK",
+        "locale": "Clarence Strait, The Tongass National Forest, AK"
       },
       "geometry": {
         "type": "Point",
@@ -7371,11 +7371,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Small",
-        "region": "Alaska",
+        "region": "AK",
         "waterBody": "Halibut Cove",
         "cityCounty": "Homer",
-        "st": "Alaska",
-        "locale": "Halibut Cove, Alaska"
+        "st": "AK",
+        "locale": "Halibut Cove, AK"
       },
       "geometry": {
         "type": "Point",
@@ -7400,8 +7400,8 @@
         "region": "Salish Sea",
         "waterBody": "East Sound",
         "cityCounty": "East Sound",
-        "st": "Washington",
-        "locale": "Fishing Bay, Orcas Island, East Sound, Washington"
+        "st": "WA",
+        "locale": "Fishing Bay, Orcas Island, East Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -7426,8 +7426,8 @@
         "region": "Salish Sea",
         "waterBody": "Salish Sea",
         "cityCounty": "Olga",
-        "st": "Washington",
-        "locale": "Orcas Island, Olga, Washington"
+        "st": "WA",
+        "locale": "Orcas Island, Olga, WA"
       },
       "geometry": {
         "type": "Point",
@@ -7452,8 +7452,8 @@
         "region": "Salish Sea",
         "waterBody": "Westcott Bay",
         "cityCounty": "Friday Harbor",
-        "st": "Washington",
-        "locale": "Westcott Bay, Friday Harbor, Washington"
+        "st": "WA",
+        "locale": "Westcott Bay, Friday Harbor, WA"
       },
       "geometry": {
         "type": "Point",
@@ -7478,8 +7478,8 @@
         "region": "Hood Canal",
         "waterBody": "Calm Cove",
         "cityCounty": "Union",
-        "st": "Washington",
-        "locale": "Calm Cove, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Calm Cove, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -7504,8 +7504,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "Kitsap County",
-        "st": "Washington",
-        "locale": "Tekiu Point, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Tekiu Point, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -7530,8 +7530,8 @@
         "region": "Gulf Coast",
         "waterBody": "Caminada Bay",
         "cityCounty": "Caminada Bay",
-        "st": "Louisiana",
-        "locale": "Caminada Bay, Louisiana"
+        "st": "LA",
+        "locale": "Caminada Bay, LA"
       },
       "geometry": {
         "type": "Point",
@@ -7556,8 +7556,8 @@
         "region": "Gulf Coast",
         "waterBody": "Bay des Iletes",
         "cityCounty": "Grand Isle",
-        "st": "Louisiana",
-        "locale": "Grand Isle, Louisiana"
+        "st": "LA",
+        "locale": "Grand Isle, LA"
       },
       "geometry": {
         "type": "Point",
@@ -7582,8 +7582,8 @@
         "region": "Gulf Coast",
         "waterBody": "Champagne Bay",
         "cityCounty": "Champagne Bay",
-        "st": "Louisiana",
-        "locale": "Caminada Bay, Louisiana"
+        "st": "LA",
+        "locale": "Caminada Bay, LA"
       },
       "geometry": {
         "type": "Point",
@@ -7608,8 +7608,8 @@
         "region": "Gulf Coast",
         "waterBody": "Barataria Bay",
         "cityCounty": "Barataria Bay",
-        "st": "Louisiana",
-        "locale": "Barataria Bay, Louisiana"
+        "st": "LA",
+        "locale": "Barataria Bay, LA"
       },
       "geometry": {
         "type": "Point",
@@ -7660,8 +7660,8 @@
         "region": "Delaware Bay",
         "waterBody": "Cape May",
         "cityCounty": "Delaware Bay",
-        "st": "New Jersey",
-        "locale": "Cape May, Delaware Bay, New Jersey"
+        "st": "NJ",
+        "locale": "Cape May, Delaware Bay, NJ"
       },
       "geometry": {
         "type": "Point",
@@ -7686,8 +7686,8 @@
         "region": "Delaware Bay",
         "waterBody": "",
         "cityCounty": "Delaware Bay",
-        "st": "New Jersey",
-        "locale": "Delaware Bay, New Jersey"
+        "st": "NJ",
+        "locale": "Delaware Bay, NJ"
       },
       "geometry": {
         "type": "Point",
@@ -7712,8 +7712,8 @@
         "region": "Delaware Bay",
         "waterBody": "Lower Delaware Bay",
         "cityCounty": "",
-        "st": "New Jersey",
-        "locale": "Cape May, Delaware Bay, New Jersey"
+        "st": "NJ",
+        "locale": "Cape May, Delaware Bay, NJ"
       },
       "geometry": {
         "type": "Point",
@@ -7735,11 +7735,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "New Jersey",
+        "region": "NJ",
         "waterBody": "Barnegat Bay",
         "cityCounty": "Mantoloking",
-        "st": "New Jersey",
-        "locale": "Barnegat Bay, Mantoloking, New Jersey"
+        "st": "NJ",
+        "locale": "Barnegat Bay, Mantoloking, NJ"
       },
       "geometry": {
         "type": "Point",
@@ -7849,7 +7849,7 @@
         "type": "Point",
         "coordinates": [
           -64.673215,
-          46.500700
+          46.5007
         ]
       }
     },
@@ -7920,8 +7920,8 @@
         "region": "Maritime",
         "waterBody": "Capers Island",
         "cityCounty": "",
-        "st": "South Carolina",
-        "locale": "Capers Island, Mark Bay, South Carolina"
+        "st": "SC",
+        "locale": "Capers Island, Mark Bay, SC"
       },
       "geometry": {
         "type": "Point",
@@ -7944,10 +7944,10 @@
         "salinity": "Briny",
         "size": "",
         "region": "Southeast",
-        "waterBody": "Baritaria Creek ",
+        "waterBody": "Baritaria Creek",
         "cityCounty": "Beaufort County",
-        "st": "South Carolina",
-        "locale": "Beaufort County, South Carolina"
+        "st": "SC",
+        "locale": "Beaufort County, SC"
       },
       "geometry": {
         "type": "Point",
@@ -7995,11 +7995,11 @@
         "cultivation": "Suspended",
         "salinity": "Oceanic",
         "size": "Small",
-        "region": "California",
+        "region": "CA",
         "waterBody": "Aqua Hedionda Lagoon",
         "cityCounty": "Carlsbad",
-        "st": "California",
-        "locale": "Aqua Hedionda Lagoon, Carlsbad, California"
+        "st": "CA",
+        "locale": "Aqua Hedionda Lagoon, Carlsbad, CA"
       },
       "geometry": {
         "type": "Point",
@@ -8021,11 +8021,11 @@
         "cultivation": "Rack-and-bag",
         "salinity": "Briny",
         "size": "Large",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Point Judith Pond",
         "cityCounty": "Cedar Island",
-        "st": "Rhode Island",
-        "locale": "Cedar Island, Point Judith Pond, Rhode Island"
+        "st": "RI",
+        "locale": "Cedar Island, Point Judith Pond, RI"
       },
       "geometry": {
         "type": "Point",
@@ -8047,11 +8047,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "Bristol",
-        "st": "Rhode Island",
-        "locale": "Usher Cove, Bristol, Rhode Island"
+        "st": "RI",
+        "locale": "Usher Cove, Bristol, RI"
       },
       "geometry": {
         "type": "Point",
@@ -8073,11 +8073,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "Bristol",
-        "st": "Rhode Island",
-        "locale": "Usher Cove, Bristol, Rhode Island"
+        "st": "RI",
+        "locale": "Usher Cove, Bristol, RI"
       },
       "geometry": {
         "type": "Point",
@@ -8099,11 +8099,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Narragansett Bay",
         "cityCounty": "Portsmouth",
-        "st": "Rhode Island",
-        "locale": "Coggeshall Cove, Portsmouth, Rhode Island"
+        "st": "RI",
+        "locale": "Coggeshall Cove, Portsmouth, RI"
       },
       "geometry": {
         "type": "Point",
@@ -8125,11 +8125,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Large",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Point Judith Pond",
         "cityCounty": "",
-        "st": "Rhode Island",
-        "locale": "Point Judith Pond, Rhode Island"
+        "st": "RI",
+        "locale": "Point Judith Pond, RI"
       },
       "geometry": {
         "type": "Point",
@@ -8151,11 +8151,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Large",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Potter's Pond",
         "cityCounty": "East Matunuck",
-        "st": "Rhode Island",
-        "locale": "Potter's Pond, East Matunuck, Rhode Island"
+        "st": "RI",
+        "locale": "Potter's Pond, East Matunuck, RI"
       },
       "geometry": {
         "type": "Point",
@@ -8180,8 +8180,8 @@
         "region": "South Puget Sound",
         "waterBody": "Pearl Passage",
         "cityCounty": "Mason",
-        "st": "Washington",
-        "locale": "Pearl Passage, Washington"
+        "st": "WA",
+        "locale": "Pearl Passage, WA"
       },
       "geometry": {
         "type": "Point",
@@ -8206,13 +8206,13 @@
         "region": "Southeast",
         "waterBody": "Outer Banks",
         "cityCounty": "Bayboro",
-        "st": "North Carolina",
-        "locale": "Chadweek Creek, Pamlico Sound, North Carolina"
+        "st": "NC",
+        "locale": "Chadweek Creek, Pamlico Sound, NC"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.60000,
+          -76.6,
           35.20374
         ]
       }
@@ -8232,8 +8232,8 @@
         "region": "Cape Cod",
         "waterBody": "Oyster Pond",
         "cityCounty": "Chatham",
-        "st": "Massachusetts",
-        "locale": "Oyster Pond, Chatham, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Oyster Pond, Chatham, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -8258,8 +8258,8 @@
         "region": "Cape Cod",
         "waterBody": "Poppenesset Bay",
         "cityCounty": "",
-        "st": "Massachusetts",
-        "locale": "Poppenesset Bay, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Poppenesset Bay, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -8310,7 +8310,7 @@
         "region": "South Puget Sound",
         "waterBody": "Eld Inlet",
         "cityCounty": "",
-        "st": "Washington",
+        "st": "WA",
         "locale": "Eld Inlet, Puget Sound"
       },
       "geometry": {
@@ -8336,7 +8336,7 @@
         "region": "Puget Sound",
         "waterBody": "Case Inlet",
         "cityCounty": "",
-        "st": "Washington",
+        "st": "WA",
         "locale": "Case Inlet, Puget Sound"
       },
       "geometry": {
@@ -8362,7 +8362,7 @@
         "region": "Puget Sound",
         "waterBody": "Eld Inlet",
         "cityCounty": "",
-        "st": "Washington",
+        "st": "WA",
         "locale": "Eld Inlet, Puget Sound"
       },
       "geometry": {
@@ -8383,13 +8383,13 @@
         "speciesName": "Eastern",
         "color": "#C72052",
         "cultivation": "Wild",
-        "salinity": "Very low",
+        "salinity": "Very Low",
         "size": "Average",
         "region": "Chesapeake",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "",
-        "st": "Maryland",
-        "locale": "Chesapeake Bay, Maryland"
+        "st": "MD",
+        "locale": "Chesapeake Bay, MD"
       },
       "geometry": {
         "type": "Point",
@@ -8414,8 +8414,8 @@
         "region": "Chesapeake",
         "waterBody": "St. George Creek",
         "cityCounty": "",
-        "st": "Maryland",
-        "locale": "St Mary's River, Piney Point, Maryland"
+        "st": "MD",
+        "locale": "St Mary's River, Piney Point, MD"
       },
       "geometry": {
         "type": "Point",
@@ -8440,8 +8440,8 @@
         "region": "Chesapeake",
         "waterBody": "Big Annemessex River",
         "cityCounty": "Marion Station",
-        "st": "Maryland",
-        "locale": "Tangier Sound, Deal Island, Maryland"
+        "st": "MD",
+        "locale": "Tangier Sound, Deal Island, MD"
       },
       "geometry": {
         "type": "Point",
@@ -8466,8 +8466,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Patuxent River",
         "cityCounty": "Broomes Island",
-        "st": "Maryland",
-        "locale": "Broomes Island, Maryland"
+        "st": "MD",
+        "locale": "Broomes Island, MD"
       },
       "geometry": {
         "type": "Point",
@@ -8492,8 +8492,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Patuxent River",
         "cityCounty": "",
-        "st": "Maryland",
-        "locale": "Patuxent River, Maryland"
+        "st": "MD",
+        "locale": "Patuxent River, MD"
       },
       "geometry": {
         "type": "Point",
@@ -8518,8 +8518,8 @@
         "region": "Chesapeake",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "",
-        "st": "Maryland",
-        "locale": "Point Lookout, Scotland, Maryland"
+        "st": "MD",
+        "locale": "Point Lookout, Scotland, MD"
       },
       "geometry": {
         "type": "Point",
@@ -8544,13 +8544,13 @@
         "region": "Chesapeake",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "Scotland",
-        "st": "Maryland",
-        "locale": "Maryland, Chesapeake Bay"
+        "st": "MD",
+        "locale": "MD, Chesapeake Bay"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.3340,
+          -76.334,
           38.1051
         ]
       }
@@ -8565,13 +8565,13 @@
         "speciesName": "Eastern",
         "color": "#C72052",
         "cultivation": "Off-Bottom",
-        "salinity": "Very low",
+        "salinity": "Very Low",
         "size": "Large",
         "region": "Chesapeake",
         "waterBody": "Patuxent River",
         "cityCounty": "",
-        "st": "Maryland",
-        "locale": "Patuxent River, Maryland, Chesapeake Bay"
+        "st": "MD",
+        "locale": "Patuxent River, MD, Chesapeake Bay"
       },
       "geometry": {
         "type": "Point",
@@ -8596,8 +8596,8 @@
         "region": "Chesapeake",
         "waterBody": "Fishing Creek",
         "cityCounty": "Hooper's Island",
-        "st": "Maryland",
-        "locale": "Fishing Creek, Hooper's Island, Maryland, Chesapeake Bay"
+        "st": "MD",
+        "locale": "Fishing Creek, Hooper's Island, MD, Chesapeake Bay"
       },
       "geometry": {
         "type": "Point",
@@ -8622,8 +8622,8 @@
         "region": "Chesapeake",
         "waterBody": "Fishing Creek",
         "cityCounty": "Barren Island",
-        "st": "Maryland",
-        "locale": "Barren Island, Maryland, Chesapeake Bay"
+        "st": "MD",
+        "locale": "Barren Island, MD, Chesapeake Bay"
       },
       "geometry": {
         "type": "Point",
@@ -8648,8 +8648,8 @@
         "region": "Cape Cod",
         "waterBody": "Menemsha Pond",
         "cityCounty": "Chilmark",
-        "st": "Massachusetts",
-        "locale": "Menemsha Pond, Chilmark, Martha's Vineyard, Massachusetts"
+        "st": "MA",
+        "locale": "Menemsha Pond, Chilmark, Martha's Vineyard, MA"
       },
       "geometry": {
         "type": "Point",
@@ -8674,8 +8674,8 @@
         "region": "Cape Cod",
         "waterBody": "Katama Bay",
         "cityCounty": "Edgartown",
-        "st": "Massachusetts",
-        "locale": "Katama Bay, Martha's Vineyard, Massachusetts"
+        "st": "MA",
+        "locale": "Katama Bay, Martha's Vineyard, MA"
       },
       "geometry": {
         "type": "Point",
@@ -8700,8 +8700,8 @@
         "region": "Cape Cod",
         "waterBody": "Katama Bay",
         "cityCounty": "Edgartown",
-        "st": "Massachusetts",
-        "locale": "Katama Bay, Martha's Vineyard, Massachusetts"
+        "st": "MA",
+        "locale": "Katama Bay, Martha's Vineyard, MA"
       },
       "geometry": {
         "type": "Point",
@@ -8726,8 +8726,8 @@
         "region": "Cape Cod",
         "waterBody": "Katama Bay",
         "cityCounty": "Edgartown",
-        "st": "Massachusetts",
-        "locale": "Katama Bay, Martha's Vineyard, Massachusetts"
+        "st": "MA",
+        "locale": "Katama Bay, Martha's Vineyard, MA"
       },
       "geometry": {
         "type": "Point",
@@ -8752,14 +8752,14 @@
         "region": "Cape Cod",
         "waterBody": "Lagoon Pond",
         "cityCounty": "Vineyard Haven",
-        "st": "Massachusetts",
-        "locale": "Martha's Vineyard, Massachusetts"
+        "st": "MA",
+        "locale": "Martha's Vineyard, MA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -70.5936,
-          41.4450
+          41.445
         ]
       }
     },
@@ -8778,8 +8778,8 @@
         "region": "Southeast",
         "waterBody": "Chincoteague Bay",
         "cityCounty": "",
-        "st": "Maryland",
-        "locale": "Assateague Island, Chincoteague Bay, Maryland"
+        "st": "MD",
+        "locale": "Assateague Island, Chincoteague Bay, MD"
       },
       "geometry": {
         "type": "Point",
@@ -8804,8 +8804,8 @@
         "region": "Chesapeake",
         "waterBody": "Chincoteague Inlet",
         "cityCounty": "",
-        "st": "Maryland",
-        "locale": "Chincoteague Inlet, Virginia"
+        "st": "MD",
+        "locale": "Chincoteague Inlet, VA"
       },
       "geometry": {
         "type": "Point",
@@ -8830,8 +8830,8 @@
         "region": "Southeast",
         "waterBody": "Chincoteague Bay",
         "cityCounty": "Snow Hill",
-        "st": "Maryland",
-        "locale": "Chincoteague Bay, Maryland"
+        "st": "MD",
+        "locale": "Chincoteague Bay, MD"
       },
       "geometry": {
         "type": "Point",
@@ -8856,8 +8856,8 @@
         "region": "Southeast",
         "waterBody": "Chincoteague Bay",
         "cityCounty": "",
-        "st": "Maryland",
-        "locale": "Assateague Island, Chincoteague Bay, Maryland"
+        "st": "MD",
+        "locale": "Assateague Island, Chincoteague Bay, MD"
       },
       "geometry": {
         "type": "Point",
@@ -8882,8 +8882,8 @@
         "region": "Chesapeake",
         "waterBody": "Choptank River",
         "cityCounty": "",
-        "st": "Maryland",
-        "locale": "Choptank River, Chesapeake Bay, Maryland"
+        "st": "MD",
+        "locale": "Choptank River, Chesapeake Bay, MD"
       },
       "geometry": {
         "type": "Point",
@@ -8908,8 +8908,8 @@
         "region": "Southeast",
         "waterBody": "Smith Island Bay",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Smith Island Bay, Virginia"
+        "st": "VA",
+        "locale": "Smith Island Bay, VA"
       },
       "geometry": {
         "type": "Point",
@@ -8934,8 +8934,8 @@
         "region": "Southeast",
         "waterBody": "Fishermans Island",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Fishermans Island, Virginia"
+        "st": "VA",
+        "locale": "Fishermans Island, VA"
       },
       "geometry": {
         "type": "Point",
@@ -8960,8 +8960,8 @@
         "region": "Southeast",
         "waterBody": "Smith Island Inlet",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Smith Island Inlet, Virginia"
+        "st": "VA",
+        "locale": "Smith Island Inlet, VA"
       },
       "geometry": {
         "type": "Point",
@@ -8986,8 +8986,8 @@
         "region": "Southeast",
         "waterBody": "Smith Island Inlet",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Smith Island Inlet, Virginia"
+        "st": "VA",
+        "locale": "Smith Island Inlet, VA"
       },
       "geometry": {
         "type": "Point",
@@ -9012,8 +9012,8 @@
         "region": "Southeast",
         "waterBody": "Chesapeake",
         "cityCounty": "",
-        "st": "Virginia",
-        "locale": "Magothy Bay, Chesapeake Bay, Virginia"
+        "st": "VA",
+        "locale": "Magothy Bay, Chesapeake Bay, VA"
       },
       "geometry": {
         "type": "Point",
@@ -9038,8 +9038,8 @@
         "region": "Puget Sound",
         "waterBody": "Hammersley Inlet",
         "cityCounty": "Hammersley Inlet",
-        "st": "Washington",
-        "locale": "Hammersley Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Hammersley Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9064,8 +9064,8 @@
         "region": "South Puget Sound",
         "waterBody": "Hammersley Inlet",
         "cityCounty": "Hammersley Inlet",
-        "st": "Washington",
-        "locale": "Hammersley Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Hammersley Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9090,8 +9090,8 @@
         "region": "South Puget Sound",
         "waterBody": "Oakland Bay",
         "cityCounty": "Shelton",
-        "st": "Washington",
-        "locale": "Church Point, Hammersley Inlet, Shelton, Washington"
+        "st": "WA",
+        "locale": "Church Point, Hammersley Inlet, Shelton, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9116,8 +9116,8 @@
         "region": "South Puget Sound",
         "waterBody": "Oakland Bay",
         "cityCounty": "Mason County",
-        "st": "Washington",
-        "locale": "Oakland Bay, Washington"
+        "st": "WA",
+        "locale": "Oakland Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9142,8 +9142,8 @@
         "region": "South Puget Sound",
         "waterBody": "Hammersley Inlet",
         "cityCounty": "Hammersley Inlet",
-        "st": "Washington",
-        "locale": "Hammersley Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Hammersley Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9168,8 +9168,8 @@
         "region": "Puget Sound",
         "waterBody": "Hammersley Inlet",
         "cityCounty": "Hammersley Inlet",
-        "st": "Washington",
-        "locale": "Hammersley Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Hammersley Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9194,8 +9194,8 @@
         "region": "Puget Sound",
         "waterBody": "Hammersley Inlet",
         "cityCounty": "Hammersley Inlet",
-        "st": "Washington",
-        "locale": "Hammersley Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Hammersley Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9220,8 +9220,8 @@
         "region": "Puget Sound",
         "waterBody": "Hammersley Inlet",
         "cityCounty": "Hammersley Inlet",
-        "st": "Washington",
-        "locale": "Hammersley Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Hammersley Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9246,8 +9246,8 @@
         "region": "South Hood Canal",
         "waterBody": "Dabob Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Dabob Bay, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Dabob Bay, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9272,8 +9272,8 @@
         "region": "South Hood Canal",
         "waterBody": "Dabob Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Dabob Bay, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Dabob Bay, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9298,8 +9298,8 @@
         "region": "Hood Canal",
         "waterBody": "Dabob Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Dabob Bay, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Dabob Bay, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9324,8 +9324,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "Kitsap County",
-        "st": "Washington",
-        "locale": "Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9350,8 +9350,8 @@
         "region": "Hood Canal",
         "waterBody": "Quilcene Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Quilcene Bay, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Quilcene Bay, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9376,8 +9376,8 @@
         "region": "Hood Canal",
         "waterBody": "Dabob Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Dabob Bay, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Dabob Bay, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9402,8 +9402,8 @@
         "region": "Hood Canal",
         "waterBody": "Dabob Bay",
         "cityCounty": "Brinnon",
-        "st": "Washington",
-        "locale": "Dabob Bay, Hood Canal, Washington"
+        "st": "WA",
+        "locale": "Dabob Bay, Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9428,8 +9428,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "South Hood Canal, Washington"
+        "st": "WA",
+        "locale": "South Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9454,8 +9454,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "South Hood Canal, Washington"
+        "st": "WA",
+        "locale": "South Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9480,8 +9480,8 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "South Hood Canal, Washington"
+        "st": "WA",
+        "locale": "South Hood Canal, WA"
       },
       "geometry": {
         "type": "Point",
@@ -9506,13 +9506,13 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "Tahuya",
-        "st": "Washington",
-        "locale": "South Hood Canal, Mason County, Washington"
+        "st": "WA",
+        "locale": "South Hood Canal, Mason County, WA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.0670,
+          -123.067,
           47.46948
         ]
       }
@@ -9532,14 +9532,14 @@
         "region": "Hood Canal",
         "waterBody": "Hood Canal",
         "cityCounty": "Tahuya",
-        "st": "Washington",
-        "locale": "South Hood Canal, Mason County, Washington"
+        "st": "WA",
+        "locale": "South Hood Canal, Mason County, WA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -123.06936,
-          47.46010
+          47.4601
         ]
       }
     },
@@ -9688,8 +9688,8 @@
         "region": "Long Island Sound",
         "waterBody": "Long Island Sound",
         "cityCounty": "Copps Island",
-        "st": "Connecticut",
-        "locale": "Copps Island, Long Island Sound, Connecticut"
+        "st": "CT",
+        "locale": "Copps Island, Long Island Sound, CT"
       },
       "geometry": {
         "type": "Point",
@@ -9714,8 +9714,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Chesapeake Bay",
         "cityCounty": "Ned's Island",
-        "st": "Connecticut",
-        "locale": "Ned's Island, Connecticut"
+        "st": "CT",
+        "locale": "Ned's Island, CT"
       },
       "geometry": {
         "type": "Point",
@@ -9740,8 +9740,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Dyer Creek",
         "cityCounty": "New Point",
-        "st": "Virginia",
-        "locale": "Dyer Creek, New Point, Virginia"
+        "st": "VA",
+        "locale": "Dyer Creek, New Point, VA"
       },
       "geometry": {
         "type": "Point",
@@ -9766,8 +9766,8 @@
         "region": "Long Island Sound",
         "waterBody": "Long Island Sound",
         "cityCounty": "Milford",
-        "st": "Connecticut",
-        "locale": "Milford, Long Island Sound, Connecticut"
+        "st": "CT",
+        "locale": "Milford, Long Island Sound, CT"
       },
       "geometry": {
         "type": "Point",
@@ -9792,8 +9792,8 @@
         "region": "Long Island Sound",
         "waterBody": "Noank River",
         "cityCounty": "Groton",
-        "st": "Connecticut",
-        "locale": "Beebe Cove, Noank River, Fishers Island Sound, Connecticut"
+        "st": "CT",
+        "locale": "Beebe Cove, Noank River, Fishers Island Sound, CT"
       },
       "geometry": {
         "type": "Point",
@@ -9818,8 +9818,8 @@
         "region": "Long Island Sound",
         "waterBody": "Fishers Island Sound",
         "cityCounty": "Stonington",
-        "st": "Connecticut",
-        "locale": "Fishers Island Sound, Connecticut"
+        "st": "CT",
+        "locale": "Fishers Island Sound, CT"
       },
       "geometry": {
         "type": "Point",
@@ -9844,8 +9844,8 @@
         "region": "Long Island Sound",
         "waterBody": "Mystic River",
         "cityCounty": "Noank",
-        "st": "Connecticut",
-        "locale": "Mystic River, Connecticut"
+        "st": "CT",
+        "locale": "Mystic River, CT"
       },
       "geometry": {
         "type": "Point",
@@ -9870,8 +9870,8 @@
         "region": "Long Island Sound",
         "waterBody": "Long Island Sound",
         "cityCounty": "Copps Island",
-        "st": "Connecticut",
-        "locale": "Copps Island, Long Island Sound, Connecticut"
+        "st": "CT",
+        "locale": "Copps Island, Long Island Sound, CT"
       },
       "geometry": {
         "type": "Point",
@@ -10000,8 +10000,8 @@
         "region": "Cape Cod",
         "waterBody": "Cotuit Bay",
         "cityCounty": "Cotuit",
-        "st": "Massachusetts",
-        "locale": "Cotuit Bay, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Cotuit Bay, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10026,8 +10026,8 @@
         "region": "Cape Cod",
         "waterBody": "Plum Island Sound",
         "cityCounty": "Ipswich",
-        "st": "Massachusetts",
-        "locale": "Plum Island Sound, Ipswich, Massachusetts"
+        "st": "MA",
+        "locale": "Plum Island Sound, Ipswich, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10052,8 +10052,8 @@
         "region": "Cape Cod",
         "waterBody": "West Bay",
         "cityCounty": "Osterville",
-        "st": "Massachusetts",
-        "locale": "West Bay, Osterville, Massachusetts"
+        "st": "MA",
+        "locale": "West Bay, Osterville, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10078,8 +10078,8 @@
         "region": "Cape Cod",
         "waterBody": "Osterville Inlet",
         "cityCounty": "Osterville",
-        "st": "Massachusetts",
-        "locale": "West Bay, Osterville, Massachusetts"
+        "st": "MA",
+        "locale": "West Bay, Osterville, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10104,8 +10104,8 @@
         "region": "Cape Cod",
         "waterBody": "Buzzards Bay",
         "cityCounty": "Cuttyhunk Island",
-        "st": "Massachusetts",
-        "locale": "West End Pond, Cuttyhunk Island, Massachusetts"
+        "st": "MA",
+        "locale": "West End Pond, Cuttyhunk Island, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10130,8 +10130,8 @@
         "region": "Cape Cod",
         "waterBody": "Buzzards Bay",
         "cityCounty": "Little Gansett Beach",
-        "st": "Massachusetts",
-        "locale": "Little Gansett Beach, Massachusetts"
+        "st": "MA",
+        "locale": "Little Gansett Beach, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10156,8 +10156,8 @@
         "region": "Cape Cod",
         "waterBody": "Buzzards Bay",
         "cityCounty": "Marion",
-        "st": "Massachusetts",
-        "locale": "Spragues Cove, Massachusetts"
+        "st": "MA",
+        "locale": "Spragues Cove, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10182,8 +10182,8 @@
         "region": "Cape Cod",
         "waterBody": "Buzzards Bay",
         "cityCounty": "West Falmouth",
-        "st": "Massachusetts",
-        "locale": "Buzzards Bay, West Falmouth, Massachusetts"
+        "st": "MA",
+        "locale": "Buzzards Bay, West Falmouth, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10208,8 +10208,8 @@
         "region": "Cape Cod",
         "waterBody": "Buzzards Bay",
         "cityCounty": "Westport",
-        "st": "Massachusetts",
-        "locale": "Westport River, Buzzards Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Westport River, Buzzards Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10234,8 +10234,8 @@
         "region": "Cape Cod",
         "waterBody": "Buzzards Bay",
         "cityCounty": "Bourne",
-        "st": "Massachusetts",
-        "locale": "Toby Island, Bourne, Massachusetts"
+        "st": "MA",
+        "locale": "Toby Island, Bourne, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10260,8 +10260,8 @@
         "region": "Cape Cod",
         "waterBody": "Vineyard Sound",
         "cityCounty": "Tisbury",
-        "st": "Massachusetts",
-        "locale": "Oak Bluffs, Martha's Vineyard, Tisbury, Massachusetts"
+        "st": "MA",
+        "locale": "Oak Bluffs, Martha's Vineyard, Tisbury, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10286,8 +10286,8 @@
         "region": "Cape Cod",
         "waterBody": "Buzzards Bay",
         "cityCounty": "",
-        "st": "Massachusetts",
-        "locale": "Massachusetts"
+        "st": "MA",
+        "locale": "MA"
       },
       "geometry": {
         "type": "Point",
@@ -10312,8 +10312,8 @@
         "region": "Cape Cod",
         "waterBody": "Buzzards Bay",
         "cityCounty": "Buzzards Bay",
-        "st": "Massachusetts",
-        "locale": "Buzzards Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Buzzards Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10338,8 +10338,8 @@
         "region": "Cape Cod",
         "waterBody": "Buzzards Bay",
         "cityCounty": "",
-        "st": "Massachusetts",
-        "locale": "Buzzards Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Buzzards Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10364,8 +10364,8 @@
         "region": "Cape Cod",
         "waterBody": "Nasketucket Bay",
         "cityCounty": "",
-        "st": "Massachusetts",
-        "locale": "Nasketucket Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Nasketucket Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -10442,8 +10442,8 @@
         "region": "Damariscotta",
         "waterBody": "Damariscotta River",
         "cityCounty": "Newcastle",
-        "st": "Maine",
-        "locale": "Damariscotta River, Newcastle, Maine"
+        "st": "ME",
+        "locale": "Damariscotta River, Newcastle, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10468,8 +10468,8 @@
         "region": "Damariscotta",
         "waterBody": "Damariscotta River",
         "cityCounty": "Newcastle",
-        "st": "Maine",
-        "locale": "Damariscotta River, Newcastle, Maine"
+        "st": "ME",
+        "locale": "Damariscotta River, Newcastle, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10491,11 +10491,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Bagaduce River",
         "cityCounty": "Brookville",
-        "st": "Maine",
-        "locale": "Bagaduce River, Penobscot Bay, Brookville, Maine"
+        "st": "ME",
+        "locale": "Bagaduce River, Penobscot Bay, Brookville, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10520,8 +10520,8 @@
         "region": "Damariscotta",
         "waterBody": "Damariscotta River",
         "cityCounty": "Newcastle",
-        "st": "Maine",
-        "locale": "Damariscotta River, Newcastle, Maine"
+        "st": "ME",
+        "locale": "Damariscotta River, Newcastle, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10543,11 +10543,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Damariscotta River",
         "cityCounty": "Damariscotta-Newcastle",
-        "st": "Maine",
-        "locale": "Hog Island, Damariscotta River, Maine"
+        "st": "ME",
+        "locale": "Hog Island, Damariscotta River, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10572,8 +10572,8 @@
         "region": "Damariscotta",
         "waterBody": "Upper Damariscotta River",
         "cityCounty": "Newcastle",
-        "st": "Maine",
-        "locale": "Upper Damariscotta River, Newcastle, Maine"
+        "st": "ME",
+        "locale": "Upper Damariscotta River, Newcastle, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10598,13 +10598,13 @@
         "region": "Damariscotta",
         "waterBody": "Salt Bay, Upper Damariscotta River",
         "cityCounty": "Damariscotta",
-        "st": "Maine",
-        "locale": "Upper Damariscotta River, Newcastle, Maine"
+        "st": "ME",
+        "locale": "Upper Damariscotta River, Newcastle, ME"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -69.5140,
+          -69.514,
           44.0465
         ]
       }
@@ -10621,11 +10621,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Damariscotta River",
         "cityCounty": "Edgecomb",
-        "st": "Maine",
-        "locale": "Dodge Lower Cove, Damariscotta River, Edgecomb, Maine"
+        "st": "ME",
+        "locale": "Dodge Lower Cove, Damariscotta River, Edgecomb, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10647,11 +10647,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Damariscotta River",
         "cityCounty": "Nobleboro",
-        "st": "Maine",
-        "locale": "Northeast of Perkins Point, Damariscotta River, Nobleboro, Maine"
+        "st": "ME",
+        "locale": "Northeast of Perkins Point, Damariscotta River, Nobleboro, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10673,11 +10673,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Large",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Damariscotta River",
         "cityCounty": "South Bristol",
-        "st": "Maine",
-        "locale": "Damariscotta River, South Bristol, Maine"
+        "st": "ME",
+        "locale": "Damariscotta River, South Bristol, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10699,11 +10699,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Large",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Damariscotta River",
         "cityCounty": "Newcastle",
-        "st": "Maine",
-        "locale": "Damariscotta River, Newcastle, Maine"
+        "st": "ME",
+        "locale": "Damariscotta River, Newcastle, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10725,11 +10725,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Damariscotta River",
         "cityCounty": "Newcastle",
-        "st": "Maine",
-        "locale": "Damariscotta River, Newcastle, Maine"
+        "st": "ME",
+        "locale": "Damariscotta River, Newcastle, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10751,11 +10751,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Large",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Damariscotta River",
         "cityCounty": "Walpole",
-        "st": "Maine",
-        "locale": "Clark's Cove, Damariscotta River, Walpole, Maine"
+        "st": "ME",
+        "locale": "Clark's Cove, Damariscotta River, Walpole, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10777,11 +10777,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Oceanic",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Damariscotta River",
         "cityCounty": "South Bristol",
-        "st": "Maine",
-        "locale": "North Branch, Johns River, South Bristol, Maine"
+        "st": "ME",
+        "locale": "North Branch, Johns River, South Bristol, ME"
       },
       "geometry": {
         "type": "Point",
@@ -10806,8 +10806,8 @@
         "region": "Chesapeake",
         "waterBody": "Potomac River",
         "cityCounty": "Cople",
-        "st": "Virginia",
-        "locale": "Nomini Creek, Potomac River, Cople, Virginia"
+        "st": "VA",
+        "locale": "Nomini Creek, Potomac River, Cople, VA"
       },
       "geometry": {
         "type": "Point",
@@ -10832,8 +10832,8 @@
         "region": "Chesapeake Bay",
         "waterBody": "Chincoteague Bay",
         "cityCounty": "Chincoteague Island",
-        "st": "Virginia",
-        "locale": "Chincoteague Island, Virginia"
+        "st": "VA",
+        "locale": "Chincoteague Island, VA"
       },
       "geometry": {
         "type": "Point",
@@ -10858,8 +10858,8 @@
         "region": "Chesapeake",
         "waterBody": "Potomac River",
         "cityCounty": "",
-        "st": "",
-        "locale": "Maryland"
+        "st": "MD",
+        "locale": "MD"
       },
       "geometry": {
         "type": "Point",
@@ -10884,8 +10884,8 @@
         "region": "Salish Sea",
         "waterBody": "Drayton Harbor",
         "cityCounty": "Blaine",
-        "st": "Washington",
-        "locale": "Drayton Harbor, Blaine, Washington"
+        "st": "WA",
+        "locale": "Drayton Harbor, Blaine, WA"
       },
       "geometry": {
         "type": "Point",
@@ -10910,8 +10910,8 @@
         "region": "Salish Sea",
         "waterBody": "Drayton Harbor",
         "cityCounty": "Blaine",
-        "st": "Washington",
-        "locale": "Drayton Harbor, Blaine, Washington"
+        "st": "WA",
+        "locale": "Drayton Harbor, Blaine, WA"
       },
       "geometry": {
         "type": "Point",
@@ -10931,13 +10931,13 @@
         "speciesName": "Eastern",
         "color": "#C72052",
         "cultivation": "Wild",
-        "salinity": "moderate",
+        "salinity": "Moderate",
         "size": "Average",
         "region": "Long Island Sound",
         "waterBody": "Huntington Bay",
         "cityCounty": "Huntington Bay",
-        "st": "New York",
-        "locale": "Huntington Bay, Long Island Sound, New York"
+        "st": "NY",
+        "locale": "Huntington Bay, Long Island Sound, NY"
       },
       "geometry": {
         "type": "Point",
@@ -10957,13 +10957,13 @@
         "speciesName": "Eastern",
         "color": "#C72052",
         "cultivation": "Rack-and-bag",
-        "salinity": "moderate",
+        "salinity": "Moderate",
         "size": "Small",
         "region": "Long Island Sound",
         "waterBody": "Huntington Bay",
         "cityCounty": "Huntington Bay",
-        "st": "New York",
-        "locale": "Huntington Bay, Long Island Sound, New York"
+        "st": "NY",
+        "locale": "Huntington Bay, Long Island Sound, NY"
       },
       "geometry": {
         "type": "Point",
@@ -10988,8 +10988,8 @@
         "region": "Long Island Sound",
         "waterBody": "Huntington Bay",
         "cityCounty": "Northport",
-        "st": "New York",
-        "locale": "Duck Island, Northport Bay, New York"
+        "st": "NY",
+        "locale": "Duck Island, Northport Bay, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11014,13 +11014,13 @@
         "region": "Long Island Sound",
         "waterBody": "Huntington Bay",
         "cityCounty": "Huntington Bay",
-        "st": "New York",
-        "locale": "Huntington Bay, Long Island Sound, New York"
+        "st": "NY",
+        "locale": "Huntington Bay, Long Island Sound, NY"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.44920,
+          -73.4492,
           40.94536
         ]
       }
@@ -11040,8 +11040,8 @@
         "region": "Long Island Sound",
         "waterBody": "Oyster Bay Harbor",
         "cityCounty": "Oyster Bay",
-        "st": "New York",
-        "locale": "Oyster Bay Harbor, Long Island Sound, New York"
+        "st": "NY",
+        "locale": "Oyster Bay Harbor, Long Island Sound, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11066,8 +11066,8 @@
         "region": "Puget Sound",
         "waterBody": "Totten Inlet",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Totten Inlet, Washington"
+        "st": "WA",
+        "locale": "Totten Inlet, WA"
       },
       "geometry": {
         "type": "Point",
@@ -11092,8 +11092,8 @@
         "region": "Puget Sound",
         "waterBody": "Totten Inlet",
         "cityCounty": "Shelton",
-        "st": "Washington",
-        "locale": "Totten Inlet, Washington"
+        "st": "WA",
+        "locale": "Totten Inlet, WA"
       },
       "geometry": {
         "type": "Point",
@@ -11118,8 +11118,8 @@
         "region": "Puget Sound",
         "waterBody": "Totten Inlet",
         "cityCounty": "Olympia",
-        "st": "Washington",
-        "locale": "Totten Inlet, Steamboat Island, Washington"
+        "st": "WA",
+        "locale": "Totten Inlet, Steamboat Island, WA"
       },
       "geometry": {
         "type": "Point",
@@ -11141,11 +11141,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Moderate",
         "size": "Large",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Ninigret Pond",
         "cityCounty": "Charleston",
-        "st": "Rhode Island",
-        "locale": "Ninigret Pond, Rhode Island"
+        "st": "RI",
+        "locale": "Ninigret Pond, RI"
       },
       "geometry": {
         "type": "Point",
@@ -11167,11 +11167,11 @@
         "cultivation": "",
         "salinity": "Moderate",
         "size": "",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Ninigret Pond",
         "cityCounty": "Charleston",
-        "st": "Rhode Island",
-        "locale": "Ninigret Pond, Rhode Island"
+        "st": "RI",
+        "locale": "Ninigret Pond, RI"
       },
       "geometry": {
         "type": "Point",
@@ -11193,10 +11193,10 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Quonochontaug Pond",
         "cityCounty": "Charleston",
-        "st": "Rhode Island",
+        "st": "RI",
         "locale": "Quonochontaug Pond, Charlestown, RI"
       },
       "geometry": {
@@ -11219,11 +11219,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Rhode Island",
+        "region": "RI",
         "waterBody": "Ninigret Pond",
         "cityCounty": "Charleston",
-        "st": "Rhode Island",
-        "locale": "Ninigret Pond, Rhode Island"
+        "st": "RI",
+        "locale": "Ninigret Pond, RI"
       },
       "geometry": {
         "type": "Point",
@@ -11248,8 +11248,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "East Dennis",
-        "st": "Massachusetts",
-        "locale": "Quivet Neck, East Dennis, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Quivet Neck, East Dennis, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -11274,8 +11274,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "East Dennis",
-        "st": "Massachusetts",
-        "locale": "East Dennis, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "East Dennis, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -11300,8 +11300,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "East Dennis",
-        "st": "Massachusetts",
-        "locale": "Quivet Neck, East Dennis, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "Quivet Neck, East Dennis, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -11326,8 +11326,8 @@
         "region": "Cape Cod",
         "waterBody": "Cape Cod Bay",
         "cityCounty": "East Dennis",
-        "st": "Massachusetts",
-        "locale": "East Dennis, Cape Cod Bay, Massachusetts"
+        "st": "MA",
+        "locale": "East Dennis, Cape Cod Bay, MA"
       },
       "geometry": {
         "type": "Point",
@@ -11352,8 +11352,8 @@
         "region": "South Long Island Sound",
         "waterBody": "Napeague Bay",
         "cityCounty": "",
-        "st": "New York",
-        "locale": "Napeague Bay, Long Island, New York"
+        "st": "NY",
+        "locale": "Napeague Bay, Long Island, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11378,8 +11378,8 @@
         "region": "South Long Island Sound",
         "waterBody": "Fort Pond Bay",
         "cityCounty": "Montauk",
-        "st": "New York",
-        "locale": "Long Island Sound, Montauk, New York"
+        "st": "NY",
+        "locale": "Long Island Sound, Montauk, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11404,8 +11404,8 @@
         "region": "Long Island Sound",
         "waterBody": "Great Peconic Bay",
         "cityCounty": "",
-        "st": "New York",
-        "locale": "Great Peconic Bay, Long Island, New York"
+        "st": "NY",
+        "locale": "Great Peconic Bay, Long Island, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11430,8 +11430,8 @@
         "region": "Long Island Sound",
         "waterBody": "Great Peconic Bay",
         "cityCounty": "",
-        "st": "New York",
-        "locale": "Great Peconic Bay, Robins Island, New York"
+        "st": "NY",
+        "locale": "Great Peconic Bay, Robins Island, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11456,13 +11456,13 @@
         "region": "Long Island Sound",
         "waterBody": "Southold Bay",
         "cityCounty": "Southold",
-        "st": "New York",
-        "locale": "Southold, New York"
+        "st": "NY",
+        "locale": "Southold, NY"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.413710,
+          -72.41371,
           41.056147
         ]
       }
@@ -11482,8 +11482,8 @@
         "region": "Long Island Sound",
         "waterBody": "Little Peconic Bay",
         "cityCounty": "Southold",
-        "st": "New York",
-        "locale": " Hog Neck Bay, Southold, New York"
+        "st": "NY",
+        "locale": "Hog Neck Bay, Southold, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11508,8 +11508,8 @@
         "region": "Long Island Sound",
         "waterBody": "Great Peconic Bay",
         "cityCounty": "Southold",
-        "st": "New York",
-        "locale": "Southold, New York"
+        "st": "NY",
+        "locale": "Southold, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11534,8 +11534,8 @@
         "region": "Long Island Sound",
         "waterBody": "Little Peconic Bay",
         "cityCounty": "Southold",
-        "st": "New York",
-        "locale": "Southold, New York"
+        "st": "NY",
+        "locale": "Southold, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11560,8 +11560,8 @@
         "region": "Long Island Sound",
         "waterBody": "Gardiners Bay",
         "cityCounty": "Shelter Island",
-        "st": "New York",
-        "locale": "Southold, New York"
+        "st": "NY",
+        "locale": "Southold, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11586,8 +11586,8 @@
         "region": "Long Island Sound",
         "waterBody": "Gardiners Bay",
         "cityCounty": "Shelter Island",
-        "st": "New York",
-        "locale": "Southold, New York"
+        "st": "NY",
+        "locale": "Southold, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11612,8 +11612,8 @@
         "region": "Long Island Sound",
         "waterBody": "Gardiners Bay",
         "cityCounty": "Orient",
-        "st": "New York",
-        "locale": "Peconic River, Orient, New York"
+        "st": "NY",
+        "locale": "Peconic River, Orient, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11638,8 +11638,8 @@
         "region": "Long Island Sound",
         "waterBody": "Little Peconic Bay",
         "cityCounty": "Southold",
-        "st": "New York",
-        "locale": "Southold, New York"
+        "st": "NY",
+        "locale": "Southold, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11664,8 +11664,8 @@
         "region": "Long Island Sound",
         "waterBody": "Napeague Bay",
         "cityCounty": "Easthampton",
-        "st": "New York",
-        "locale": "Easthampton, New York"
+        "st": "NY",
+        "locale": "Easthampton, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11690,8 +11690,8 @@
         "region": "Long Island Sound",
         "waterBody": "Little Peconic Bay",
         "cityCounty": "Southold",
-        "st": "New York",
-        "locale": "Southold, New York"
+        "st": "NY",
+        "locale": "Southold, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11716,8 +11716,8 @@
         "region": "Long Island Sound",
         "waterBody": "Little Peconic Bay",
         "cityCounty": "Southampton",
-        "st": "New York",
-        "locale": "Southampton, New York"
+        "st": "NY",
+        "locale": "Southampton, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11742,8 +11742,8 @@
         "region": "Long Island Sound",
         "waterBody": "Shinnecock Bay",
         "cityCounty": "Southampton",
-        "st": "New York",
-        "locale": "Shinnecock Bay, Southampton, New York"
+        "st": "NY",
+        "locale": "Shinnecock Bay, Southampton, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11768,8 +11768,8 @@
         "region": "Long Island Sound",
         "waterBody": "Great Peconic Bay",
         "cityCounty": "",
-        "st": "New York",
-        "locale": "Great Peconic Bay, Long Island, New York"
+        "st": "NY",
+        "locale": "Great Peconic Bay, Long Island, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11794,8 +11794,8 @@
         "region": "Long Island Sound",
         "waterBody": "Shelter Island Sound",
         "cityCounty": "Southold",
-        "st": "New York",
-        "locale": "Shelter Island Sound, Peconic Bay, Long Island, Southold, New York"
+        "st": "NY",
+        "locale": "Shelter Island Sound, Peconic Bay, Long Island, Southold, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11820,8 +11820,8 @@
         "region": "Long Island Sound",
         "waterBody": "Pipes Cove",
         "cityCounty": "Greenport",
-        "st": "New York",
-        "locale": "Pipes Cove, Peconic Bay, Long Island, Greenport, New York"
+        "st": "NY",
+        "locale": "Pipes Cove, Peconic Bay, Long Island, Greenport, NY"
       },
       "geometry": {
         "type": "Point",
@@ -11846,14 +11846,14 @@
         "region": "Long Island Sound",
         "waterBody": "Peconic River",
         "cityCounty": "Greenport",
-        "st": "New York",
-        "locale": "Peconic River, Long Island, Greenport, New York"
+        "st": "NY",
+        "locale": "Peconic River, Long Island, Greenport, NY"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.36180,
-          41.09790
+          -72.3618,
+          41.0979
         ]
       }
     },
@@ -11872,8 +11872,8 @@
         "region": "Damariscotta",
         "waterBody": "Sheepscot River",
         "cityCounty": "Ebenecook Harbor",
-        "st": "Maine",
-        "locale": "Sheepscot River, Ebenecook Harbor, Maine"
+        "st": "ME",
+        "locale": "Sheepscot River, Ebenecook Harbor, ME"
       },
       "geometry": {
         "type": "Point",
@@ -11895,11 +11895,11 @@
         "cultivation": "",
         "salinity": "",
         "size": "",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Back River",
         "cityCounty": "Westport",
-        "st": "Maine",
-        "locale": "Squam Creek Salt Pond, Westport, Maine"
+        "st": "ME",
+        "locale": "Squam Creek Salt Pond, Westport, ME"
       },
       "geometry": {
         "type": "Point",
@@ -11924,8 +11924,8 @@
         "region": "Damariscotta",
         "waterBody": "Sheepscot River",
         "cityCounty": "Newcastle",
-        "st": "Maine",
-        "locale": "Sheepscot River, Newcastle, Maine"
+        "st": "ME",
+        "locale": "Sheepscot River, Newcastle, ME"
       },
       "geometry": {
         "type": "Point",
@@ -11947,11 +11947,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Mount Desert Narrows, Goose Cove",
         "cityCounty": "Trenton",
-        "st": "Maine",
-        "locale": "Mount Desert Narrows, Goose Cove, Maine"
+        "st": "ME",
+        "locale": "Mount Desert Narrows, Goose Cove, ME"
       },
       "geometry": {
         "type": "Point",
@@ -11973,11 +11973,11 @@
         "cultivation": "Off-Bottom Cages",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Mount Desert Narrows",
         "cityCounty": "Sorrento",
-        "st": "Maine",
-        "locale": "Mount Desert Narrows, Maine"
+        "st": "ME",
+        "locale": "Mount Desert Narrows, ME"
       },
       "geometry": {
         "type": "Point",
@@ -11999,11 +11999,11 @@
         "cultivation": "Suspended",
         "salinity": "Oceanic",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Meduncook River",
         "cityCounty": "Gay Island",
-        "st": "Maine",
-        "locale": "Meduncook River, Gay Island, Maine"
+        "st": "ME",
+        "locale": "Meduncook River, Gay Island, ME"
       },
       "geometry": {
         "type": "Point",
@@ -12025,17 +12025,17 @@
         "cultivation": "Suspended",
         "salinity": "Oceanic",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Weskeag River",
         "cityCounty": "South Thomaston",
-        "st": "Maine",
-        "locale": "Weskeag River, South Thomaston, Maine"
+        "st": "ME",
+        "locale": "Weskeag River, South Thomaston, ME"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -69.12975,
-          44.05780
+          44.0578
         ]
       }
     },
@@ -12061,7 +12061,7 @@
         "type": "Point",
         "coordinates": [
           -125.149555,
-          49.051370
+          49.05137
         ]
       }
     },
@@ -12106,8 +12106,8 @@
         "region": "Puget Sound",
         "waterBody": "Eld Inlet",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Eld Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Eld Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12132,8 +12132,8 @@
         "region": "Puget Sound",
         "waterBody": "Little Skookum",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Little Skookum Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Little Skookum Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12158,8 +12158,8 @@
         "region": "South Puget Sound",
         "waterBody": "Little Skookum Inlet",
         "cityCounty": "Little Skookum Inlet",
-        "st": "Washington",
-        "locale": "Little Skookum Inlet, Washington"
+        "st": "WA",
+        "locale": "Little Skookum Inlet, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12184,8 +12184,8 @@
         "region": "South Puget Sound",
         "waterBody": "Little Skookum Inlet",
         "cityCounty": "Little Skookum Inlet",
-        "st": "Washington",
-        "locale": "Little Skookum Inlet, Washington"
+        "st": "WA",
+        "locale": "Little Skookum Inlet, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12210,8 +12210,8 @@
         "region": "Puget Sound",
         "waterBody": "Henderson Inlet",
         "cityCounty": "Olympia",
-        "st": "Washington",
-        "locale": "Henderson Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Henderson Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12236,8 +12236,8 @@
         "region": "Puget Sound",
         "waterBody": "Henderson Inlet",
         "cityCounty": "Olympia",
-        "st": "Washington",
-        "locale": "Henderson Inlet, Puget Sound, Washington"
+        "st": "WA",
+        "locale": "Henderson Inlet, Puget Sound, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12259,11 +12259,11 @@
         "cultivation": "Rack-and-bag",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Oregon",
+        "region": "OR",
         "waterBody": "Netarts Bay",
         "cityCounty": "",
-        "st": "Oregon",
-        "locale": "Netarts Bay, Oregon"
+        "st": "OR",
+        "locale": "Netarts Bay, OR"
       },
       "geometry": {
         "type": "Point",
@@ -12285,11 +12285,11 @@
         "cultivation": "",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Oregon",
+        "region": "OR",
         "waterBody": "Winchester Bay",
         "cityCounty": "",
-        "st": "Oregon",
-        "locale": "Winchester Bay, Oregon"
+        "st": "OR",
+        "locale": "Winchester Bay, OR"
       },
       "geometry": {
         "type": "Point",
@@ -12311,11 +12311,11 @@
         "cultivation": "Longline",
         "salinity": "Low",
         "size": "Large",
-        "region": "Oregon",
+        "region": "OR",
         "waterBody": "Yaquina River",
         "cityCounty": "Newport",
-        "st": "Oregon",
-        "locale": "Yaquina Bay, Oregon"
+        "st": "OR",
+        "locale": "Yaquina Bay, OR"
       },
       "geometry": {
         "type": "Point",
@@ -12340,8 +12340,8 @@
         "region": "Willapa Bay",
         "waterBody": "Willapa Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Willapa Bay, Washington"
+        "st": "WA",
+        "locale": "Willapa Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12366,8 +12366,8 @@
         "region": "Willapa Bay",
         "waterBody": "Willapa Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Willapa Bay, Washington"
+        "st": "WA",
+        "locale": "Willapa Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12392,14 +12392,14 @@
         "region": "Grays Harbor",
         "waterBody": "Grays Harbor",
         "cityCounty": "Aberdeen",
-        "st": "Washington",
-        "locale": "North Bay, Grays Harbor, Aberdeen, Washington"
+        "st": "WA",
+        "locale": "North Bay, Grays Harbor, Aberdeen, WA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -124.091,
-          47.020
+          47.02
         ]
       }
     },
@@ -12418,8 +12418,8 @@
         "region": "Grays Harbor",
         "waterBody": "Grays Harbor",
         "cityCounty": "Aberdeen",
-        "st": "Washington",
-        "locale": "South Bay, Grays Harbor, Aberdeen, Washington"
+        "st": "WA",
+        "locale": "South Bay, Grays Harbor, Aberdeen, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12444,8 +12444,8 @@
         "region": "Grays Harbor",
         "waterBody": "Grays Harbor",
         "cityCounty": "Aberdeen",
-        "st": "Washington",
-        "locale": "South Bay, Grays Harbor, Aberdeen, Washington"
+        "st": "WA",
+        "locale": "South Bay, Grays Harbor, Aberdeen, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12470,8 +12470,8 @@
         "region": "Willapa Bay",
         "waterBody": "Willapa Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Willapa Bay, Washington"
+        "st": "WA",
+        "locale": "Willapa Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12496,13 +12496,13 @@
         "region": "Willapa Bay",
         "waterBody": "Willapa Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Willapa Bay, Washington"
+        "st": "WA",
+        "locale": "Willapa Bay, WA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.99580,
+          -123.9958,
           46.50374
         ]
       }
@@ -12522,8 +12522,8 @@
         "region": "Willapa Bay",
         "waterBody": "Willapa Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Willapa Bay, Washington"
+        "st": "WA",
+        "locale": "Willapa Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12548,8 +12548,8 @@
         "region": "Willapa Bay",
         "waterBody": "Willapa Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Willapa Bay, Washington"
+        "st": "WA",
+        "locale": "Willapa Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12574,8 +12574,8 @@
         "region": "Willapa Bay",
         "waterBody": "Willapa Bay",
         "cityCounty": "",
-        "st": "Washington",
-        "locale": "Willapa Bay, Washington"
+        "st": "WA",
+        "locale": "Willapa Bay, WA"
       },
       "geometry": {
         "type": "Point",
@@ -12600,13 +12600,13 @@
         "region": "Willapa Bay",
         "waterBody": "Willapa Bay",
         "cityCounty": "Tokeland",
-        "st": "Washington",
-        "locale": "Toke Point, Willapa Bay, Tokeland, Washington"
+        "st": "WA",
+        "locale": "Toke Point, Willapa Bay, Tokeland, WA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.96660,
+          -123.9666,
           46.70574
         ]
       }
@@ -12626,8 +12626,8 @@
         "region": "Damariscotta",
         "waterBody": "Casco Bay",
         "cityCounty": "Damariscotta River",
-        "st": "Maine",
-        "locale": "Damariscotta River, Orr's Island, Harpswell, Maine"
+        "st": "ME",
+        "locale": "Damariscotta River, Orr's Island, Harpswell, ME"
       },
       "geometry": {
         "type": "Point",
@@ -12649,17 +12649,17 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Small",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Maquoit Bay",
         "cityCounty": "Freeport",
-        "st": "Maine",
-        "locale": "Maquoit Bay, Maine"
+        "st": "ME",
+        "locale": "Maquoit Bay, ME"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -70.01973,
-          43.84090
+          43.8409
         ]
       }
     },
@@ -12675,11 +12675,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Briny",
         "size": "Large",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Mill Cove",
         "cityCounty": "West Bath",
-        "st": "Maine",
-        "locale": "Mill Cove, West Bath, Maine"
+        "st": "ME",
+        "locale": "Mill Cove, West Bath, ME"
       },
       "geometry": {
         "type": "Point",
@@ -12701,11 +12701,11 @@
         "cultivation": "Suspended",
         "salinity": "Briny",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Nonesuch River",
         "cityCounty": "Scarborough",
-        "st": "Maine",
-        "locale": "Nonesuch River, Scarborough, Maine"
+        "st": "ME",
+        "locale": "Nonesuch River, Scarborough, ME"
       },
       "geometry": {
         "type": "Point",
@@ -12727,11 +12727,11 @@
         "cultivation": "Bottom Planted",
         "salinity": "Oceanic",
         "size": "Average",
-        "region": "Maine",
+        "region": "ME",
         "waterBody": "Pulpit Harbor",
         "cityCounty": "North Haven",
-        "st": "Maine",
-        "locale": "Heidi's Pond, Pulpit Harbor, North Haven Island, Maine"
+        "st": "ME",
+        "locale": "Heidi's Pond, Pulpit Harbor, North Haven Island, ME"
       },
       "geometry": {
         "type": "Point",
@@ -12841,7 +12841,7 @@
         "type": "Point",
         "coordinates": [
           -124.6536,
-          49.4400
+          49.44
         ]
       }
     },
@@ -13068,7 +13068,7 @@
         "region": "Maritime",
         "waterBody": "Little Shemogue Bay",
         "cityCounty": "Shemogue",
-        "st": "Nova Brunswick",
+        "st": "New Brunswick",
         "locale": "Little Shemogue, Northumberland Strait, New Brunswick"
       },
       "geometry": {
@@ -13094,7 +13094,7 @@
         "region": "Maritime",
         "waterBody": "Little Shemogue Bay",
         "cityCounty": "Shemogue",
-        "st": "Nova Brunswick",
+        "st": "New Brunswick",
         "locale": "Little Shemogue Bay, Northumberland Strait, New Brunswick"
       },
       "geometry": {
@@ -13120,8 +13120,8 @@
         "region": "Maritime",
         "waterBody": "Baie de Village",
         "cityCounty": "Richibucto-Village",
-        "st": "Nova Brunswick",
-        "locale": "Richibucto-Village, Nova Brunswick"
+        "st": "New Brunswick",
+        "locale": "Richibucto-Village, New Brunswick"
       },
       "geometry": {
         "type": "Point",
@@ -13231,7 +13231,7 @@
         "type": "Point",
         "coordinates": [
           -65.02682,
-          47.15450
+          47.1545
         ]
       }
     },
@@ -13308,7 +13308,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -63.4400,
+          -63.44,
           46.5023
         ]
       }
@@ -13536,8 +13536,8 @@
         "region": "South Long Island Shore",
         "waterBody": "Shinnecock Bay",
         "cityCounty": "Shinnecock",
-        "st": "New York",
-        "locale": "Mecox Bay, New York"
+        "st": "NY",
+        "locale": "Mecox Bay, NY"
       },
       "geometry": {
         "type": "Point",
@@ -13562,8 +13562,8 @@
         "region": "South Long Island Shore",
         "waterBody": "Mecox Bay",
         "cityCounty": "Southampton",
-        "st": "New York",
-        "locale": "Mecox Bay, New York"
+        "st": "NY",
+        "locale": "Mecox Bay, NY"
       },
       "geometry": {
         "type": "Point",
@@ -13588,14 +13588,14 @@
         "region": "Cape Cod",
         "waterBody": "Katama Bay",
         "cityCounty": "",
-        "st": "Massachusetts",
-        "locale": "Katama Bay, Martha's Vineyard, Massachusetts"
+        "st": "MA",
+        "locale": "Katama Bay, Martha's Vineyard, MA"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -70.5936,
-          41.4450
+          41.445
         ]
       }
     }
