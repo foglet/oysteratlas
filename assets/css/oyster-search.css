@@ -75,5 +75,5 @@
 .oa-popup-wrap.mapboxgl-popup-anchor-left .mapboxgl-popup-tip { border-right-color: var(--panel); }
 .oa-popup-wrap.mapboxgl-popup-anchor-right .mapboxgl-popup-tip { border-left-color: var(--panel); }
 .oa-popup-wrap .mapboxgl-popup-close-button { color: var(--muted); font-size: 18px; }
-.oa-popup strong { display: block; font-size: 1rem; }
-.oa-popup span { color: var(--muted); }
+.oa-popup-locale { color: var(--ink); }
+.oa-popup-region { margin-top: 2px; color: var(--muted); }
