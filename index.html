@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Search by market name. Adds its own pin layer on top; the style's heatmap and labels are left alone.
      Point url at the oyster GeoJSON; set nameKey / speciesKey if its properties are named differently. */
-  OysterSearch.init({ map: map, url: 'assets/data/oysters.geojson', nameKey: 'marketName', speciesKey: 'species', fly: go });
+  OysterSearch.init({ map: map, url: ['assets/data/oysters.geojson', 'assets/data/oysterater.geojson'], nameKey: 'marketName', speciesKey: 'species', fly: go });
 
   /* Region pills */
   var row = document.querySelector('.map-places');
