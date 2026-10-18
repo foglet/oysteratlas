@@ -149,11 +149,19 @@
   .mapboxgl-ctrl-bottom-left  { left: var(--sal); bottom: var(--sab); }
   .mapboxgl-ctrl-bottom-right { right: var(--sar); bottom: calc(var(--sab) + var(--kb)); }
 
+  /* Zoom + compass: same look as the search glass above them (dark panel, 50% border, muted icons, same width).
+     The 1px border sits outside the buttons, so buttons are 2px narrower than the glass to keep the same outer width. */
+  .mapboxgl-map .mapboxgl-ctrl-group { background: var(--panel); border: 1px solid color-mix(in srgb, var(--line) 50%, transparent); box-shadow: none; }
+  .mapboxgl-map .mapboxgl-ctrl-group button { width: 30px; }
+  .mapboxgl-map .mapboxgl-ctrl-group button + button { border-top: 1px solid color-mix(in srgb, var(--line) 50%, transparent); }
+  .mapboxgl-map .mapboxgl-ctrl-group button:not(:disabled):hover { background-color: color-mix(in srgb, var(--ink) 8%, transparent); }
+  .mapboxgl-map .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { filter: url(#oa-ctrl-tint); }  /* Mapbox's icons → the glass's muted color (filter below the map div) */
+
   /* Touch screens (iPhone): 44-point tap targets, Apple's minimum */
   @media (pointer: coarse) {
     .map-places button { min-height: 44px; }
     .map-legend summary { min-height: 44px; display: flex; align-items: center; gap: .3em; }  /* gap keeps the space before + / – */
-    .mapboxgl-ctrl-group button { width: 44px; height: 44px; }
+    .mapboxgl-map .mapboxgl-ctrl-group button { width: 42px; height: 44px; }  /* + 2px border = 44, same as the glass */
     .mapboxgl-ctrl.oa-search .oa-field { height: 44px; }
     .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { width: 44px; height: 44px; }  /* glass stays the same width as zoom */
     .oa-input { font-size: 16px; }  /* under 16px, iPhone Safari zooms the whole page when the box is tapped */
@@ -165,6 +173,12 @@
 <body>
 
 <div id="map" role="region" aria-label="Map of the world's oysters"></div>
+<!-- Recolors Mapbox's zoom/compass icons: dark parts → --muted (#8fa3b1), the compass's light half → a dim shade of it -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="oa-ctrl-tint" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="-0.6017 0 0 0 0.6813  -0.6817 0 0 0 0.7753  -0.7400 0 0 0 0.8420  0 0 0 1 0"/>
+  </filter>
+</svg>
 
 <div class="top">
   <h1 style="margin:0"><button type="button" class="title" data-home title="Back to the overview">The Oyster Atlas</button></h1>
