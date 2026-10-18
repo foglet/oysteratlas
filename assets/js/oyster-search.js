@@ -2,8 +2,9 @@
  * The Oyster Atlas — search by market name
  * Fogday Studios, fogday.com
  *
- * Heatmap-safe: never filters, restyles or removes the style's own layers.
- * A picked oyster is drawn on its own layer ("oa-search-hit") on top.
+ * Heatmap-safe: never filters or removes the style's own layers. A picked oyster is drawn on its
+ * own layer ("oa-search-hit") on top, at the style's own dot size, and its name label is bolded
+ * (the only change made to the style's layers: their label font, restored when nothing is picked).
  *
  * Species names, Latin names and colors are read from the legend
  * (.map-legend li), so the legend in index.html is the one place to edit them.
@@ -107,12 +108,33 @@
 
   // ---------- map pin (own source + layer; the heatmap is never touched) ----------
 
-  function setHit(map, coord, color) {
+  // Same size as the style's own oyster dots: none until zoom 4, 1px at 5, growing to 5px (10px across) at 8 and above.
+  var DOT_RADIUS = ['interpolate', ['linear'], ['zoom'], 4, 0, 5, 1, 8, 5];
+  var DOT_BLUR = ['interpolate', ['linear'], ['zoom'], 0, 2, 10, 1.5, 11, 1];  // the style's soft edge, so the visible size matches too
+
+  // Bold the picked oyster's name in the style's own label layers (any symbol layer showing {nameKey}).
+  var labelFonts = {};  // layer id → its original text-font
+  function boldFont(fonts) { return fonts.map(function (f) { return /Bold$/.test(f) ? f : f.replace(/\s*(Semibold|SemiBold|Medium|Regular|Light|Italic)?$/, ' Bold'); }); }
+  function setBoldLabel(map, nameKey, name) {
+    var layers = (map.getStyle() && map.getStyle().layers) || [];
+    layers.forEach(function (l) {
+      if (l.type !== 'symbol' || !l.layout || JSON.stringify(l.layout['text-field'] || '').indexOf('{' + nameKey + '}') < 0) return;
+      if (!(l.id in labelFonts)) labelFonts[l.id] = map.getLayoutProperty(l.id, 'text-font') || ['Open Sans Regular', 'Arial Unicode MS Regular'];
+      var orig = labelFonts[l.id];
+      if (!Array.isArray(orig) || orig.some(function (f) { return typeof f !== 'string'; })) return;  // an expression: leave it alone
+      map.setLayoutProperty(l.id, 'text-font', name
+        ? ['case', ['==', ['get', nameKey], name], ['literal', boldFont(orig)], ['literal', orig]]
+        : orig);
+    });
+  }
+
+  function setHit(map, coord, color, name, nameKey) {
     var data = {
       type: 'FeatureCollection',
       features: coord ? [{ type: 'Feature', geometry: { type: 'Point', coordinates: coord }, properties: { color: color } }] : []
     };
     function apply() {
+      setBoldLabel(map, nameKey || 'name', coord ? name : null);
       var src = map.getSource(HIT_ID);
       if (src) { src.setData(data); return; }
       if (!coord) return;
@@ -120,7 +142,9 @@
       map.addLayer({
         id: HIT_ID, type: 'circle', source: HIT_ID,
         paint: {
-          'circle-radius': 9,
+          'circle-radius': DOT_RADIUS,      // never larger than the style's own dots
+          'circle-blur': DOT_BLUR,
+          'circle-opacity': 0.9,
           'circle-color': ['get', 'color']   // species color fill only, no outline
         }
       }); // no beforeId → above every style layer, heatmap included
@@ -250,7 +274,7 @@
       var it = h.item;
       setActive(i);
       fly({ center: it.coord, zoom: Math.max(map.getZoom(), o.flyZoom) });
-      setHit(map, it.coord, it.color);
+      setHit(map, it.coord, it.color, it.name, o.nameKey);
       minimize(byKeyboard);   // phones and desktop alike: tuck the list away so the map and details are in view
       showDetail(it);
     }
@@ -279,7 +303,7 @@
       input.value = '';
       active = -1;
       clearDetail();
-      setHit(map, null);
+      setHit(map, null, null, null, o.nameKey);
       render();
     }
 
@@ -332,7 +356,7 @@
         input.value = '';          // the old search no longer applies, so clear it
         active = -1;
         render();
-        setHit(map, hit.coord, hit.color);
+        setHit(map, hit.coord, hit.color, hit.name, o.nameKey);
         showDetail(hit);
       }
       else clearDetail();
