@@ -310,7 +310,8 @@
     input.addEventListener('input', function () { active = -1; clearDetail(); expand(); render(); });
 
     // ----- details + minimizing -----
-    // The details clear only when the search box gets focus or on a tap elsewhere.
+    // The details clear only when the search box gets focus or on a tap elsewhere
+    // (taps in the species legend don't count: they leave the picked oyster in place).
     // Dragging or pinching the map never counts as a tap, so it leaves them in place.
     // A tap outside the search also minimizes it (hides the list, drops the phone keyboard)
     // so the map can be moved freely; tapping the box brings the list back.
@@ -350,6 +351,8 @@
       if (moved > 10 || Date.now() - d.t > 600) return;          // a drag or long press, not a tap
       var t = e.target;
       if (t.closest && (t.closest('.oa-detail') || t.closest('.oa-results') || t.closest('.oa-field'))) return;
+      // Opening, reading or closing the species legend keeps the picked oyster; it only tucks the search away.
+      if (t.closest && t.closest('.map-legend-panel')) { minimize(); return; }
       var hit = t.closest && t.closest('.mapboxgl-canvas-container') ? nearestOyster(e) : null;
       minimize();
       if (hit) {                  // tapped an oyster on the map: it becomes the one shown
