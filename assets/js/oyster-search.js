@@ -294,10 +294,36 @@
       var region = it.region && place.toLowerCase().indexOf(String(it.region).toLowerCase()) < 0 ? it.region : '';
       if (place) detail.appendChild(el('div', 'oa-detail-locale', place));
       if (region) detail.appendChild(el('div', 'oa-detail-region', region));
+      var appearing = detailBox.hidden || leaving;
       detail.hidden = false;
       if (detailPanel) detailPanel.hidden = false;
+      if (appearing) slideDetail(true);   // already up (switching oysters): just swap the text
     }
-    function clearDetail() { detail.hidden = true; detail.textContent = ''; if (detailPanel) detailPanel.hidden = true; }
+    function clearDetail() {
+      if (detailBox.hidden || leaving) return;
+      slideDetail(false, function () { detail.hidden = true; detail.textContent = ''; if (detailPanel) detailPanel.hidden = true; });
+    }
+
+    // The details card slides + fades in/out at the same speed and easing as the search bar
+    // shrinking to its magnifying glass (.oa-field's `transition: width .18s ease` in oyster-search.css),
+    // so on a pick the two move together. Reduced-motion users get the instant show/hide.
+    var DETAIL_MS = 180;
+    var detailBox = detailPanel || detail, detailAnim = null, leaving = false;
+    var still = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: true };
+    function slideDetail(show, done) {
+      if (detailAnim) { detailAnim.cancel(); detailAnim = null; }
+      leaving = !show;
+      if (still.matches || !detailBox.animate) { leaving = false; if (done) done(); return; }
+      var a = detailBox.animate(
+        [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }],
+        { duration: DETAIL_MS, easing: 'ease', direction: show ? 'normal' : 'reverse', fill: 'forwards' });
+      detailAnim = a;
+      a.onfinish = function () {
+        detailAnim = null; leaving = false;
+        if (done) done();
+        a.cancel();   // drop the held frame once it's hidden (or fully shown)
+      };
+    }
 
     function reset() {
       input.value = '';
