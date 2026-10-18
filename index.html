@@ -100,7 +100,7 @@
     display: flex; flex-direction: column; gap: 8px;
     width: 320px; max-width: calc(100% - 24px); max-height: calc(100% - 180px);
   }
-  /* Legend: closed on phones, open on big screens. */
+  /* Legend: starts collapsed; opens only when tapped. */
   .map-legend-panel { min-height: 0; overflow-y: auto; border-radius: 8px; }
   /* Picked oyster: its own card, shown only once one is chosen (from search or a tap on the map) */
   .oa-detail-panel { flex: none; padding: 10px 14px; border-radius: 8px; }
@@ -288,8 +288,7 @@ document.addEventListener('DOMContentLoaded', function () {
   row.addEventListener('touchend', function () { t = null; }, { passive: true });
   row.addEventListener('touchcancel', function () { t = null; }, { passive: true });
 
-  /* Legend starts open on big screens, closed on phones */
-  if (window.matchMedia('(min-width: 760px) and (min-height: 600px)').matches) document.querySelector('.map-legend').open = true;
+  /* Legend: starts collapsed everywhere and opens only when its title is tapped. Nothing else opens it. */
 });
 </script>
 </body>
