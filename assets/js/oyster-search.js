@@ -26,7 +26,7 @@
     nameKey: 'name',           // GeoJSON property with the market name
     speciesKey: 'species',     // GeoJSON property with the species (common or Latin name)
     regionKey: 'region',       // optional
-    localeKey: 'locale',       // optional: place shown in the popup
+    localeKey: 'locale',       // optional: place shown in the details
 
     maxResults: 50,
     flyZoom: 10,
@@ -139,7 +139,14 @@
     if (!input || !list) throw new Error('OysterSearch: search elements not found');
 
     var speciesOf = speciesLookup(readLegend(o.legendItems), o.fallbackColor);
-    var items = [], shown = [], active = -1, popup = null;
+    var items = [], shown = [], active = -1;
+
+    // Details of the chosen oyster, shown in the search card just under the search bar.
+    var detail = el('div', 'oa-detail');
+    detail.hidden = true;
+    detail.setAttribute('aria-live', 'polite');
+    var fieldEl = input.closest('.oa-field') || input;
+    fieldEl.parentNode.insertBefore(detail, fieldEl.nextSibling);
 
     setStatus(o.hintText);
 
@@ -239,47 +246,51 @@
       fly({ center: it.coord, zoom: Math.max(map.getZoom(), o.flyZoom) });
       setHit(map, it.coord, it.color);
       if (lastPointer === 'touch') minimize();   // on phones, get the list out of the way
-      showPopup(it);
+      showDetail(it);
     }
 
-    // Details popup for one oyster, used by search picks and by taps on the map.
-    function showPopup(it) {
-      if (popup) popup.remove();
-      var box = el('div', 'oa-popup');
-      // Locale, then region. The name is already in the list, so it isn't repeated here,
-      // and the region is skipped when the locale already spells it out.
-      var place = it.locale.replace(/[,\s]+$/, '');
+    // Details for one oyster, used by search picks and by taps on the map:
+    // ● name, then where it's grown, then the region (skipped when the locale already names it).
+    function showDetail(it) {
+      detail.textContent = '';
+      var head = el('div', 'oa-detail-name');
+      var dot = el('span', 'dot');
+      dot.style.setProperty('--c', it.color);
+      dot.setAttribute('aria-hidden', 'true');
+      head.appendChild(dot);
+      head.appendChild(document.createTextNode(it.name));
+      detail.appendChild(head);
+      var place = (it.locale || '').replace(/[,\s]+$/, '');
       var region = it.region && place.toLowerCase().indexOf(String(it.region).toLowerCase()) < 0 ? it.region : '';
-      if (place) box.appendChild(el('div', 'oa-popup-locale', place));
-      if (region) box.appendChild(el('div', 'oa-popup-region', region));
-      popup = new global.mapboxgl.Popup({ offset: 14, className: 'oa-popup-wrap', closeButton: false, closeOnClick: false })  // closing is handled by the tap logic below
-        .setLngLat(it.coord).setDOMContent(box).addTo(map);
+      if (place) detail.appendChild(el('div', 'oa-detail-locale', place));
+      if (region) detail.appendChild(el('div', 'oa-detail-region', region));
+      detail.hidden = false;
     }
+    function clearDetail() { detail.hidden = true; detail.textContent = ''; }
 
     function reset() {
       input.value = '';
       active = -1;
-      if (popup) { popup.remove(); popup = null; }
+      clearDetail();
       setHit(map, null);
       render();
     }
 
-    input.addEventListener('input', function () { active = -1; closePopup(); render(); });
+    input.addEventListener('input', function () { active = -1; clearDetail(); render(); });
 
-    // ----- popup + minimizing -----
-    // The popup closes only when the search box gets focus or on a tap elsewhere.
-    // Dragging or pinching the map never counts as a tap, so it leaves the popup open.
+    // ----- details + minimizing -----
+    // The details clear only when the search box gets focus or on a tap elsewhere.
+    // Dragging or pinching the map never counts as a tap, so it leaves them in place.
     // A tap outside the search also minimizes it (hides the list, drops the phone keyboard)
     // so the map can be moved freely; tapping the box brings the list back.
     var card = input.closest('.oa-search') || list.parentNode;
-    function closePopup() { if (popup) { popup.remove(); popup = null; } }
     function minimize() {
       card.classList.add('oa-collapsed');
       input.setAttribute('aria-expanded', 'false');
       if (document.activeElement === input) input.blur();
     }
     input.addEventListener('focus', function () {
-      closePopup();
+      clearDetail();
       card.classList.remove('oa-collapsed');
       if (shown.length) input.setAttribute('aria-expanded', 'true');
     });
@@ -297,11 +308,11 @@
       var moved = Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y);
       if (moved > 10 || Date.now() - d.t > 600) return;          // a drag or long press, not a tap
       var t = e.target;
-      if (t.closest && (t.closest('.oa-popup-wrap') || t.closest('.oa-results') || t.closest('.oa-field'))) return;
+      if (t.closest && (t.closest('.oa-detail') || t.closest('.oa-results') || t.closest('.oa-field'))) return;
       var hit = t.closest && t.closest('.mapboxgl-canvas-container') ? nearestOyster(e) : null;
       minimize();
-      if (hit) showPopup(hit);   // tapped an oyster on the map: show its details
-      else closePopup();
+      if (hit) showDetail(hit);   // tapped an oyster on the map: show its details in the search card
+      else clearDetail();
     }
     document.addEventListener('pointerup', pointerEnd, true);
 
