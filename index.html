@@ -282,7 +282,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Search by market name. Adds its own pin layer on top; the style's heatmap and labels are left alone.
      Point url at the oyster GeoJSON; set nameKey / speciesKey if its properties are named differently. */
-  OysterSearch.init({ map: map, url: ['assets/data/oysters.geojson', 'assets/data/oysterater.geojson'], nameKey: 'marketName', speciesKey: 'species', fly: go });
+  OysterSearch.init({ map: map, url: ['assets/data/oysters.geojson', 'assets/data/oysterater.geojson'], nameKey: 'marketName', speciesKey: 'species',
+    fly: function (v) {
+      Array.prototype.forEach.call(pills, function (x) { x.removeAttribute('aria-pressed'); });  // a search pick drops the region highlight
+      go(v);
+    } });
 
   /* Region pills */
   var row = document.querySelector('.map-places');
