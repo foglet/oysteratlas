@@ -43,7 +43,7 @@
   #map { position: fixed; inset: 0; }
 
   /* Panels floating over the map */
-  .map-places button, .map-legend-panel, .title {
+  .map-places button, .map-legend-panel, .oa-detail-panel, .title {
     background: color-mix(in srgb, var(--bg) 80%, transparent);
     -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
     color: var(--ink); border: 1px solid var(--line);
@@ -94,11 +94,18 @@
     .map-places button { min-height: 36px; }
   }
 
-  /* Legend: bottom left above the Mapbox logo. Closed on phones, open on big screens. */
-  .map-legend-panel {
+  /* Bottom left, above the Mapbox logo: the picked oyster's details, then the legend under it. */
+  .map-bottom-left {
     position: fixed; z-index: 2; left: 12px; bottom: calc(50px + env(safe-area-inset-bottom, 0px));  /* clears the credit line */
-    max-width: calc(100% - 24px); max-height: calc(100% - 180px); overflow-y: auto; border-radius: 8px;
+    display: flex; flex-direction: column; gap: 8px;
+    width: 320px; max-width: calc(100% - 24px); max-height: calc(100% - 180px);
   }
+  /* Legend: closed on phones, open on big screens. */
+  .map-legend-panel { min-height: 0; overflow-y: auto; border-radius: 8px; }
+  /* Picked oyster: its own card, shown only once one is chosen (from search or a tap on the map) */
+  .oa-detail-panel { flex: none; padding: 10px 14px; border-radius: 8px; }
+  .oa-detail-panel[hidden] { display: none; }
+  .oa-detail-panel .oa-detail { margin: 0; }
   .map-legend summary {
     list-style: none; cursor: pointer; padding: 10px 14px; min-height: 40px;
     font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
@@ -107,7 +114,6 @@
   .map-legend summary::after { content: " +"; color: var(--muted); }
   .map-legend[open] summary::after { content: " –"; }
   .map-legend summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 8px; }
-  .map-legend-panel { width: 320px; }
   .map-legend ul { list-style: none; margin: 0; padding: 0 14px 12px; display: grid; gap: 6px; font-size: .9rem; }
   .map-legend li { display: flex; align-items: center; gap: 8px; }  /* color dot far left, name, Latin name far right */
   .map-legend li i { color: var(--muted); margin-left: auto; padding-left: 12px; white-space: nowrap; }
@@ -124,8 +130,10 @@
   }
   .mapboxgl-ctrl.oa-search .oa-field { margin-left: auto; }              /* bar hugs the right edge, over the zoom buttons */
   .mapboxgl-ctrl.oa-search.oa-collapsed { width: auto; max-width: min(300px, calc(100vw - 20px)); }
-  /* Minimized with nothing to show: just the magnifying-glass button, no card around it */
-  .mapboxgl-ctrl.oa-search.oa-collapsed:has(.oa-detail[hidden]) { padding: 0; border-color: transparent; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  /* Minimized: just the magnifying-glass button, no card around it */
+  .mapboxgl-ctrl.oa-search.oa-collapsed { padding: 0; border: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  /* Minimized glass: same size, corners and edges as the zoom buttons below it, so the two line up */
+  .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { width: 32px; height: 32px; border-radius: 4px; }
 </style>
 </head>
 <body>
@@ -148,6 +156,8 @@
   </div>
 </div>
 
+<div class="map-bottom-left">
+<div id="oa-detail-panel" class="oa-detail-panel" hidden></div>  <!-- the picked oyster; filled by oyster-search.js -->
 <div class="map-legend-panel">
 <details class="map-legend">
   <summary>Oyster species</summary>
@@ -163,9 +173,10 @@
   </ul>
 </details>
 </div>
+</div>
 
 <!-- Search by market name: moved into the map's bottom-right corner, above the zoom buttons, by the script below -->
-<div class="oa-search" role="search" hidden>
+<div class="oa-search oa-collapsed" role="search" hidden>  <!-- starts closed: just the magnifying glass; tap it to open -->
   <div class="oa-field">
     <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
     <input id="oa-search-input" class="oa-input" type="search"
