@@ -22,6 +22,7 @@
     status: '#oa-search-status',
     clear: '#oa-search-clear',
     legendItems: '.map-legend li',
+    detailPanel: '#oa-detail-panel', // where the picked oyster's details go; falls back to under the search bar
 
     nameKey: 'name',           // GeoJSON property with the market name
     speciesKey: 'species',     // GeoJSON property with the species (common or Latin name)
@@ -146,10 +147,12 @@
     detail.hidden = true;
     detail.setAttribute('aria-live', 'polite');
     var fieldEl = input.closest('.oa-field') || input;
+    var detailPanel = $(o.detailPanel);
     // The bar can shrink to just its magnifying glass; clicking anywhere on it opens the search.
     fieldEl.addEventListener('click', function () { if (document.activeElement !== input) input.focus(); });
     fieldEl.setAttribute('title', 'Search oysters');
-    fieldEl.parentNode.insertBefore(detail, fieldEl.nextSibling);
+    if (detailPanel) detailPanel.appendChild(detail);
+    else fieldEl.parentNode.insertBefore(detail, fieldEl.nextSibling);
 
     setStatus(o.hintText);
 
@@ -268,8 +271,9 @@
       if (place) detail.appendChild(el('div', 'oa-detail-locale', place));
       if (region) detail.appendChild(el('div', 'oa-detail-region', region));
       detail.hidden = false;
+      if (detailPanel) detailPanel.hidden = false;
     }
-    function clearDetail() { detail.hidden = true; detail.textContent = ''; }
+    function clearDetail() { detail.hidden = true; detail.textContent = ''; if (detailPanel) detailPanel.hidden = true; }
 
     function reset() {
       input.value = '';
