@@ -36,6 +36,12 @@
     --accent: #b2b200;    /* the original chartreuse */
     --font: "Source Sans 3", "Source Sans Pro", Seravek, Calibri, "Segoe UI", Ubuntu, Arial, sans-serif;
     color-scheme: dark;
+    /* iPhone safe areas (Dynamic Island, home indicator, landscape edges). Zero on screens without them. */
+    --sat: env(safe-area-inset-top, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
+    --sar: env(safe-area-inset-right, 0px);
+    --kb: 0px;  /* height of the on-screen keyboard while the search box is in use (set by the script) */
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 400 1rem/1.4 var(--font); }
@@ -51,7 +57,7 @@
 
   /* Title, top left: tap it to return to the overview */
   .top { position: fixed; z-index: 3;  /* pinned to the screen, so it never moves if the page itself scrolls (iPhone Safari) */
-         top: calc(12px + env(safe-area-inset-top, 0px)); left: 0; right: 0; pointer-events: none; }
+         top: calc(12px + var(--sat)); left: var(--sal); right: var(--sar); pointer-events: none; }
   .title {
     pointer-events: auto; display: inline-block; margin: 0 0 10px 12px; padding: 8px 14px; border-radius: 8px; cursor: pointer;
     font: 700 .95rem/1 var(--font); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
@@ -88,7 +94,7 @@
   /* Reserve each pill's bold width up front, so selecting one doesn't nudge its neighbors */
   .map-places button::after { content: attr(data-name); font-weight: 700; height: 0; overflow: hidden; visibility: hidden; }
   @media (min-width: 760px) {
-    .top { top: calc(16px + env(safe-area-inset-top, 0px)); }
+    .top { top: calc(16px + var(--sat)); }
     .title { margin-left: 16px; }
     .map-places { padding: 0 16px; scroll-padding-inline: 16px; }
     .map-places button { min-height: 36px; }
@@ -96,9 +102,9 @@
 
   /* Bottom left, above the Mapbox logo: the picked oyster's details, then the legend under it. */
   .map-bottom-left {
-    position: fixed; z-index: 2; left: 12px; bottom: calc(50px + env(safe-area-inset-bottom, 0px));  /* clears the credit line */
+    position: fixed; z-index: 2; left: calc(12px + var(--sal)); bottom: calc(50px + var(--sab));  /* clears the credit line */
     display: flex; flex-direction: column; gap: 8px;
-    width: 320px; max-width: calc(100% - 24px); max-height: calc(100% - 180px);
+    width: 320px; max-width: calc(100% - 24px - var(--sal) - var(--sar)); max-height: calc(100% - 180px - var(--sat) - var(--sab));
   }
   /* Legend: starts collapsed; opens only when tapped. */
   .map-legend-panel { min-height: 0; overflow-y: auto; border-radius: 8px; }
@@ -134,6 +140,23 @@
   .mapboxgl-ctrl.oa-search.oa-collapsed { padding: 0; border: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
   /* Minimized glass: same size, corners and edges as the zoom buttons below it, so the two line up */
   .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { width: 32px; height: 32px; border-radius: 4px; }
+
+  /* Mapbox's corners (logo, credits, search, zoom) stay clear of the home indicator and the landscape notch.
+     The bottom-right stack also rises above the keyboard while you type a search. */
+  .mapboxgl-ctrl-bottom-left  { left: var(--sal); bottom: var(--sab); }
+  .mapboxgl-ctrl-bottom-right { right: var(--sar); bottom: calc(var(--sab) + var(--kb)); }
+
+  /* Touch screens (iPhone): 44-point tap targets, Apple's minimum */
+  @media (pointer: coarse) {
+    .map-places button { min-height: 44px; }
+    .map-legend summary { min-height: 44px; display: flex; align-items: center; gap: .3em; }  /* gap keeps the space before + / – */
+    .mapboxgl-ctrl-group button { width: 44px; height: 44px; }
+    .mapboxgl-ctrl.oa-search .oa-field { height: 44px; }
+    .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { width: 44px; height: 44px; }  /* glass stays the same width as zoom */
+    .oa-input { font-size: 16px; }  /* under 16px, iPhone Safari zooms the whole page when the box is tapped */
+    .oa-result { height: 44px; }
+    .oa-results { max-height: calc(5 * 44px); }
+  }
 </style>
 </head>
 <body>
@@ -206,6 +229,33 @@ document.addEventListener('DOMContentLoaded', function () {
     onAdd: function () { searchCard.classList.add('mapboxgl-ctrl'); searchCard.hidden = false; return searchCard; },
     onRemove: function () { searchCard.remove(); }
   }, 'bottom-right');
+
+  /* iPhone keyboard: it covers the bottom of the screen without resizing the page, which would hide the
+     search box and its results. While it's up, raise the bottom-right stack just enough that the search card
+     sits right above the keyboard (zoom can go behind it), and shorten the results list if space is tight. */
+  var vv = window.visualViewport;
+  function liftForKeyboard() {
+    var root = document.documentElement, card = document.querySelector('.oa-search'), list = document.getElementById('oa-search-results');
+    var kb = 0;
+    if (vv && vv.scale < 1.01 && document.activeElement && document.activeElement.id === 'oa-search-input')
+      kb = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
+    var lift = 0;
+    list.style.maxHeight = '';
+    if (kb > 0) {
+      var css = getComputedStyle(root);
+      var current = parseFloat(css.getPropertyValue('--kb')) || 0;
+      var gap = window.innerHeight - (card.getBoundingClientRect().bottom + current);  /* card-to-screen-bottom with no lift */
+      lift = Math.max(0, kb + 8 - gap);
+      var room = (window.innerHeight - kb - 8) - ((parseFloat(css.getPropertyValue('--sat')) || 0) + 8);  /* keyboard top to the safe top */
+      var rest = card.getBoundingClientRect().height - list.getBoundingClientRect().height;  /* bar, status line, padding */
+      var fiveRows = list.firstElementChild ? 5 * list.firstElementChild.offsetHeight : 220;
+      list.style.maxHeight = Math.max(44, Math.min(fiveRows, room - rest)) + 'px';  /* at least 1 row */
+    }
+    root.style.setProperty('--kb', lift + 'px');
+  }
+  if (vv) { vv.addEventListener('resize', liftForKeyboard); vv.addEventListener('scroll', liftForKeyboard); }
+  document.addEventListener('focusin', liftForKeyboard);
+  document.addEventListener('focusout', function () { setTimeout(liftForKeyboard, 50); });
 
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
   function go(view) {
