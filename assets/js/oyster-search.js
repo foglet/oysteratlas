@@ -1,79 +1,291 @@
-/* The Oyster Atlas — search by market name. Fogday Studios, fogday.com
-   Uses the page tokens from index.html (--panel, --ink, --muted, --line, --accent, --font). */
+/*!
+ * The Oyster Atlas — search by market name
+ * Fogday Studios, fogday.com
+ *
+ * Heatmap-safe: never filters, restyles or removes the style's own layers.
+ * A picked oyster is drawn on its own layer ("oa-search-hit") on top.
+ *
+ * Species names, Latin names and colors are read from the legend
+ * (.map-legend li), so the legend in index.html is the one place to edit them.
+ */
+(function (global) {
+  'use strict';
 
-.oa-search { padding: 10px 14px 12px; border-top: 1px solid var(--line); }
+  var DEFAULTS = {
+    map: null,                 // mapboxgl.Map (required)
+    data: null,                // GeoJSON FeatureCollection, or…
+    url: null,                 // …URL to fetch it from, or a list of URLs whose features are combined
+    fly: null,                 // function (view) — defaults to map.flyTo
 
-.oa-search-label {
-  display: block; margin: 0 0 8px;
-  font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
-}
+    input: '#oa-search-input',
+    results: '#oa-search-results',
+    status: '#oa-search-status',
+    clear: '#oa-search-clear',
+    legendItems: '.map-legend li',
 
-.oa-field {
-  display: flex; align-items: center; gap: 8px;
-  width: 270px; max-width: 100%; height: 35px; padding: 0 12px;  /* +20px wide; 44px → 35px tall (−20%) */
-  background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
-}
-.oa-field:focus-within { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent); }
-.oa-field svg { flex: none; color: var(--muted); }
+    nameKey: 'name',           // GeoJSON property with the market name
+    speciesKey: 'species',     // GeoJSON property with the species (common or Latin name)
+    regionKey: 'region',       // optional
+    localeKey: 'locale',       // optional: place shown in the popup
 
-.oa-input {
-  flex: 1; min-width: 0; height: 100%;
-  border: 0; background: transparent; color: var(--ink);
-  font: 400 .9rem/1 var(--font); /* same size as the legend list */
-}
-.oa-input::placeholder { color: var(--muted); }
-.oa-input:focus { outline: none; }
-.oa-input::-webkit-search-cancel-button { display: none; }
-.oa-input:disabled { opacity: .5; }
+    maxResults: 50,
+    flyZoom: 10,
+    fallbackColor: '#8fa3b1',
+    hintText: ''               // shown when the box is empty; blank = nothing
+  };
 
-.oa-clear {
-  width: 40px; height: 40px; border: 0; border-radius: 6px;
-  background: transparent; color: var(--muted); cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-}
-.oa-clear:hover { color: var(--accent); }
-.oa-clear:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-.oa-clear[hidden] { display: none; }
+  var HIT_ID = 'oa-search-hit';
 
-.oa-status { margin: 8px 2px 4px; font-size: .8rem; color: var(--muted); }
-.oa-status:empty { display: none; }
+  function $(sel) { return typeof sel === 'string' ? document.querySelector(sel) : sel; }
 
-.oa-results {
-  list-style: none; margin: 0; padding: 0; font-size: .9rem; /* same size as the legend list */
-  max-height: calc(5 * 40px); overflow-y: auto; overscroll-behavior: contain;  /* 5 rows visible, scroll for more */
-  -webkit-overflow-scrolling: touch;
-}
-.oa-results:empty { display: none; }
+  // Lowercase + strip accents so "beausoleil" finds "Beausoléil".
+  function norm(s) {
+    return String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  }
 
-.oa-result {
-  display: flex; align-items: center; gap: 8px;
-  box-sizing: border-box; height: 40px; padding: 0 8px; border-radius: 6px; cursor: pointer;  /* fixed row height so exactly 5 fit */
-}
-.oa-result:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
-.oa-result[aria-selected="true"] { background: color-mix(in srgb, var(--ink) 14%, transparent); }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text; // never innerHTML: names come from data
+    return n;
+  }
 
-/* Laid out like the legend: species-colored dot, market name, species name at far right */
-.oa-name {
-  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  color: var(--ink);
-}
-.oa-name mark { background: transparent; color: inherit; font-weight: inherit; text-decoration: underline; text-underline-offset: 3px; }
-.oa-result .dot { background: var(--c); }
-.oa-species { margin-left: auto; padding-left: 12px; font-style: italic; color: var(--muted); white-space: nowrap; }
+  function firstCoord(geom) {
+    if (!geom) return null;
+    if (geom.type === 'Point') return geom.coordinates;
+    if (geom.type === 'MultiPoint' && geom.coordinates.length) return geom.coordinates[0];
+    return null;
+  }
 
-/* Popup for a picked oyster */
-.oa-popup-wrap .mapboxgl-popup-content {
-  background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 8px;
-  padding: 10px 12px; font: 400 .9rem/1.35 var(--font);  /* no close button, so no extra right padding */
-}
-.oa-popup-wrap.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
-.oa-popup-wrap.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
-.oa-popup-wrap.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip { border-top-color: var(--panel); }
-.oa-popup-wrap.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
-.oa-popup-wrap.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
-.oa-popup-wrap.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip { border-bottom-color: var(--panel); }
-.oa-popup-wrap.mapboxgl-popup-anchor-left .mapboxgl-popup-tip { border-right-color: var(--panel); }
-.oa-popup-wrap.mapboxgl-popup-anchor-right .mapboxgl-popup-tip { border-left-color: var(--panel); }
-.oa-popup-wrap .mapboxgl-popup-close-button { color: var(--muted); font-size: 18px; }
-.oa-popup-locale { color: var(--ink); }
-.oa-popup-region { margin-top: 2px; color: var(--muted); }
+  // Legend rows look like: <li><span class="sp-name">Belon</span><span class="dot" style="--c:#7D12B3"></span><i>(Ostrea edulis)</i></li>
+  function readLegend(selector) {
+    var out = [];
+    Array.prototype.forEach.call(document.querySelectorAll(selector), function (li) {
+      var nameEl = li.querySelector('.sp-name');
+      var dot = li.querySelector('.dot');
+      var latinEl = li.querySelector('i');
+      var name = nameEl ? nameEl.textContent.trim() : '';
+      var color = dot ? dot.style.getPropertyValue('--c').trim() : '';
+      var latin = latinEl ? latinEl.textContent.replace(/[()]/g, '').trim() : '';
+      if (name && color) out.push({ name: name, latin: latin, color: color });
+    });
+    return out;
+  }
+
+  function speciesLookup(list, fallback) {
+    var byKey = {};
+    list.forEach(function (s) {
+      byKey[norm(s.name)] = s;
+      if (s.latin) byKey[norm(s.latin)] = s;
+    });
+    return function (value) {
+      var s = byKey[norm(value).trim()];
+      return s ? { label: s.name, color: s.color } : { label: value ? String(value) : 'Unknown', color: fallback };
+    };
+  }
+
+  // 0 = name starts with query, 1 = a word starts with it ("bay" → "Fanny Bay"), 2 = anywhere.
+  function rankOf(n, t) {
+    var i = n.indexOf(t);
+    if (i < 0) return -1;
+    if (i === 0) return 0;
+    return /[\s\-'’.]/.test(n.charAt(i - 1)) ? 1 : 2;
+  }
+
+  function search(items, query, max) {
+    var t = norm(query).trim();
+    if (!t) return { total: 0, list: [] };
+    var hits = [];
+    for (var i = 0; i < items.length; i++) {
+      var r = rankOf(items[i].key, t);
+      if (r >= 0) hits.push({ item: items[i], rank: r, at: items[i].key.indexOf(t), len: t.length });
+    }
+    hits.sort(function (a, b) { return a.rank - b.rank || a.item.name.localeCompare(b.item.name); });
+    return { total: hits.length, list: hits.slice(0, max) };
+  }
+
+  // ---------- map pin (own source + layer; the heatmap is never touched) ----------
+
+  function setHit(map, coord, color) {
+    var data = {
+      type: 'FeatureCollection',
+      features: coord ? [{ type: 'Feature', geometry: { type: 'Point', coordinates: coord }, properties: { color: color } }] : []
+    };
+    function apply() {
+      var src = map.getSource(HIT_ID);
+      if (src) { src.setData(data); return; }
+      if (!coord) return;
+      map.addSource(HIT_ID, { type: 'geojson', data: data });
+      map.addLayer({
+        id: HIT_ID, type: 'circle', source: HIT_ID,
+        paint: {
+          'circle-radius': 9,
+          'circle-color': ['get', 'color']   // species color fill only, no outline
+        }
+      }); // no beforeId → above every style layer, heatmap included
+    }
+    if (map.isStyleLoaded()) apply(); else map.once('idle', apply);
+  }
+
+  // ---------- main ----------
+
+  function init(options) {
+    var o = Object.assign({}, DEFAULTS, options || {});
+    if (!o.map) throw new Error('OysterSearch: `map` is required');
+    var map = o.map;
+    var fly = o.fly || function (v) { map.flyTo(v); };
+
+    var input = $(o.input), list = $(o.results), status = $(o.status), clearBtn = $(o.clear);
+    if (!input || !list) throw new Error('OysterSearch: search elements not found');
+
+    var speciesOf = speciesLookup(readLegend(o.legendItems), o.fallbackColor);
+    var items = [], shown = [], active = -1, popup = null;
+
+    setStatus(o.hintText);
+
+    // One URL or several: each file's features are combined. A file that fails to load
+    // is skipped (and logged) as long as at least one loads.
+    var urls = [].concat(o.url || []);
+    var ready = o.data ? Promise.resolve(o.data)
+      : Promise.all(urls.map(function (u) {
+          return fetch(u)
+            .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+            .catch(function (err) { if (global.console) console.error('OysterSearch: could not load ' + u, err); return null; });
+        })).then(function (all) {
+          var ok = all.filter(Boolean);
+          if (!ok.length) throw new Error('no oyster data loaded');
+          return { type: 'FeatureCollection', features: [].concat.apply([], ok.map(function (fc) { return fc.features || []; })) };
+        });
+
+    ready.then(function (fc) {
+      items = (fc.features || []).map(function (f) {
+        var p = f.properties || {};
+        var name = p[o.nameKey];
+        var coord = firstCoord(f.geometry);
+        if (!name || !coord) return null;
+        var sp = speciesOf(p[o.speciesKey]);
+        return { name: String(name), key: norm(name), species: sp.label, color: sp.color, region: p[o.regionKey] || '', locale: p[o.localeKey] || '', coord: coord };
+      }).filter(Boolean);
+      if (input.value) render();
+    }).catch(function (err) {
+      input.disabled = true;
+      setStatus('Search is unavailable right now.');
+      if (global.console) console.error('OysterSearch: could not load oyster data', err);
+    });
+
+    function setStatus(text) { if (status) status.textContent = text; }
+
+    function render() {
+      var q = input.value;
+      if (clearBtn) clearBtn.hidden = q.length === 0;
+
+      var res = search(items, q, o.maxResults);
+      shown = res.list;
+      if (active >= shown.length) active = shown.length - 1;
+
+      list.textContent = '';
+      shown.forEach(function (h, i) {
+        var it = h.item;
+        var li = el('li', 'oa-result');
+        li.id = 'oa-opt-' + i;
+        li.setAttribute('role', 'option');
+        li.setAttribute('aria-selected', i === active ? 'true' : 'false');
+        li.dataset.index = i;
+        li.style.setProperty('--c', it.color);
+
+        var name = el('span', 'oa-name');
+        if (h.at >= 0 && it.key.length === it.name.length) { // highlight only if accent-stripping kept the length
+          name.appendChild(document.createTextNode(it.name.slice(0, h.at)));
+          name.appendChild(el('mark', null, it.name.slice(h.at, h.at + h.len)));
+          name.appendChild(document.createTextNode(it.name.slice(h.at + h.len)));
+        } else {
+          name.textContent = it.name;
+        }
+        var dot = el('span', 'dot');
+        dot.setAttribute('aria-hidden', 'true');
+
+        li.appendChild(dot);   // same order as the legend: dot, name, species at right
+        li.appendChild(name);
+        li.appendChild(el('span', 'oa-species', it.species));
+        list.appendChild(li);
+      });
+
+      input.setAttribute('aria-expanded', shown.length ? 'true' : 'false');
+      if (active >= 0) input.setAttribute('aria-activedescendant', 'oa-opt-' + active);
+      else input.removeAttribute('aria-activedescendant');
+
+      var t = q.trim();
+      if (!t) setStatus(o.hintText);
+      else if (!res.total) setStatus('No oysters named “' + t + '”. Try fewer letters.');
+      else if (res.total > shown.length) setStatus('Showing ' + shown.length + ' of ' + res.total + ' oysters');
+      else setStatus(res.total === 1 ? '1 oyster' : res.total + ' oysters');
+    }
+
+    function setActive(i) {
+      active = i;
+      var nodes = list.children;
+      for (var k = 0; k < nodes.length; k++) nodes[k].setAttribute('aria-selected', k === i ? 'true' : 'false');
+      if (i >= 0 && nodes[i]) {
+        input.setAttribute('aria-activedescendant', nodes[i].id);
+        nodes[i].scrollIntoView({ block: 'nearest' });
+      }
+    }
+
+    function pick(i) {
+      var h = shown[i];
+      if (!h) return;
+      var it = h.item;
+      setActive(i);
+      fly({ center: it.coord, zoom: Math.max(map.getZoom(), o.flyZoom) });
+      setHit(map, it.coord, it.color);
+
+      if (popup) popup.remove();
+      var box = el('div', 'oa-popup');
+      // Locale, then region. The name is already in the list, so it isn't repeated here,
+      // and the region is skipped when the locale already spells it out.
+      var place = it.locale.replace(/[,\s]+$/, '');
+      var region = it.region && place.toLowerCase().indexOf(String(it.region).toLowerCase()) < 0 ? it.region : '';
+      if (place) box.appendChild(el('div', 'oa-popup-locale', place));
+      if (region) box.appendChild(el('div', 'oa-popup-region', region));
+      popup = new global.mapboxgl.Popup({ offset: 14, className: 'oa-popup-wrap', closeButton: false, closeOnClick: true })
+        .setLngLat(it.coord).setDOMContent(box).addTo(map);
+    }
+
+    function reset() {
+      input.value = '';
+      active = -1;
+      if (popup) { popup.remove(); popup = null; }
+      setHit(map, null);
+      render();
+    }
+
+    input.addEventListener('input', function () { active = -1; closePopup(); render(); });
+
+    // Close the popup as soon as attention moves elsewhere: back to the search box,
+    // or a click/tap anywhere outside the popup and the results list.
+    function closePopup() { if (popup) { popup.remove(); popup = null; } }
+    input.addEventListener('focus', closePopup);
+    document.addEventListener('pointerdown', function (e) {
+      if (!popup) return;
+      var t = e.target;
+      if (t.closest && (t.closest('.oa-popup-wrap') || t.closest('.oa-results'))) return;
+      closePopup();
+    }, true);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); if (shown.length) setActive(Math.min(active + 1, shown.length - 1)); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); if (shown.length) setActive(Math.max(active - 1, 0)); }
+      else if (e.key === 'Enter') { e.preventDefault(); pick(active >= 0 ? active : 0); }
+      else if (e.key === 'Escape') { e.preventDefault(); reset(); }
+    });
+    list.addEventListener('mousedown', function (e) { e.preventDefault(); }); // keep focus in the box
+    list.addEventListener('click', function (e) {
+      var li = e.target.closest('.oa-result');
+      if (li) pick(Number(li.dataset.index));
+    });
+    if (clearBtn) clearBtn.addEventListener('click', function () { reset(); input.focus(); });
+
+    return { reset: reset };
+  }
+
+  global.OysterSearch = { init: init, _search: search, _norm: norm };
+})(window);
