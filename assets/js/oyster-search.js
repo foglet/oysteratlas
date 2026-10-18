@@ -26,6 +26,7 @@
     nameKey: 'name',           // GeoJSON property with the market name
     speciesKey: 'species',     // GeoJSON property with the species (common or Latin name)
     regionKey: 'region',       // optional
+    localeKey: 'locale',       // optional: place shown in the popup
 
     maxResults: 50,
     flyZoom: 10,
@@ -163,7 +164,7 @@
         var coord = firstCoord(f.geometry);
         if (!name || !coord) return null;
         var sp = speciesOf(p[o.speciesKey]);
-        return { name: String(name), key: norm(name), species: sp.label, color: sp.color, region: p[o.regionKey] || '', coord: coord };
+        return { name: String(name), key: norm(name), species: sp.label, color: sp.color, region: p[o.regionKey] || '', locale: p[o.localeKey] || '', coord: coord };
       }).filter(Boolean);
       if (input.value) render();
     }).catch(function (err) {
@@ -241,8 +242,9 @@
       if (popup) popup.remove();
       var box = el('div', 'oa-popup');
       box.appendChild(el('strong', null, it.name));
-      box.appendChild(el('span', null, [it.species, it.region].filter(Boolean).join(' · ')));
-      popup = new global.mapboxgl.Popup({ offset: 14, className: 'oa-popup-wrap' })
+      var place = (it.locale || it.region).replace(/[,\s]+$/, '');   // market name, then where it's grown
+      if (place) box.appendChild(el('span', null, place));
+      popup = new global.mapboxgl.Popup({ offset: 14, className: 'oa-popup-wrap', closeButton: false, closeOnClick: true })
         .setLngLat(it.coord).setDOMContent(box).addTo(map);
     }
 
@@ -254,7 +256,18 @@
       render();
     }
 
-    input.addEventListener('input', function () { active = -1; render(); });
+    input.addEventListener('input', function () { active = -1; closePopup(); render(); });
+
+    // Close the popup as soon as attention moves elsewhere: back to the search box,
+    // or a click/tap anywhere outside the popup and the results list.
+    function closePopup() { if (popup) { popup.remove(); popup = null; } }
+    input.addEventListener('focus', closePopup);
+    document.addEventListener('pointerdown', function (e) {
+      if (!popup) return;
+      var t = e.target;
+      if (t.closest && (t.closest('.oa-popup-wrap') || t.closest('.oa-results'))) return;
+      closePopup();
+    }, true);
     input.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowDown') { e.preventDefault(); if (shown.length) setActive(Math.min(active + 1, shown.length - 1)); }
       else if (e.key === 'ArrowUp') { e.preventDefault(); if (shown.length) setActive(Math.max(active - 1, 0)); }
