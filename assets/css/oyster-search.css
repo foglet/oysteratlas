@@ -79,3 +79,11 @@
 .oa-popup-wrap .mapboxgl-popup-close-button { color: var(--muted); font-size: 18px; }
 .oa-popup-locale { color: var(--ink); }
 .oa-popup-region { margin-top: 2px; color: var(--muted); }
+
+/* Details of the chosen oyster, under the search bar (stays visible when the list is minimized) */
+.oa-detail { margin: 8px 2px 2px; font-size: .9rem; line-height: 1.35; }
+.oa-detail[hidden] { display: none; }
+.oa-detail-name { display: flex; align-items: center; gap: 8px; color: var(--ink); }
+.oa-detail-name .dot { background: var(--c); }
+.oa-detail-locale { margin-top: 2px; padding-left: 20px; color: var(--ink); }
+.oa-detail-region { padding-left: 20px; color: var(--muted); }
