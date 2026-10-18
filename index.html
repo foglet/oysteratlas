@@ -355,7 +355,32 @@ document.addEventListener('DOMContentLoaded', function () {
   row.addEventListener('touchend', function () { t = null; }, { passive: true });
   row.addEventListener('touchcancel', function () { t = null; }, { passive: true });
 
-  /* Legend: starts collapsed everywhere and opens only when its title is tapped. Nothing else opens it. */
+  /* Legend: starts collapsed everywhere and opens only when its title is tapped. Nothing else opens it.
+     The list slides open/shut in 180ms. <details> can't animate its own height in Safari, so the tap is handled here.
+     Tapping again mid-slide reverses from where it is. Reduced-motion users get the instant native toggle. */
+  var legend = document.querySelector('.map-legend');
+  var legendSum = legend && legend.querySelector('summary'), legendList = legend && legend.querySelector('ul');
+  if (legendSum && legendList) {
+    var slide = null, shutting = false;
+    legendSum.addEventListener('click', function (e) {
+      if (calm.matches || !legendList.animate) return;   /* native instant toggle */
+      e.preventDefault();
+      var opening = !legend.open || shutting;
+      var from = legend.open ? legendList.getBoundingClientRect().height : 0;  /* current height if mid-slide */
+      if (slide) slide.cancel();
+      legend.open = true;
+      var to = opening ? legendList.scrollHeight : 0;
+      shutting = !opening;
+      legendList.style.overflow = 'hidden';
+      slide = legendList.animate({ height: [from + 'px', to + 'px'] },
+        { duration: 180, easing: opening ? 'cubic-bezier(.2,.7,.3,1)' : 'cubic-bezier(.4,0,.8,.3)', fill: 'forwards' });
+      slide.onfinish = function () {
+        if (shutting) legend.open = false;
+        slide.cancel(); slide = null; shutting = false;
+        legendList.style.overflow = '';
+      };
+    });
+  }
 });
 </script>
 </body>
