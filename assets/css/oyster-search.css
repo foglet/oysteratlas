@@ -1,7 +1,7 @@
 /* The Oyster Atlas — search by market name. Fogday Studios, fogday.com
    Uses the page tokens from index.html (--panel, --ink, --muted, --line, --accent, --font). */
 
-.oa-search { padding: 10px 14px 12px; border-top: 1px solid var(--line); }
+.oa-search { display: flex; flex-direction: column; padding: 10px 14px 12px; border-top: 1px solid var(--line); }
 
 .oa-search-label {
   display: block; margin: 0 0 8px;
@@ -45,7 +45,13 @@
 }
 .oa-results:empty { display: none; }
 .oa-search.oa-collapsed .oa-results,
-.oa-search.oa-collapsed .oa-status { display: none; }  /* minimized: just the search bar */
+.oa-search.oa-collapsed .oa-status { display: none; }  /* minimized: just the magnifying glass */
+
+/* Minimized: the bar shrinks to a magnifying-glass button, with the oyster's details above it */
+.oa-field { transition: width .18s ease; cursor: text; }
+.oa-search.oa-collapsed .oa-field { width: 35px; padding: 0; justify-content: center; cursor: pointer; }
+.oa-search.oa-collapsed .oa-input { flex: 0 0 0; width: 0; padding: 0; opacity: 0; }
+.oa-search.oa-collapsed .oa-detail { order: -1; margin: 0 2px 10px; }
 
 .oa-result {
   display: flex; align-items: center; gap: 8px;
