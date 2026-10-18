@@ -295,14 +295,18 @@
       if (shown.length) input.setAttribute('aria-expanded', 'true');
     });
 
-    var down = null, pointers = 0, lastPointer = 'mouse';
+    // Fingers currently on the screen, by id. A new first touch (isPrimary) starts fresh,
+    // so a lost pointerup can never leave taps stuck.
+    var down = null, fingers = {}, lastPointer = 'mouse';
+    function fingerCount() { return Object.keys(fingers).length; }
     document.addEventListener('pointerdown', function (e) {
-      pointers++;
+      if (e.isPrimary) fingers = {};
+      fingers[e.pointerId] = true;
       lastPointer = e.pointerType || 'mouse';
-      down = pointers === 1 ? { x: e.clientX, y: e.clientY, t: Date.now(), id: e.pointerId } : null;  // 2+ fingers = pinch
+      down = fingerCount() === 1 ? { x: e.clientX, y: e.clientY, t: Date.now(), id: e.pointerId } : null;  // 2+ fingers = pinch
     }, true);
     function pointerEnd(e) {
-      pointers = Math.max(0, pointers - 1);
+      delete fingers[e.pointerId];
       var d = down; down = null;
       if (e.type !== 'pointerup' || !d || d.id !== e.pointerId) return;
       var moved = Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y);
@@ -317,14 +321,46 @@
     document.addEventListener('pointerup', pointerEnd, true);
 
     // The oyster drawn closest to a tap, if it's within finger (or mouse) reach.
+    // Which oyster was tapped. First ask the map which labels are under the finger
+    // (that covers the whole width of a name, not just its point); then fall back to
+    // the oyster point closest to the tap.
     function nearestOyster(e) {
       var box = map.getContainer().getBoundingClientRect();
       var x = e.clientX - box.left, y = e.clientY - box.top;
-      var reach = e.pointerType === 'mouse' ? 12 : 24, best = null, bestD = reach * reach;
+      var pad = e.pointerType === 'mouse' ? 3 : 10;
+      var hit = fromRenderedFeatures([[x - pad, y - pad], [x + pad, y + pad]], x, y);
+      if (hit) return hit;
+      var reach = e.pointerType === 'mouse' ? 14 : 30, best = null, bestD = reach * reach;
       for (var k = 0; k < items.length; k++) {
         var p = map.project(items[k].coord);
         var d = (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y);
         if (d <= bestD) { bestD = d; best = items[k]; }
+      }
+      return best;
+    }
+
+    // Match a drawn map feature (label, circle, ...) back to one of our oysters: same name
+    // if the feature carries one, otherwise the oyster at (almost) the same position.
+    function fromRenderedFeatures(bbox, x, y) {
+      var feats;
+      try { feats = map.queryRenderedFeatures ? map.queryRenderedFeatures(bbox) : []; } catch (err) { feats = []; }
+      var best = null, bestScore = Infinity;
+      for (var i = 0; i < feats.length; i++) {
+        var f = feats[i];
+        if (!f.geometry || f.geometry.type !== 'Point' || f.layer && f.layer.id === HIT_ID) continue;
+        var c = f.geometry.coordinates, props = f.properties || {};
+        var names = {};
+        for (var k in props) if (typeof props[k] === 'string') names[norm(props[k]).trim()] = true;
+        for (var j = 0; j < items.length; j++) {
+          var it = items[j];
+          var dx = it.coord[0] - c[0], dy = it.coord[1] - c[1];
+          var gap = dx * dx + dy * dy;                       // degrees²
+          var sameName = names[it.key.trim()];
+          if (!sameName && gap > 0.0001) continue;           // not the same name and more than ~1 km apart
+          var p = map.project(it.coord);
+          var score = (sameName ? 0 : 1e6) + (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y);
+          if (score < bestScore) { bestScore = score; best = it; }
+        }
       }
       return best;
     }
