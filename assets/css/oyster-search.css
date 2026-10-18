@@ -1,7 +1,7 @@
 /* The Oyster Atlas — search by market name. Fogday Studios, fogday.com
    Uses the page tokens from index.html (--panel, --ink, --muted, --line, --accent, --font). */
 
-.oa-search { display: flex; flex-direction: column; padding: 10px 14px 12px; border-top: 1px solid var(--line); }
+.oa-search { display: flex; flex-direction: column; }  /* card look and position: index.html */
 
 .oa-search-label {
   display: block; margin: 0 0 8px;
