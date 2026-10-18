@@ -44,6 +44,8 @@
   -webkit-overflow-scrolling: touch;
 }
 .oa-results:empty { display: none; }
+.oa-search.oa-collapsed .oa-results,
+.oa-search.oa-collapsed .oa-status { display: none; }  /* minimized: just the search bar */
 
 .oa-result {
   display: flex; align-items: center; gap: 8px;
