@@ -238,7 +238,12 @@
       setActive(i);
       fly({ center: it.coord, zoom: Math.max(map.getZoom(), o.flyZoom) });
       setHit(map, it.coord, it.color);
+      if (lastPointer === 'touch') minimize();   // on phones, get the list out of the way
+      showPopup(it);
+    }
 
+    // Details popup for one oyster, used by search picks and by taps on the map.
+    function showPopup(it) {
       if (popup) popup.remove();
       var box = el('div', 'oa-popup');
       // Locale, then region. The name is already in the list, so it isn't repeated here,
@@ -247,7 +252,7 @@
       var region = it.region && place.toLowerCase().indexOf(String(it.region).toLowerCase()) < 0 ? it.region : '';
       if (place) box.appendChild(el('div', 'oa-popup-locale', place));
       if (region) box.appendChild(el('div', 'oa-popup-region', region));
-      popup = new global.mapboxgl.Popup({ offset: 14, className: 'oa-popup-wrap', closeButton: false, closeOnClick: true })
+      popup = new global.mapboxgl.Popup({ offset: 14, className: 'oa-popup-wrap', closeButton: false, closeOnClick: false })  // closing is handled by the tap logic below
         .setLngLat(it.coord).setDOMContent(box).addTo(map);
     }
 
@@ -261,16 +266,58 @@
 
     input.addEventListener('input', function () { active = -1; closePopup(); render(); });
 
-    // Close the popup as soon as attention moves elsewhere: back to the search box,
-    // or a click/tap anywhere outside the popup and the results list.
+    // ----- popup + minimizing -----
+    // The popup closes only when the search box gets focus or on a tap elsewhere.
+    // Dragging or pinching the map never counts as a tap, so it leaves the popup open.
+    // A tap outside the search also minimizes it (hides the list, drops the phone keyboard)
+    // so the map can be moved freely; tapping the box brings the list back.
+    var card = input.closest('.oa-search') || list.parentNode;
     function closePopup() { if (popup) { popup.remove(); popup = null; } }
-    input.addEventListener('focus', closePopup);
-    document.addEventListener('pointerdown', function (e) {
-      if (!popup) return;
-      var t = e.target;
-      if (t.closest && (t.closest('.oa-popup-wrap') || t.closest('.oa-results'))) return;
+    function minimize() {
+      card.classList.add('oa-collapsed');
+      input.setAttribute('aria-expanded', 'false');
+      if (document.activeElement === input) input.blur();
+    }
+    input.addEventListener('focus', function () {
       closePopup();
+      card.classList.remove('oa-collapsed');
+      if (shown.length) input.setAttribute('aria-expanded', 'true');
+    });
+
+    var down = null, pointers = 0, lastPointer = 'mouse';
+    document.addEventListener('pointerdown', function (e) {
+      pointers++;
+      lastPointer = e.pointerType || 'mouse';
+      down = pointers === 1 ? { x: e.clientX, y: e.clientY, t: Date.now(), id: e.pointerId } : null;  // 2+ fingers = pinch
     }, true);
+    function pointerEnd(e) {
+      pointers = Math.max(0, pointers - 1);
+      var d = down; down = null;
+      if (e.type !== 'pointerup' || !d || d.id !== e.pointerId) return;
+      var moved = Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y);
+      if (moved > 10 || Date.now() - d.t > 600) return;          // a drag or long press, not a tap
+      var t = e.target;
+      if (t.closest && (t.closest('.oa-popup-wrap') || t.closest('.oa-results') || t.closest('.oa-field'))) return;
+      var hit = t.closest && t.closest('.mapboxgl-canvas-container') ? nearestOyster(e) : null;
+      minimize();
+      if (hit) showPopup(hit);   // tapped an oyster on the map: show its details
+      else closePopup();
+    }
+    document.addEventListener('pointerup', pointerEnd, true);
+
+    // The oyster drawn closest to a tap, if it's within finger (or mouse) reach.
+    function nearestOyster(e) {
+      var box = map.getContainer().getBoundingClientRect();
+      var x = e.clientX - box.left, y = e.clientY - box.top;
+      var reach = e.pointerType === 'mouse' ? 12 : 24, best = null, bestD = reach * reach;
+      for (var k = 0; k < items.length; k++) {
+        var p = map.project(items[k].coord);
+        var d = (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y);
+        if (d <= bestD) { bestD = d; best = items[k]; }
+      }
+      return best;
+    }
+    document.addEventListener('pointercancel', pointerEnd, true);
     input.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowDown') { e.preventDefault(); if (shown.length) setActive(Math.min(active + 1, shown.length - 1)); }
       else if (e.key === 'ArrowUp') { e.preventDefault(); if (shown.length) setActive(Math.max(active - 1, 0)); }
