@@ -14,7 +14,7 @@
   var DEFAULTS = {
     map: null,                 // mapboxgl.Map (required)
     data: null,                // GeoJSON FeatureCollection, or…
-    url: null,                 // …URL to fetch it from
+    url: null,                 // …URL to fetch it from, or a list of URLs whose features are combined
     fly: null,                 // function (view) — defaults to map.flyTo
 
     input: '#oa-search-input',
@@ -142,8 +142,19 @@
 
     setStatus(o.hintText);
 
+    // One URL or several: each file's features are combined. A file that fails to load
+    // is skipped (and logged) as long as at least one loads.
+    var urls = [].concat(o.url || []);
     var ready = o.data ? Promise.resolve(o.data)
-      : fetch(o.url).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+      : Promise.all(urls.map(function (u) {
+          return fetch(u)
+            .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+            .catch(function (err) { if (global.console) console.error('OysterSearch: could not load ' + u, err); return null; });
+        })).then(function (all) {
+          var ok = all.filter(Boolean);
+          if (!ok.length) throw new Error('no oyster data loaded');
+          return { type: 'FeatureCollection', features: [].concat.apply([], ok.map(function (fc) { return fc.features || []; })) };
+        });
 
     ready.then(function (fc) {
       items = (fc.features || []).map(function (f) {
