@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.33.0/mapbox-gl.css">
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.33.0/mapbox-gl.js" defer></script>
 
-<!-- Search by market name (sits under the species legend) -->
+<!-- Search by market name (bottom right, just above the zoom buttons) -->
 <link rel="stylesheet" href="assets/css/oyster-search.css">
 <script src="assets/js/oyster-search.js" defer></script>
 
@@ -50,7 +50,8 @@
   }
 
   /* Title, top left: tap it to return to the overview */
-  .top { position: absolute; z-index: 3; top: calc(12px + env(safe-area-inset-top, 0px)); left: 0; right: 0; pointer-events: none; }
+  .top { position: fixed; z-index: 3;  /* pinned to the screen, so it never moves if the page itself scrolls (iPhone Safari) */
+         top: calc(12px + env(safe-area-inset-top, 0px)); left: 0; right: 0; pointer-events: none; }
   .title {
     pointer-events: auto; display: inline-block; margin: 0 0 10px 12px; padding: 8px 14px; border-radius: 8px; cursor: pointer;
     font: 700 .95rem/1 var(--font); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
@@ -93,9 +94,9 @@
     .map-places button { min-height: 36px; }
   }
 
-  /* Legend + search: one card, bottom left above the Mapbox logo. Legend closed on phones, open on big screens; search always shows. */
+  /* Legend: bottom left above the Mapbox logo. Closed on phones, open on big screens. */
   .map-legend-panel {
-    position: absolute; z-index: 2; left: 12px; bottom: calc(50px + env(safe-area-inset-bottom, 0px));  /* clears the credit line */
+    position: fixed; z-index: 2; left: 12px; bottom: calc(50px + env(safe-area-inset-bottom, 0px));  /* clears the credit line */
     max-width: calc(100% - 24px); max-height: calc(100% - 180px); overflow-y: auto; border-radius: 8px;
   }
   .map-legend summary {
@@ -111,6 +112,20 @@
   .map-legend li { display: flex; align-items: center; gap: 8px; }  /* color dot far left, name, Latin name far right */
   .map-legend li i { color: var(--muted); margin-left: auto; padding-left: 12px; white-space: nowrap; }
   .dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+
+  /* Search: its own card at bottom right, stacked just above the zoom buttons.
+     It is added as a Mapbox control, so it always sits right above them. Hidden until the map places it. */
+  .oa-search[hidden] { display: none; }
+  .mapboxgl-ctrl.oa-search {
+    width: 300px; max-width: calc(100vw - 20px); padding: 8px; border-radius: 8px;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    color: var(--ink); border: 1px solid var(--line); font: 400 1rem/1.4 var(--font);
+  }
+  .mapboxgl-ctrl.oa-search .oa-field { margin-left: auto; }              /* bar hugs the right edge, over the zoom buttons */
+  .mapboxgl-ctrl.oa-search.oa-collapsed { width: auto; max-width: min(300px, calc(100vw - 20px)); }
+  /* Minimized with nothing to show: just the magnifying-glass button, no card around it */
+  .mapboxgl-ctrl.oa-search.oa-collapsed:has(.oa-detail[hidden]) { padding: 0; border-color: transparent; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
 </style>
 </head>
 <body>
@@ -147,8 +162,10 @@
     <li><span class="dot" style="--c:#E8743B"></span><span class="sp-name">Sydney Rock</span><i>(Saccostrea glomerata)</i></li>
   </ul>
 </details>
+</div>
 
-<div class="oa-search" role="search">
+<!-- Search by market name: moved into the map's bottom-right corner, above the zoom buttons, by the script below -->
+<div class="oa-search" role="search" hidden>
   <div class="oa-field">
     <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
     <input id="oa-search-input" class="oa-input" type="search"
@@ -157,7 +174,6 @@
   </div>
   <p id="oa-search-status" class="oa-status" aria-live="polite"></p>
   <ul id="oa-search-results" class="oa-results" role="listbox" aria-label="Matching oysters"></ul>
-</div>
 </div>
 
 <script>
@@ -173,6 +189,12 @@ document.addEventListener('DOMContentLoaded', function () {
     customAttribution: '<a href="https://fogday.com/">© Fogday Studios</a> | <a href="https://www.instagram.com/fogfish/">@fogfish</a>'  /* our credit, in Mapbox's credit line */
   });
   map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');  /* zoom + compass */
+  /* Search card, same corner. Mapbox stacks bottom-corner controls upward in the order added, so this lands just above zoom. */
+  var searchCard = document.querySelector('.oa-search');
+  map.addControl({
+    onAdd: function () { searchCard.classList.add('mapboxgl-ctrl'); searchCard.hidden = false; return searchCard; },
+    onRemove: function () { searchCard.remove(); }
+  }, 'bottom-right');
 
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
   function go(view) {
@@ -191,11 +213,22 @@ document.addEventListener('DOMContentLoaded', function () {
     b.addEventListener('click', function () {
       Array.prototype.forEach.call(pills, function (x) { x.removeAttribute('aria-pressed'); });
       b.setAttribute('aria-pressed', 'true');
-      b.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: calm.matches ? 'auto' : 'smooth' });
+      reveal(b);
       go({ center: JSON.parse(b.dataset.center), zoom: +b.dataset.zoom, bearing: +b.dataset.bearing || 0,
            speed: +b.dataset.speed || FLY.speed, curve: +b.dataset.curve || FLY.curve });
     });
   });
+
+  /* Slide the tapped pill fully into view by scrolling only the row sideways.
+     (scrollIntoView also scrolls the page on iPhone Safari, which pushed the row up.) */
+  function reveal(b) {
+    var pad = parseFloat(getComputedStyle(row).scrollPaddingLeft) || 0;
+    var left = b.getBoundingClientRect().left - row.getBoundingClientRect().left + row.scrollLeft - pad;
+    var right = left + b.offsetWidth + 2 * pad - row.clientWidth;
+    var to = row.scrollLeft;
+    if (left < to) to = left; else if (right > to) to = right;
+    if (to !== row.scrollLeft) row.scrollTo({ left: to, behavior: calm.matches ? 'auto' : 'smooth' });
+  }
 
   /* Title: back to the overview */
   document.querySelector('[data-home]').addEventListener('click', function () {
