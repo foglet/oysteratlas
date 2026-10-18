@@ -146,6 +146,9 @@
     detail.hidden = true;
     detail.setAttribute('aria-live', 'polite');
     var fieldEl = input.closest('.oa-field') || input;
+    // The bar can shrink to just its magnifying glass; clicking anywhere on it opens the search.
+    fieldEl.addEventListener('click', function () { if (document.activeElement !== input) input.focus(); });
+    fieldEl.setAttribute('title', 'Search oysters');
     fieldEl.parentNode.insertBefore(detail, fieldEl.nextSibling);
 
     setStatus(o.hintText);
@@ -238,14 +241,14 @@
       }
     }
 
-    function pick(i) {
+    function pick(i, byKeyboard) {
       var h = shown[i];
       if (!h) return;
       var it = h.item;
       setActive(i);
       fly({ center: it.coord, zoom: Math.max(map.getZoom(), o.flyZoom) });
       setHit(map, it.coord, it.color);
-      if (lastPointer === 'touch') minimize();   // on phones, get the list out of the way
+      minimize(byKeyboard);   // phones and desktop alike: tuck the list away so the map and details are in view
       showDetail(it);
     }
 
@@ -276,7 +279,7 @@
       render();
     }
 
-    input.addEventListener('input', function () { active = -1; clearDetail(); render(); });
+    input.addEventListener('input', function () { active = -1; clearDetail(); expand(); render(); });
 
     // ----- details + minimizing -----
     // The details clear only when the search box gets focus or on a tap elsewhere.
@@ -284,10 +287,16 @@
     // A tap outside the search also minimizes it (hides the list, drops the phone keyboard)
     // so the map can be moved freely; tapping the box brings the list back.
     var card = input.closest('.oa-search') || list.parentNode;
-    function minimize() {
+    // keepFocus: after a keyboard pick the cursor stays in the box (typing or ↓ brings the list back);
+    // after a click or tap the box lets go of focus, which also drops a phone's keyboard.
+    function minimize(keepFocus) {
       card.classList.add('oa-collapsed');
       input.setAttribute('aria-expanded', 'false');
-      if (document.activeElement === input) input.blur();
+      if (!keepFocus && document.activeElement === input) input.blur();
+    }
+    function expand() {
+      card.classList.remove('oa-collapsed');
+      if (shown.length) input.setAttribute('aria-expanded', 'true');
     }
     input.addEventListener('focus', function () {
       clearDetail();
@@ -315,7 +324,13 @@
       if (t.closest && (t.closest('.oa-detail') || t.closest('.oa-results') || t.closest('.oa-field'))) return;
       var hit = t.closest && t.closest('.mapboxgl-canvas-container') ? nearestOyster(e) : null;
       minimize();
-      if (hit) showDetail(hit);   // tapped an oyster on the map: show its details in the search card
+      if (hit) {                  // tapped an oyster on the map: it becomes the one shown
+        input.value = '';          // the old search no longer applies, so clear it
+        active = -1;
+        render();
+        setHit(map, hit.coord, hit.color);
+        showDetail(hit);
+      }
       else clearDetail();
     }
     document.addEventListener('pointerup', pointerEnd, true);
@@ -366,9 +381,11 @@
     }
     document.addEventListener('pointercancel', pointerEnd, true);
     input.addEventListener('keydown', function (e) {
+      var collapsed = card.classList.contains('oa-collapsed');
+      if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && collapsed) { e.preventDefault(); expand(); return; }  // bring the list back
       if (e.key === 'ArrowDown') { e.preventDefault(); if (shown.length) setActive(Math.min(active + 1, shown.length - 1)); }
       else if (e.key === 'ArrowUp') { e.preventDefault(); if (shown.length) setActive(Math.max(active - 1, 0)); }
-      else if (e.key === 'Enter') { e.preventDefault(); pick(active >= 0 ? active : 0); }
+      else if (e.key === 'Enter') { e.preventDefault(); pick(active >= 0 ? active : 0, true); }
       else if (e.key === 'Escape') { e.preventDefault(); reset(); }
     });
     list.addEventListener('mousedown', function (e) { e.preventDefault(); }); // keep focus in the box
