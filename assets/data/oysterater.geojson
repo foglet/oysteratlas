@@ -1,0 +1,1721 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Abigail Pearl",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maine",
+        "waterBody": "Scarborough River",
+        "cityCounty": "Scarborough",
+        "st": "Maine",
+        "locale": "Scarborough River, Maine"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.3,
+          43.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Admiral",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Gulf Coast",
+        "waterBody": "Gulf of Mexico",
+        "cityCounty": "",
+        "st": "Alabama",
+        "locale": "Gulf Coast, Alabama"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.0005,
+          30.2333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Atlantic Emerald",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Southeast",
+        "waterBody": "North River",
+        "cityCounty": "",
+        "st": "North Carolina",
+        "locale": "North River, North Carolina"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.61737,
+          34.798703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Aunt Dotty",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Cape Cod",
+        "waterBody": "Duxbury Bay",
+        "cityCounty": "Duxbury",
+        "st": "Massachusetts",
+        "locale": "Saquish, Duxbury Bay, Massachusetts"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.631325,
+          42.00295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Barstool Cocktail",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maritime",
+        "waterBody": "Rustico Bay",
+        "cityCounty": "",
+        "st": "Prince Edward Island",
+        "locale": "Rustico Bay, Prince Edward Island"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.275255,
+          46.423465
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Belon (France)",
+        "species": "Ostrea edulis",
+        "speciesCode": "OE",
+        "speciesName": "European Flat",
+        "color": "#7D12B3",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "France",
+        "waterBody": "Belon River",
+        "cityCounty": "Riec-sur-Bélon",
+        "st": "France",
+        "locale": "Belon River, Brittany, France"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.714789,
+          47.807756
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Big Tree",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Gulf Coast",
+        "waterBody": "Copano Bay",
+        "cityCounty": "",
+        "st": "Texas",
+        "locale": "Copano Bay, Texas"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.02183,
+          28.15781
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Blackjack Point",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Gulf Coast",
+        "waterBody": "Aransas Bay",
+        "cityCounty": "",
+        "st": "Texas",
+        "locale": "Aransas Bay, Texas"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.945773,
+          28.11438
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Blish Point",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Cape Cod",
+        "waterBody": "Barnstable Harbor",
+        "cityCounty": "Barnstable",
+        "st": "Massachusetts",
+        "locale": "Barnstable Harbor, Massachusetts"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.3493,
+          41.7219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Bombazine",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maine",
+        "waterBody": "New Meadows River",
+        "cityCounty": "",
+        "st": "Maine",
+        "locale": "New Meadows River, Maine"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.904444,
+          43.861389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Cancale",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "France",
+        "waterBody": "English Channel",
+        "cityCounty": "Cancale",
+        "st": "France",
+        "locale": "Cancale, English Channel, France"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.843758,
+          48.6701
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Capital",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Puget Sound",
+        "waterBody": "South Puget Sound",
+        "cityCounty": "Harstine Island",
+        "st": "Washington",
+        "locale": "Harstine Island, Puget Sound, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.865953,
+          47.278284
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Cedar Island Selects",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Southeast",
+        "waterBody": "Pamlico Sound",
+        "cityCounty": "Cedar Island",
+        "st": "North Carolina",
+        "locale": "Cedar Island, North Carolina"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.37,
+          35.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Chebooktook",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maritime",
+        "waterBody": "Bouctouche Bay",
+        "cityCounty": "Bouctouche",
+        "st": "New Brunswick",
+        "locale": "Bouctouche Bay, New Brunswick"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.6714,
+          46.498
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "ClearWater",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Gulf Coast",
+        "waterBody": "Aransas Bay",
+        "cityCounty": "",
+        "st": "Texas",
+        "locale": "Aransas Bay, Texas"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.0493369,
+          27.9292557
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Copano Cream",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Gulf Coast",
+        "waterBody": "Copano Bay",
+        "cityCounty": "",
+        "st": "Texas",
+        "locale": "Copano Bay, Texas"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.173277,
+          28.103773
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Crowes Pasture",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Cape Cod",
+        "waterBody": "Cape Cod Bay",
+        "cityCounty": "Dennis",
+        "st": "Massachusetts",
+        "locale": "Cape Cod Bay, Barnstable–Dennis, Massachusetts"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.127749,
+          41.762193
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Disco Hama",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Salish Sea",
+        "waterBody": "Discovery Bay",
+        "cityCounty": "",
+        "st": "Washington",
+        "locale": "Discovery Bay, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.88823,
+          47.9929
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Divine Pine",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Southeast",
+        "waterBody": "Topsail Sound",
+        "cityCounty": "",
+        "st": "North Carolina",
+        "locale": "Topsail Sound, North Carolina"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.5947,
+          34.4015
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Dutch Imperial",
+        "species": "Ostrea edulis",
+        "speciesCode": "OE",
+        "speciesName": "European Flat",
+        "color": "#7D12B3",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "North Sea",
+        "waterBody": "Lake Grevelingen",
+        "cityCounty": "",
+        "st": "Netherlands",
+        "locale": "Lake Grevelingen, Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.925946,
+          51.754
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Eros",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maine",
+        "waterBody": "Robinhood Cove",
+        "cityCounty": "Georgetown",
+        "st": "Maine",
+        "locale": "Robinhood Cove, Georgetown Island, Maine"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.767,
+          43.733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Fat Bastard (WA)",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Willapa Bay",
+        "waterBody": "Willapa Bay",
+        "cityCounty": "",
+        "st": "Washington",
+        "locale": "Willapa Bay, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.959325,
+          46.653407
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Fjordlux",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Hood Canal",
+        "waterBody": "Hood Canal",
+        "cityCounty": "",
+        "st": "Washington",
+        "locale": "Hood Canal (north end), Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.741915,
+          47.798597
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Gansett Point",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Rhode Island",
+        "waterBody": "Point Judith Pond",
+        "cityCounty": "",
+        "st": "Rhode Island",
+        "locale": "Point Judith Pond, Rhode Island"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.514986,
+          41.394085
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Gauloise",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "France",
+        "waterBody": "Belon River",
+        "cityCounty": "",
+        "st": "France",
+        "locale": "Belon River, Brittany, France"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.66048,
+          47.822359
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Goose Flat",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Cape Cod",
+        "waterBody": "Duxbury Bay",
+        "cityCounty": "Duxbury",
+        "st": "Massachusetts",
+        "locale": "Duxbury Bay, Massachusetts"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.641,
+          42.037
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Grand Cru",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Willapa Bay",
+        "waterBody": "Willapa Bay",
+        "cityCounty": "",
+        "st": "Washington",
+        "locale": "Willapa Bay, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.955862,
+          46.655508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "GwiGwi",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "British Columbia",
+        "waterBody": "",
+        "cityCounty": "",
+        "st": "British Columbia",
+        "locale": "British Columbia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -127.543034,
+          51.10059142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Hump Island",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Alaska",
+        "waterBody": "Hump Island Passage",
+        "cityCounty": "Ketchikan",
+        "st": "Alaska",
+        "locale": "Hump Island, Ketchikan, Alaska"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -131.767,
+          55.518
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Jersey Rock",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "France",
+        "waterBody": "Royal Bay of Grouville",
+        "cityCounty": "Grouville",
+        "st": "Jersey",
+        "locale": "Royal Bay of Grouville, Jersey, English Channel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0233,
+          49.17
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Kaipara",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Antipodes",
+        "waterBody": "Kaipara Harbour",
+        "cityCounty": "",
+        "st": "New Zealand",
+        "locale": "Kaipara Harbour, New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.332838,
+          -36.46053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Kelly Gigas",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Ireland",
+        "waterBody": "Galway Bay",
+        "cityCounty": "Killeenaran",
+        "st": "Ireland",
+        "locale": "Killeenaran, Galway Bay, Ireland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.932696,
+          53.1
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Kelly Native",
+        "species": "Ostrea edulis",
+        "speciesCode": "OE",
+        "speciesName": "European Flat",
+        "color": "#7D12B3",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Ireland",
+        "waterBody": "Galway Bay",
+        "cityCounty": "Killeenaran",
+        "st": "Ireland",
+        "locale": "Killeenaran, Galway Bay, Ireland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.932696,
+          53.197
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Keystone",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Gulf Coast",
+        "waterBody": "Aransas Bay",
+        "cityCounty": "",
+        "st": "Texas",
+        "locale": "Aransas Bay, Texas"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.96136506,
+          28.046636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Kumamoto (low salinity)",
+        "species": "Crassostrea sikamea",
+        "speciesCode": "CS",
+        "speciesName": "Kumamoto",
+        "color": "#C7A15B",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Puget Sound",
+        "waterBody": "Skagit Bay",
+        "cityCounty": "",
+        "st": "Washington",
+        "locale": "Skagit Bay, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.4114,
+          48.314652
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Kumamoto (moderate salinity)",
+        "species": "Crassostrea sikamea",
+        "speciesCode": "CS",
+        "speciesName": "Kumamoto",
+        "color": "#C7A15B",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Puget Sound",
+        "waterBody": "Skagit Bay",
+        "cityCounty": "Similk Bay",
+        "st": "Washington",
+        "locale": "Similk Bay, Skagit Bay, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.576,
+          48.4442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Little Buster",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maine",
+        "waterBody": "Casco Bay",
+        "cityCounty": "",
+        "st": "Maine",
+        "locale": "Casco Bay, Maine"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.08694444,
+          43.81305556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Little Skookum",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Puget Sound",
+        "waterBody": "South Puget Sound",
+        "cityCounty": "Little Skookum Inlet",
+        "st": "Washington",
+        "locale": "Little Skookum Inlet, Puget Sound, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0132,
+          47.1528
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Loch Ryan",
+        "species": "Ostrea edulis",
+        "speciesCode": "OE",
+        "speciesName": "European Flat",
+        "color": "#7D12B3",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Scotland",
+        "waterBody": "Loch Ryan",
+        "cityCounty": "Stranraer",
+        "st": "Scotland",
+        "locale": "Loch Ryan, Scotland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.011369,
+          54.94
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Lopez Island",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Salish Sea",
+        "waterBody": "Shoal Bay",
+        "cityCounty": "Lopez Island",
+        "st": "Washington",
+        "locale": "Shoal Bay, Lopez Island, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0,
+          48.55263
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Matagorda Pearl",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Gulf Coast",
+        "waterBody": "Matagorda Bay",
+        "cityCounty": "",
+        "st": "Texas",
+        "locale": "Matagorda Bay, Texas"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.265219,
+          28.675644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Northumberland",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maritime",
+        "waterBody": "Northumberland Strait",
+        "cityCounty": "",
+        "st": "New Brunswick",
+        "locale": "Northumberland Strait, New Brunswick / PEI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.276944,
+          46.450592
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Olympia (Hama)",
+        "species": "Ostrea lurida",
+        "speciesCode": "OL",
+        "speciesName": "Olympia",
+        "color": "#A2BC13",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Hood Canal",
+        "waterBody": "Port Townsend Bay",
+        "cityCounty": "",
+        "st": "Washington",
+        "locale": "Port Townsend Bay, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.75,
+          48.032564
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Olympia (Swinomish)",
+        "species": "Ostrea lurida",
+        "speciesCode": "OL",
+        "speciesName": "Olympia",
+        "color": "#A2BC13",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Puget Sound",
+        "waterBody": "Skagit Bay",
+        "cityCounty": "Similk Bay",
+        "st": "Washington",
+        "locale": "Similk Bay, Skagit Bay, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.577,
+          48.4438
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Onset (cultivated)",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Cape Cod",
+        "waterBody": "Buzzards Bay",
+        "cityCounty": "Bourne",
+        "st": "Massachusetts",
+        "locale": "Bourne Cove, Buzzards Bay, Massachusetts"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.6971998,
+          41.7293031
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Ostra Regal",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Ireland",
+        "waterBody": "Bannow Bay",
+        "cityCounty": "",
+        "st": "Ireland",
+        "locale": "Bannow Cove, Wexford, Ireland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.784913,
+          52.236277
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Pinette Fancy",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maritime",
+        "waterBody": "Pinette River",
+        "cityCounty": "",
+        "st": "Prince Edward Island",
+        "locale": "Pinette River, Prince Edward Island"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.90367,
+          46.0735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Pink Moon",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maritime",
+        "waterBody": "New London Bay",
+        "cityCounty": "",
+        "st": "Prince Edward Island",
+        "locale": "New London Bay, Prince Edward Island"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.441425,
+          46.495388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Pousse en Claire",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "France",
+        "waterBody": "Marenne-Oleron",
+        "cityCounty": "",
+        "st": "France",
+        "locale": "Marennes-Oléron, France"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.144685,
+          45.78714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Prat-Ar-Coum",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "France",
+        "waterBody": "Aber-Benoît",
+        "cityCounty": "Lannilis",
+        "st": "France",
+        "locale": "Aber-Benoît estuary, Brittany, France"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.590871,
+          48.569041
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Reach Island",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Puget Sound",
+        "waterBody": "Case Inlet",
+        "cityCounty": "",
+        "st": "Washington",
+        "locale": "Case Inlet, Puget Sound, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.82532,
+          47.333715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "ROC Reserve",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Cape Cod",
+        "waterBody": "Duxbury Bay",
+        "cityCounty": "Duxbury",
+        "st": "Massachusetts",
+        "locale": "Duxbury Bay, Massachusetts"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.64265,
+          42.03872
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Saint Helena Salts",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Southeast",
+        "waterBody": "Port Royal Sound",
+        "cityCounty": "Daws Island",
+        "st": "South Carolina",
+        "locale": "Daws Island, South Carolina"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.77288,
+          32.33517
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Sand Dune",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maritime",
+        "waterBody": "Souris River",
+        "cityCounty": "",
+        "st": "Prince Edward Island",
+        "locale": "Souris River, Prince Edward Island"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.28,
+          46.37
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Savage Blonde",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maritime",
+        "waterBody": "Savage Harbour",
+        "cityCounty": "",
+        "st": "Prince Edward Island",
+        "locale": "Savage Harbour, Prince Edward Island"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.843339,
+          46.411823
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Sea Hag",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Cape Cod",
+        "waterBody": "Barnstable Harbor",
+        "cityCounty": "Barnstable",
+        "st": "Massachusetts",
+        "locale": "Barnstable Harbor, Cape Cod, Massachusetts"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.33,
+          41.72
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Shipwreck",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maritime",
+        "waterBody": "South Lake",
+        "cityCounty": "",
+        "st": "Prince Edward Island",
+        "locale": "South Lake, Prince Edward Island"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.024,
+          46.425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Skagit Bay",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Puget Sound",
+        "waterBody": "Skagit Bay",
+        "cityCounty": "",
+        "st": "Washington",
+        "locale": "Skagit Bay, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.54,
+          48.38
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Snow Island",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Maine",
+        "waterBody": "Quahog Bay",
+        "cityCounty": "Harpswell",
+        "st": "Maine",
+        "locale": "Quahog Bay, Harpswell, Maine"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.91234,
+          43.815286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Spéciale de Claire",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "France",
+        "waterBody": "Marenne-Oleron",
+        "cityCounty": "",
+        "st": "France",
+        "locale": "Marennes-Oléron, France"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.126557,
+          45.802723
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Summer Blues",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Hood Canal",
+        "waterBody": "Port Townsend Bay",
+        "cityCounty": "",
+        "st": "Washington",
+        "locale": "Port Townsend Bay, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.7513547,
+          48.0297
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Swinomish",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Puget Sound",
+        "waterBody": "Skagit Bay",
+        "cityCounty": "Similk Bay",
+        "st": "Washington",
+        "locale": "Similk Bay, Skagit Bay, Washington"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.575,
+          48.445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Triple N",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Gulf Coast",
+        "waterBody": "Caminada Bay",
+        "cityCounty": "",
+        "st": "Louisiana",
+        "locale": "Caminada Bay, Louisiana"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.9942647,
+          29.2431045
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Utah Beach",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "France",
+        "waterBody": "English Channel",
+        "cityCounty": "Sainte-Marie-du-Mont",
+        "st": "France",
+        "locale": "Utah Beach, Normandy, France"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.164,
+          49.4035
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Viking (Speciale)",
+        "species": "Crassostrea gigas",
+        "speciesCode": "CG",
+        "speciesName": "Pacific",
+        "color": "#2A7889",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "France",
+        "waterBody": "English Channel",
+        "cityCounty": "",
+        "st": "France",
+        "locale": "English Channel, Normandy, France"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.793758,
+          49.877212
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rank": 64,
+        "marketName": "Winter Pearl",
+        "species": "Crassostrea virginica",
+        "speciesCode": "CV",
+        "speciesName": "Eastern",
+        "color": "#C72052",
+        "cultivation": "",
+        "salinity": "",
+        "size": "",
+        "region": "Rhode Island",
+        "waterBody": "Point Judith Pond",
+        "cityCounty": "",
+        "st": "Rhode Island",
+        "locale": "Point Judith Pond, Rhode Island"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.505,
+          41.3847
+        ]
+      }
+    }
+  ]
+}
