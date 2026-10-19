@@ -60,7 +60,8 @@
          top: calc(12px + var(--sat)); left: var(--sal); right: var(--sar); pointer-events: none; }
   .title {
     pointer-events: auto; display: inline-block; margin: 0 0 10px 12px; padding: 8px 14px; border-radius: 8px; cursor: pointer;
-    font: 700 .95rem/1 var(--font); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
+    border: 0;  /* no outline box: the frosted backdrop alone sets it off the map */
+    font: 700 1.12rem/1 var(--font);  /* ~17.9px: 2pt (2.67px) up from .95rem */ letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
   }
   .title:hover { color: var(--accent); }
   .title:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
