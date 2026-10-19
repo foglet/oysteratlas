@@ -230,7 +230,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   var HOME = { center: [-123.05, 49], zoom: 4, bearing: 0, speed: 3, curve: 1 };  /* opening view: Salish Sea; quick flight home */
-  var FLY = { speed: 1, curve: 1, easing: function (t) { return t; } };  /* default: slow, steady (linear) glide, as on the original site */
+  var FLY = { speed: 1.8, curve: 1, easing: function (t) { return t; } };  /* default: steady (linear) glide, 1.8x the original site's speed (was 1) */
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiZm9nZmlzaCIsImEiOiJOeXZlMF9FIn0.I3vP7TOUVxyKTaW27p_IqA';
   var map = new mapboxgl.Map({
