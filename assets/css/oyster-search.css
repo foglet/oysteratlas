@@ -47,6 +47,13 @@
 .oa-search.oa-collapsed .oa-results,
 .oa-search.oa-collapsed .oa-status { display: none; }  /* minimized: just the magnifying glass */
 
+/* The results list fades + rises in whenever it appears (first match, or reopening the search).
+   CSS animations restart each time an element leaves display:none, so no JS is needed; re-renders
+   while typing don't replay it. Same 180ms as the bar, legend and details card. */
+.oa-results:not(:empty) { animation: oa-list-in .18s cubic-bezier(.2,.7,.3,1) both; }
+@keyframes oa-list-in { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .oa-results:not(:empty) { animation: none; } }
+
 /* Minimized: the bar shrinks to a magnifying-glass button, with the oyster's details above it */
 .oa-field { transition: width .18s ease; cursor: text; }
 .oa-search.oa-collapsed .oa-field { width: 35px; padding: 0; justify-content: center; cursor: pointer; }
