@@ -112,13 +112,23 @@
   var DOT_RADIUS = ['interpolate', ['linear'], ['zoom'], 4, 0, 5, 1, 8, 5];
   var DOT_BLUR = ['interpolate', ['linear'], ['zoom'], 0, 2, 10, 1.5, 11, 1];  // the style's soft edge, so the visible size matches too
 
-  // Bold the picked oyster's name in the style's own label layers (any symbol layer showing {nameKey}).
+  // Bold the picked oyster's name in the style's own label layers (any symbol layer showing {nameKey}),
+  // and place it first: where labels crowd, Mapbox drops the ones that would overlap, and the picked
+  // oyster's could be the one dropped. A lower symbol-sort-key wins placement, so its neighbors give way.
   var labelFonts = {};  // layer id → its original text-font
+  var labelSort = {};   // layer id → its original symbol-sort-key (undefined if none)
   function boldFont(fonts) { return fonts.map(function (f) { return /Bold$/.test(f) ? f : f.replace(/\s*(Semibold|SemiBold|Medium|Regular|Light|Italic)?$/, ' Bold'); }); }
   function setBoldLabel(map, nameKey, name) {
     var layers = (map.getStyle() && map.getStyle().layers) || [];
     layers.forEach(function (l) {
       if (l.type !== 'symbol' || !l.layout || JSON.stringify(l.layout['text-field'] || '').indexOf('{' + nameKey + '}') < 0) return;
+      if (!(l.id in labelSort)) labelSort[l.id] = map.getLayoutProperty(l.id, 'symbol-sort-key');
+      var sortOrig = labelSort[l.id];
+      try {
+        map.setLayoutProperty(l.id, 'symbol-sort-key', name
+          ? ['case', ['==', ['get', nameKey], name], -1e6, sortOrig === undefined ? 0 : sortOrig]
+          : sortOrig);
+      } catch (err) { /* leave this layer's order alone */ }
       if (!(l.id in labelFonts)) labelFonts[l.id] = map.getLayoutProperty(l.id, 'text-font') || ['Open Sans Regular', 'Arial Unicode MS Regular'];
       var orig = labelFonts[l.id];
       if (!Array.isArray(orig) || orig.some(function (f) { return typeof f !== 'string'; })) return;  // an expression: leave it alone
