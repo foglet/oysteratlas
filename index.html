@@ -237,7 +237,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var SKIP_START = ['France'];  /* regions never used as the opening view (their pills still work) */
   var startPills = Array.prototype.filter.call(document.querySelectorAll('.map-places button[data-center]'),
     function (b) { return SKIP_START.indexOf(b.dataset.name) < 0; }), startPill = null, START = HOME;
-  if (startPills.length) {
+
+  /* Areas you can link to by name (oysteratlas.com/#gulf-of-maine): the map fits the area's GeoJSON outline.
+     A link like that opens there instead of on a random region. */
+  var SHAPES = { 'gulf-of-maine': 'assets/data/regions/GOM_watershed_us-26919-84-50per.json' };
+  function shapeKey() { var k = decodeURIComponent(location.hash.slice(1)).toLowerCase(); return SHAPES[k] ? k : null; }
+  var linkedShape = shapeKey();
+
+  if (startPills.length && !linkedShape) {
     var last = null;
     try { last = sessionStorage.getItem('oa-start'); } catch (e) {}
     var pool = Array.prototype.filter.call(startPills, function (b) { return b.dataset.name !== last; });
@@ -331,6 +338,29 @@ document.addEventListener('DOMContentLoaded', function () {
     startPill.setAttribute('aria-pressed', 'true');
     reveal(startPill, true);
   }
+
+  /* Fit a linked area's outline on screen, clear of the pill row (top) and the search card and legend (bottom).
+     The first fit on load is instant; following a link later glides there like a pill. */
+  var shapeBounds = {};
+  function fitShape(key, instant) {
+    var have = shapeBounds[key] ? Promise.resolve(shapeBounds[key]) :
+      fetch(SHAPES[key]).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (gj) {
+        var b = new mapboxgl.LngLatBounds();
+        (function walk(c) { if (typeof c[0] === 'number') b.extend([c[0], c[1]]); else c.forEach(walk); })(
+          (gj.features || [gj]).map(function (f) { return (f.geometry || f).coordinates; }).filter(Boolean));
+        return (shapeBounds[key] = b);
+      });
+    have.then(function (b) {
+      if (shapeKey() !== key) return;   // the link changed while the outline was loading
+      Array.prototype.forEach.call(pills, function (x) { x.removeAttribute('aria-pressed'); });
+      var top = Math.round(row.parentNode.getBoundingClientRect().bottom) + 12;
+      var pad = { top: Math.min(top, map.getContainer().clientHeight / 3), bottom: 70, left: 24, right: 24 };
+      var still = instant || calm.matches;
+      map.fitBounds(b, Object.assign({ padding: pad, maxZoom: 9 }, still ? { duration: 0 } : FLY));
+    }).catch(function () {});   // a missing file just leaves the map where it is
+  }
+  if (linkedShape) fitShape(linkedShape, true);
+  window.addEventListener('hashchange', function () { var k = shapeKey(); if (k) fitShape(k, false); });
 
   /* Title: back to the overview */
   document.querySelector('[data-home]').addEventListener('click', function () {
