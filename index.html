@@ -346,17 +346,41 @@ document.addEventListener('DOMContentLoaded', function () {
   /* Fit an area's outline on screen (its pill or its link), clear of the pill row (top) and the search card
      and legend (bottom). The first fit on load is instant; otherwise it glides there like a pill.
      Any newer move (another pill, the title, a search pick) wins over an outline still loading. */
-  var shapeBounds = {};
+  var shapeData = {}, shapeBounds = {};
+  function loadShape(key) {   // the area's GeoJSON, fetched once
+    return shapeData[key] || (shapeData[key] =
+      fetch(SHAPES[key]).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }));
+  }
+  function boundsOf(key) {
+    return shapeBounds[key] ? Promise.resolve(shapeBounds[key]) : loadShape(key).then(function (gj) {
+      var b = new mapboxgl.LngLatBounds();
+      (function walk(c) { if (typeof c[0] === 'number') b.extend([c[0], c[1]]); else c.forEach(walk); })(
+        (gj.features || [gj]).map(function (f) { return (f.geometry || f).coordinates; }).filter(Boolean));
+      return (shapeBounds[key] = b);
+    });
+  }
+
+  /* Each area's outline, drawn like the style's Salish Sea outline ("salishSea-4677 F50"): #f50,
+     fading in by zoom 6 and thickening from 0.5px to 1px. It sits under the oyster glow so the oysters stay on top. */
+  function drawOutlines() {
+    Object.keys(SHAPES).forEach(function (key) {
+      loadShape(key).then(function (gj) {
+        var id = 'oa-outline-' + key;
+        if (map.getSource(id)) return;
+        map.addSource(id, { type: 'geojson', data: gj });
+        map.addLayer({ id: id, type: 'line', source: id, paint: {
+          'line-color': '#f50',
+          'line-opacity': ['interpolate', ['linear'], ['zoom'], 0, 0, 6, 0.5],
+          'line-width': ['interpolate', ['linear'], ['zoom'], 0, 0, 6, 0.5, 9, 0.75, 12, 0.9, 15, 1]
+        } }, map.getLayer('oyster-jsoninput-0.05 100px') ? 'oyster-jsoninput-0.05 100px' : undefined);
+      }).catch(function () {});
+    });
+  }
+  if (map.isStyleLoaded()) drawOutlines(); else map.once('load', drawOutlines);
+
   function fitShape(key, instant) {
     var mine = ++moveTurn;
-    var have = shapeBounds[key] ? Promise.resolve(shapeBounds[key]) :
-      fetch(SHAPES[key]).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (gj) {
-        var b = new mapboxgl.LngLatBounds();
-        (function walk(c) { if (typeof c[0] === 'number') b.extend([c[0], c[1]]); else c.forEach(walk); })(
-          (gj.features || [gj]).map(function (f) { return (f.geometry || f).coordinates; }).filter(Boolean));
-        return (shapeBounds[key] = b);
-      });
-    have.then(function (b) {
+    boundsOf(key).then(function (b) {
       if (mine !== moveTurn) return;   // something newer moved the map while the outline was loading
       Array.prototype.forEach.call(pills, function (x) {
         if (x.dataset.shape === key) { x.setAttribute('aria-pressed', 'true'); reveal(x, instant); }
