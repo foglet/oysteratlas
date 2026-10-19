@@ -60,9 +60,18 @@
          top: calc(12px + var(--sat)); left: var(--sal); right: var(--sar); pointer-events: none; }
   .title {
     pointer-events: auto; display: inline-block; margin: 0 0 10px 12px; padding: 8px 14px; border-radius: 8px; cursor: pointer;
-    font: 700 .95rem/1 var(--font); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
+    border: 0;  /* no outline box: the frosted backdrop alone sets it off the map */
+    font: 700 1.12rem/1 var(--font);  /* ~17.9px: 2pt (2.67px) up from .95rem */
+    letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
   }
-  .title:hover { color: var(--accent); }
+  /* The words take Fogday's "Selected Works" blue: the same left-to-right sky gradient
+     (fogday.com --title-1 → --title-2). It sits on an inner span so the button keeps its frosted backdrop.
+     Contrast on the navy: 4.3:1 and 5.3:1. Hover keeps the chartreuse accent. */
+  .title-text {
+    background-image: linear-gradient(to right, #2f7fc1, #4a90c8);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .title:hover .title-text { background-image: none; color: var(--accent); }
   .title:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   /* Region pills: one row. If they don't fit, the row scrolls sideways (swipe, trackpad or mouse wheel)
@@ -227,7 +236,7 @@
 </svg>
 
 <div class="top">
-  <h1 style="margin:0"><button type="button" class="title" data-home title="Back to the overview">The Oyster Atlas</button></h1>
+  <h1 style="margin:0"><button type="button" class="title" data-home title="Back to the overview"><span class="title-text">The Oyster Atlas</span></button></h1>
   <div class="map-places-wrap">
     <nav class="map-places" aria-label="Fly to a region">
       <!-- name · center [longitude, latitude] · zoom · bearing (map rotation, degrees) · optional speed/curve (default 1 / 1) — same as the original site -->
