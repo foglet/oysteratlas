@@ -232,11 +232,24 @@ document.addEventListener('DOMContentLoaded', function () {
   var HOME = { center: [-123.05, 49], zoom: 4, bearing: 0, speed: 3, curve: 1 };  /* opening view: Salish Sea; quick flight home */
   var FLY = { speed: 1.8, curve: 1, easing: function (t) { return t; } };  /* default: steady (linear) glide, 1.8x the original site's speed (was 1) */
 
+  /* Each load opens on a random region pill (never the same one twice in a row in this tab);
+     the title button still flies back to HOME. Falls back to HOME if the pills are missing. */
+  var startPills = document.querySelectorAll('.map-places button[data-center]'), startPill = null, START = HOME;
+  if (startPills.length) {
+    var last = null;
+    try { last = sessionStorage.getItem('oa-start'); } catch (e) {}
+    var pool = Array.prototype.filter.call(startPills, function (b) { return b.dataset.name !== last; });
+    if (!pool.length) pool = Array.prototype.slice.call(startPills);
+    startPill = pool[Math.floor(Math.random() * pool.length)];
+    try { sessionStorage.setItem('oa-start', startPill.dataset.name); } catch (e) {}
+    START = { center: JSON.parse(startPill.dataset.center), zoom: +startPill.dataset.zoom, bearing: +startPill.dataset.bearing || 0 };
+  }
+
   mapboxgl.accessToken = 'pk.eyJ1IjoiZm9nZmlzaCIsImEiOiJOeXZlMF9FIn0.I3vP7TOUVxyKTaW27p_IqA';
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/fogfish/cifta9e28000ztgkpe46j4rh8',  /* "glow" */
-    center: HOME.center, zoom: HOME.zoom,
+    center: START.center, zoom: START.zoom, bearing: START.bearing || 0,
     customAttribution: '<a href="https://fogday.com/">© Fogday Studios</a> | <a href="https://www.instagram.com/fogfish/">@fogfish</a>'  /* our credit, in Mapbox's credit line */
   });
   map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');  /* zoom + compass */
@@ -303,13 +316,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Slide the tapped pill fully into view by scrolling only the row sideways.
      (scrollIntoView also scrolls the page on iPhone Safari, which pushed the row up.) */
-  function reveal(b) {
+  function reveal(b, instant) {
     var pad = parseFloat(getComputedStyle(row).scrollPaddingLeft) || 0;
     var left = b.getBoundingClientRect().left - row.getBoundingClientRect().left + row.scrollLeft - pad;
     var right = left + b.offsetWidth + 2 * pad - row.clientWidth;
     var to = row.scrollLeft;
     if (left < to) to = left; else if (right > to) to = right;
-    if (to !== row.scrollLeft) row.scrollTo({ left: to, behavior: calm.matches ? 'auto' : 'smooth' });
+    if (to !== row.scrollLeft) row.scrollTo({ left: to, behavior: instant || calm.matches ? 'auto' : 'smooth' });
+  }
+  /* Highlight the region this load opened on, and slide its pill into view (no animation on load) */
+  if (startPill) {
+    startPill.setAttribute('aria-pressed', 'true');
+    reveal(startPill, true);
   }
 
   /* Title: back to the overview */
