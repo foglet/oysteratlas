@@ -325,11 +325,11 @@
       slideDetail(false, function () { detail.hidden = true; detail.textContent = ''; if (detailPanel) detailPanel.hidden = true; });
     }
 
-    // The details card fades in slowly and softly: 250ms, rising 6px and growing from 98% out of its
-    // bottom-left corner, with an ease-out that settles gently. It leaves faster (180ms, ease-in), the
+    // The details card fades in like the ohlonesky.com menu overlay: 500ms, rising 16px (1rem),
+    // Tailwind's ease-out (cubic-bezier(0,0,.2,1)), no scale. It leaves faster (180ms, ease-in), the
     // same speed as the search bar shrinking to its magnifying glass. Reduced-motion users get the instant show/hide.
-    var DETAIL_IN_MS = 250, DETAIL_OUT_MS = 180;
-    var EASE_IN = 'cubic-bezier(.4,0,1,1)', EASE_OUT = 'cubic-bezier(.16,1,.3,1)';
+    var DETAIL_IN_MS = 500, DETAIL_OUT_MS = 180, SWAP_MS = 250;
+    var EASE_IN = 'cubic-bezier(.4,0,1,1)', EASE_OUT = 'cubic-bezier(0,0,.2,1)', SWAP_EASE = 'cubic-bezier(.16,1,.3,1)';
     var detailBox = detailPanel || detail, detailAnim = null, leaving = false;
     detailBox.style.transformOrigin = '0 100%';
     var still = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: true };
@@ -338,7 +338,7 @@
       leaving = !show;
       if (still.matches || !detailBox.animate) { leaving = false; if (done) done(); return; }
       var a = detailBox.animate(
-        [{ opacity: 0, transform: 'translateY(6px) scale(.98)' }, { opacity: 1, transform: 'none' }],
+        [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }],
         { duration: show ? DETAIL_IN_MS : DETAIL_OUT_MS, easing: show ? EASE_OUT : EASE_IN,
           direction: show ? 'normal' : 'reverse', fill: 'forwards' });
       detailAnim = a;
@@ -349,8 +349,8 @@
       };
     }
 
-    // Switching oysters while the card is up: the new details fade in from 97% size with the same 250ms
-    // ease-out as the card, so the swap reads as a change instead of a reload. Animates the inner details
+    // Switching oysters while the card is up: the new details fade in from 97% size over 250ms
+    // with a soft ease-out, so the swap reads as a change instead of a reload. Animates the inner details
     // (not the card), so it never fights slideDetail. A fast second tap restarts it. Reduced-motion users get the instant swap.
     var swapAnim = null;
     function swapDetail() {
@@ -358,7 +358,7 @@
       if (swapAnim) swapAnim.cancel();
       var a = detail.animate(
         [{ opacity: 0, transform: 'scale(.97)' }, { opacity: 1, transform: 'none' }],
-        { duration: DETAIL_IN_MS, easing: EASE_OUT });
+        { duration: SWAP_MS, easing: SWAP_EASE });
       swapAnim = a;
       a.onfinish = function () { if (swapAnim === a) swapAnim = null; };
     }
