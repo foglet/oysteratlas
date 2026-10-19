@@ -188,6 +188,7 @@
       <button type="button" data-name="Washington • British Columbia" data-center="[-123.05, 49]"   data-zoom="6"  data-bearing="6" data-speed="1.2" data-curve="1.42">Washington • British Columbia</button>
       <button type="button" data-name="Tomales Bay"                   data-center="[-122.84, 38.10]" data-zoom="7"  data-bearing="0">Tomales Bay</button>
       <button type="button" data-name="Maritime Provinces"            data-center="[-63.8, 46.7]"    data-zoom="7"  data-bearing="5">Maritime Provinces</button>
+      <button type="button" data-name="Gulf of Maine"                 data-shape="gulf-of-maine">Gulf of Maine</button>  <!-- fits its outline (SHAPES below) -->
       <button type="button" data-name="Cape Cod • Long Island"        data-center="[-72.2, 41.5]"    data-zoom="7"  data-bearing="0">Cape Cod • Long Island</button>
       <button type="button" data-name="Chesapeake Bay"                data-center="[-76.2, 37.5]"    data-zoom="7"  data-bearing="0">Chesapeake Bay</button>
       <button type="button" data-name="Gulf Coast"                    data-center="[-90, 29]"        data-zoom="6"  data-bearing="6">Gulf Coast</button>
@@ -297,7 +298,9 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('focusout', function () { setTimeout(liftForKeyboard, 50); });
 
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var moveTurn = 0;   // counts map moves, so an outline that finishes loading late doesn't undo a newer one
   function go(view) {
+    moveTurn++;
     if (calm.matches) map.jumpTo(view);
     else map.flyTo(Object.assign({}, FLY, view));  /* a region's own speed/curve override the default */
   }
@@ -318,6 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
       Array.prototype.forEach.call(pills, function (x) { x.removeAttribute('aria-pressed'); });
       b.setAttribute('aria-pressed', 'true');
       reveal(b);
+      if (b.dataset.shape) { fitShape(b.dataset.shape, false); return; }   // outline pills fit their area
       go({ center: JSON.parse(b.dataset.center), zoom: +b.dataset.zoom, bearing: +b.dataset.bearing || 0,
            speed: +b.dataset.speed || FLY.speed, curve: +b.dataset.curve || FLY.curve });
     });
@@ -339,10 +343,12 @@ document.addEventListener('DOMContentLoaded', function () {
     reveal(startPill, true);
   }
 
-  /* Fit a linked area's outline on screen, clear of the pill row (top) and the search card and legend (bottom).
-     The first fit on load is instant; following a link later glides there like a pill. */
+  /* Fit an area's outline on screen (its pill or its link), clear of the pill row (top) and the search card
+     and legend (bottom). The first fit on load is instant; otherwise it glides there like a pill.
+     Any newer move (another pill, the title, a search pick) wins over an outline still loading. */
   var shapeBounds = {};
   function fitShape(key, instant) {
+    var mine = ++moveTurn;
     var have = shapeBounds[key] ? Promise.resolve(shapeBounds[key]) :
       fetch(SHAPES[key]).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (gj) {
         var b = new mapboxgl.LngLatBounds();
@@ -351,8 +357,11 @@ document.addEventListener('DOMContentLoaded', function () {
         return (shapeBounds[key] = b);
       });
     have.then(function (b) {
-      if (shapeKey() !== key) return;   // the link changed while the outline was loading
-      Array.prototype.forEach.call(pills, function (x) { x.removeAttribute('aria-pressed'); });
+      if (mine !== moveTurn) return;   // something newer moved the map while the outline was loading
+      Array.prototype.forEach.call(pills, function (x) {
+        if (x.dataset.shape === key) { x.setAttribute('aria-pressed', 'true'); reveal(x, instant); }
+        else x.removeAttribute('aria-pressed');
+      });
       var top = Math.round(row.parentNode.getBoundingClientRect().bottom) + 12;
       var pad = { top: Math.min(top, map.getContainer().clientHeight / 3), bottom: 70, left: 24, right: 24 };
       var still = instant || calm.matches;
