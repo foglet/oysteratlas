@@ -130,12 +130,16 @@
 
   /* Phones: the pill row gives way to a Regions menu under the title, in the legend's style.
      Its rows are made from the pills (script below), so the pills stay the one place to edit regions. */
-  .map-menu-panel { display: none; pointer-events: auto; width: fit-content; min-width: 200px; max-width: calc(100% - 24px);
+  .map-menu-panel { display: none; pointer-events: auto; width: fit-content; max-width: calc(100% - 24px);
                     margin-left: 12px; border-radius: 8px; border-color: color-mix(in srgb, var(--line) 50%, transparent);
                     max-height: calc(100vh - 200px - var(--sat) - var(--sab)); overflow-y: auto; }
-  /* Regions menu: 5px between its edge and its contents (the legend keeps its roomier 10–14px) */
-  .map-menu summary { padding: 5px; }
-  .map-menu ul { padding: 0 5px 5px; }
+  /* Regions menu: compact when shut (5px around its title, hugging it), roomier once opened
+     (the legend's 10–14px, at least 200px wide). Eases between the two with the 180ms slide. */
+  .map-menu { min-width: 0; transition: min-width .18s ease; }
+  .map-menu[open] { min-width: 200px; }
+  .map-menu summary { padding: 5px; transition: padding .18s ease; }
+  .map-menu[open] summary { padding: 10px 14px; }
+  .map-menu ul { padding: 0 14px 12px; }
   .map-menu li button {
     all: unset; box-sizing: border-box; display: flex; align-items: center; width: 100%; min-height: 28px; cursor: pointer; color: var(--ink);
   }
