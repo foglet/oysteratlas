@@ -308,7 +308,9 @@
         li.appendChild(dot);   // same order as the legend: dot, name, species at right
         li.appendChild(name);
         // A place match shows where it's grown at right (why it's listed); a name match shows the species.
-        var where = (it.locale || '').replace(/[,\s]+$/, '');
+        // Kept short: first and last parts, so the state shows ("Clarence Strait, The Tongass…, AK" → "Clarence Strait, AK")
+        var parts = (it.locale || '').replace(/[,\s]+$/, '').split(/\s*,\s*/).filter(Boolean);
+        var where = parts.length > 2 ? parts[0] + ', ' + parts[parts.length - 1] : parts.join(', ');
         li.appendChild(h.byPlace && where ? el('span', 'oa-species oa-place', where) : el('span', 'oa-species', it.species));
         list.appendChild(li);
       });
