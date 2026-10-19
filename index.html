@@ -141,7 +141,12 @@
   .map-menu li button[aria-current="true"] { font-weight: 700; }   /* the region on screen, bold like a selected pill */
   @media (max-width: 759px) {
     .map-places-wrap { display: none; }
-    .map-menu-panel { display: block; }
+    /* Title and Regions menu centered across the top */
+    .top { text-align: center; }
+    .title { margin-left: 0; }
+    .map-menu-panel { display: block; margin: 0 auto; text-align: center; }
+    .map-menu summary { justify-content: center; }
+    .map-menu li button { justify-content: center; }
   }
 
   /* Search: its own card at bottom right, stacked just above the zoom buttons.
