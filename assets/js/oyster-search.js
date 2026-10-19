@@ -473,8 +473,8 @@
       if (moved > 10 || Date.now() - d.t > 600) return;          // a drag or long press, not a tap
       var t = e.target;
       if (t.closest && (t.closest('.oa-detail') || t.closest('.oa-results') || t.closest('.oa-field'))) return;
-      // Opening, reading or closing the species legend keeps the picked oyster; it only tucks the search away.
-      if (t.closest && t.closest('.map-legend-panel')) { minimize(); return; }
+      // Opening, reading or closing the species legend or the Regions marker keeps the picked oyster; it only tucks the search away.
+      if (t.closest && t.closest('.map-legend-panel, .oa-regions')) { minimize(); return; }
       var hit = t.closest && t.closest('.mapboxgl-canvas-container') ? nearestOyster(e) : null;
       minimize();
       if (hit) {                  // tapped an oyster on the map: it becomes the one shown
