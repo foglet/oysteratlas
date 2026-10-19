@@ -133,6 +133,9 @@
   .map-menu-panel { display: none; pointer-events: auto; width: fit-content; min-width: 200px; max-width: calc(100% - 24px);
                     margin-left: 12px; border-radius: 8px; border-color: color-mix(in srgb, var(--line) 50%, transparent);
                     max-height: calc(100vh - 200px - var(--sat) - var(--sab)); overflow-y: auto; }
+  /* Regions menu: 5px between its edge and its contents (the legend keeps its roomier 10–14px) */
+  .map-menu summary { padding: 5px; }
+  .map-menu ul { padding: 0 5px 5px; }
   .map-menu li button {
     all: unset; box-sizing: border-box; display: flex; align-items: center; width: 100%; min-height: 28px; cursor: pointer; color: var(--ink);
   }
