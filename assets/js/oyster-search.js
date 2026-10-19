@@ -273,11 +273,20 @@
       if (!h) return;
       var it = h.item;
       setActive(i);
+      // Fly first, then fade the details in once the map lands, so the card doesn't ride along mid-flight.
+      // Any older card fades away as the flight starts.
+      clearDetail();
+      var mine = ++landing;
+      var land = function () { if (mine === landing) { landing++; showDetail(it); } };
       fly({ center: it.coord, zoom: Math.max(map.getZoom(), o.flyZoom) });
+      // Listen only after the flight starts: starting it can end an earlier flight, and that 'moveend'
+      // isn't ours. Reduced motion jumps instantly, so the map is already still and we land right away.
+      if (map.isMoving()) map.once('moveend', land); else land();
+      setTimeout(land, 8000);   // backstop: show the card even if no 'moveend' ever arrives
       setHit(map, it.coord, it.color, it.name, o.nameKey);
       minimize(byKeyboard);   // phones and desktop alike: tuck the list away so the map and details are in view
-      showDetail(it);
     }
+    var landing = 0;   // counts picks and taps; a flight shows its card only if nothing newer happened meanwhile
 
     // Details for one oyster, used by search picks and by taps on the map:
     // ● name, then where it's grown, then the region (skipped when the locale already names it).
@@ -301,6 +310,7 @@
       else swapDetail();                  // already up (switching oysters): the new text fades + zooms in
     }
     function clearDetail() {
+      landing++;   // a card still waiting for its flight to land shouldn't appear after this
       if (detailBox.hidden || leaving) return;
       slideDetail(false, function () { detail.hidden = true; detail.textContent = ''; if (detailPanel) detailPanel.hidden = true; });
     }
@@ -404,6 +414,7 @@
         active = -1;
         render();
         setHit(map, hit.coord, hit.color, hit.name, o.nameKey);
+        landing++;               // this tap wins over a search pick still in flight
         showDetail(hit);
       }
       else clearDetail();
