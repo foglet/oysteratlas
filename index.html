@@ -234,7 +234,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Each load opens on a random region pill (never the same one twice in a row in this tab);
      the title button still flies back to HOME. Falls back to HOME if the pills are missing. */
-  var startPills = document.querySelectorAll('.map-places button[data-center]'), startPill = null, START = HOME;
+  var SKIP_START = ['France'];  /* regions never used as the opening view (their pills still work) */
+  var startPills = Array.prototype.filter.call(document.querySelectorAll('.map-places button[data-center]'),
+    function (b) { return SKIP_START.indexOf(b.dataset.name) < 0; }), startPill = null, START = HOME;
   if (startPills.length) {
     var last = null;
     try { last = sessionStorage.getItem('oa-start'); } catch (e) {}
