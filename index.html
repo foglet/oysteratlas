@@ -140,6 +140,15 @@
   .map-menu summary { padding: 5px; transition: padding .18s ease; }
   .map-menu[open] summary { padding: 10px 14px; }
   .map-menu ul { padding: 0 14px 12px; }
+  /* Title dead center, both ways: an invisible "+" on the left balances the real one on the right,
+     and the text box is trimmed to the capitals so they sit exactly mid-height (older browsers: within ~1px) */
+  .map-menu summary { display: flex; justify-content: center; align-items: center; }
+  .map-menu summary::after, .map-menu[open] summary::after { content: none; }
+  .map-menu summary span { display: inline-block; text-box: trim-both cap alphabetic; }
+  .map-menu summary span::before { content: "+\00a0"; visibility: hidden; }
+  .map-menu summary span::after { content: "\00a0+"; color: var(--muted); }
+  .map-menu[open] summary span::before { content: "–\00a0"; }
+  .map-menu[open] summary span::after { content: "\00a0–"; }
   .map-menu li button {
     all: unset; box-sizing: border-box; display: flex; align-items: center; width: 100%; min-height: 28px; cursor: pointer; color: var(--ink);
   }
@@ -228,7 +237,7 @@
   </div>
   <div class="map-menu-panel">
     <details class="map-menu">
-      <summary>Regions</summary>
+      <summary><span>Regions</span></summary>
       <ul aria-label="Fly to a region"></ul>  <!-- filled from the pills above -->
     </details>
   </div>
