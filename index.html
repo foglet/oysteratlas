@@ -172,10 +172,9 @@
   .map-menu li button[aria-current="true"] { font-weight: 700; }   /* the region on screen, bold like a selected pill */
   @media (max-width: 759px) {
     .map-places-wrap { display: none; }
-    /* Title and Regions menu centered across the top */
+    /* Title centered across the top. (The Regions menu moved to the marker above the search glass.) */
     .top { text-align: center; }
     .title { margin-left: 0; }
-    .map-menu-panel { display: block; margin: 0 auto; text-align: center; }
     .map-menu summary { justify-content: center; }
     .map-menu li button { justify-content: center; }
   }
@@ -210,8 +209,43 @@
   .mapboxgl-map .mapboxgl-ctrl-group button:not(:disabled):hover { background-color: color-mix(in srgb, var(--ink) 8%, transparent); }
   .mapboxgl-map .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { filter: url(#oa-ctrl-tint); }  /* Mapbox's icons → the glass's muted color (filter below the map div) */
 
+  /* Phones: a location marker above the search glass, in the glass's format. Tapping it opens the
+     Regions menu to its left (rows made from the pills, script below). Desktop keeps the pill row. */
+  .oa-regions[hidden] { display: none; }
+  .mapboxgl-ctrl.oa-regions { position: relative; }
+  .oa-pin {
+    display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 32px; height: 32px; padding: 0;
+    background: var(--panel); border: 1px solid color-mix(in srgb, var(--line) 50%, transparent); border-radius: 4px;
+    color: var(--muted); cursor: pointer;
+  }
+  /* Beat Mapbox's own light hover on control buttons; on phones a tap leaves no hover tint behind */
+  .mapboxgl-ctrl button.oa-pin:not(:disabled):hover { background-color: var(--panel); }
+  @media (hover: hover) { .mapboxgl-ctrl button.oa-pin:not(:disabled):hover { background-color: color-mix(in srgb, var(--ink) 8%, var(--panel)); } }
+  .oa-pin[aria-expanded="true"] { color: var(--accent); }
+  .oa-pin:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .oa-regions-pop {
+    position: absolute; right: calc(100% + 8px); bottom: 0; min-width: 200px; padding: 0 0 12px; border-radius: 8px;
+    max-height: calc(100vh - 160px - var(--sat) - var(--sab)); overflow-y: auto; overscroll-behavior: contain;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    color: var(--ink); font: 400 1rem/1.4 var(--font); text-align: left;
+  }
+  .oa-regions-pop[hidden] { display: none; }
+  .oa-regions-title { margin: 0; padding: 10px 14px; font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+  .oa-regions-pop ul { list-style: none; margin: 0; padding: 0 14px; display: grid; gap: 6px; font-size: .9rem; }
+  .oa-regions-pop li button {
+    all: unset; box-sizing: border-box; display: flex; align-items: center; width: 100%; min-height: 28px; cursor: pointer; color: var(--ink); white-space: nowrap;
+  }
+  .oa-regions-pop li button:hover { color: var(--accent); }
+  .oa-regions-pop li button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .oa-regions-pop li button[aria-current="true"] { font-weight: 700; }   /* the region on screen */
+  @media (min-width: 760px) { .mapboxgl-ctrl.oa-regions { display: none; } }
+
   /* Touch screens (iPhone): 44-point tap targets, Apple's minimum */
   @media (pointer: coarse) {
+    .oa-pin { width: 44px; height: 44px; }   /* same as the glass and zoom */
+    .oa-regions-pop ul { gap: 0; }
+    .oa-regions-pop li button { min-height: 44px; }
     .map-places button { min-height: 44px; }
     .map-legend summary, .map-menu summary { min-height: 44px; display: flex; align-items: center; gap: .3em; }  /* gap keeps the space before + / – */
     .map-menu li button { min-height: 44px; }
@@ -278,6 +312,15 @@
 </div>
 
 <!-- Search by market name: moved into the map's bottom-right corner, above the zoom buttons, by the script below -->
+<div class="oa-regions" hidden>  <!-- phones: location marker above the search glass; tap it for the Regions menu -->
+  <button type="button" class="oa-pin" aria-expanded="false" aria-controls="oa-regions-pop" aria-label="Regions" title="Regions">
+    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+  </button>
+  <div class="oa-regions-pop" id="oa-regions-pop" hidden>
+    <p class="oa-regions-title">Regions</p>
+    <ul aria-label="Fly to a region"></ul>  <!-- filled from the pills -->
+  </div>
+</div>
 <div class="oa-search oa-collapsed" role="search" hidden>  <!-- starts closed: just the magnifying glass; tap it to open -->
   <div class="oa-field">
     <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -329,6 +372,12 @@ document.addEventListener('DOMContentLoaded', function () {
   map.addControl({
     onAdd: function () { searchCard.classList.add('mapboxgl-ctrl'); searchCard.hidden = false; return searchCard; },
     onRemove: function () { searchCard.remove(); }
+  }, 'bottom-right');
+  /* Phones: the location marker, added next so it stacks just above the search glass. */
+  var regionsCtrl = document.querySelector('.oa-regions');
+  map.addControl({
+    onAdd: function () { regionsCtrl.classList.add('mapboxgl-ctrl'); regionsCtrl.hidden = false; return regionsCtrl; },
+    onRemove: function () { regionsCtrl.remove(); }
   }, 'bottom-right');
 
   /* iPhone keyboard: it covers the bottom of the screen without resizing the page, which would hide the
@@ -455,7 +504,7 @@ document.addEventListener('DOMContentLoaded', function () {
         else x.removeAttribute('aria-pressed');
       });
       // below whichever navigation is showing: the pill row, or on phones the Regions menu's title (it shuts as we fly)
-      var navEl = row.parentNode.offsetParent ? row.parentNode : document.querySelector('.map-menu summary') || row.parentNode;
+      var navEl = row.parentNode.offsetParent ? row.parentNode : document.querySelector('.title') || row.parentNode;
       var top = Math.round(navEl.getBoundingClientRect().bottom) + 12;
       var pad = { top: Math.min(top, map.getContainer().clientHeight / 3), bottom: 70, left: 24, right: 24 };
       var still = instant || calm.matches;
@@ -566,6 +615,46 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     syncMenu();
     if (window.MutationObserver) new MutationObserver(syncMenu).observe(row, { subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
+  }
+
+  /* Phones: the marker's Regions menu. Tap the marker: the menu fades in to its left (250ms, soft ease-out)
+     and fades out faster (180ms). A row taps its pill, so it flies exactly the same way, then the menu shuts.
+     A tap anywhere else, or Escape, shuts it. The region on screen is bold, kept in step with the pills. */
+  var pin = document.querySelector('.oa-pin'), pop = document.getElementById('oa-regions-pop');
+  if (pin && pop) {
+    var popList = pop.querySelector('ul'), popRows = [], popAnim = null;
+    var isOpen = function () { return pin.getAttribute('aria-expanded') === 'true'; };
+    var setPop = function (open) {
+      if (open === isOpen()) return;
+      pin.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (popAnim) { popAnim.cancel(); popAnim = null; }
+      pop.hidden = false;
+      if (calm.matches || !pop.animate) { pop.hidden = !open; return; }
+      var a = pop.animate([{ opacity: 0, transform: 'translateX(6px)' }, { opacity: 1, transform: 'none' }],
+        { duration: open ? 250 : 180, easing: open ? 'cubic-bezier(.16,1,.3,1)' : 'cubic-bezier(.4,0,1,1)',
+          direction: open ? 'normal' : 'reverse', fill: 'forwards' });
+      popAnim = a;
+      a.onfinish = function () { popAnim = null; if (!open) pop.hidden = true; a.cancel(); };
+    };
+    Array.prototype.forEach.call(pills, function (b) {
+      var li = document.createElement('li'), btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = b.dataset.name || b.textContent.trim();
+      btn.addEventListener('click', function () { b.click(); setPop(false); });
+      li.appendChild(btn); popList.appendChild(li);
+      popRows.push([b, btn]);
+    });
+    var syncPop = function () {
+      popRows.forEach(function (r) {
+        if (r[0].getAttribute('aria-pressed') === 'true') r[1].setAttribute('aria-current', 'true');
+        else r[1].removeAttribute('aria-current');
+      });
+    };
+    syncPop();
+    if (window.MutationObserver) new MutationObserver(syncPop).observe(row, { subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
+    pin.addEventListener('click', function () { setPop(!isOpen()); });
+    document.addEventListener('pointerdown', function (e) { if (isOpen() && !regionsCtrl.contains(e.target)) setPop(false); }, true);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) { setPop(false); pin.focus(); } });
   }
 });
 </script>
