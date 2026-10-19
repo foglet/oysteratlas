@@ -297,7 +297,8 @@
       var appearing = detailBox.hidden || leaving;
       detail.hidden = false;
       if (detailPanel) detailPanel.hidden = false;
-      if (appearing) slideDetail(true);   // already up (switching oysters): just swap the text
+      if (appearing) slideDetail(true);   // card was hidden: slide it up
+      else swapDetail();                  // already up (switching oysters): the new text fades + zooms in
     }
     function clearDetail() {
       if (detailBox.hidden || leaving) return;
@@ -323,6 +324,20 @@
         if (done) done();
         a.cancel();   // drop the held frame once it's hidden (or fully shown)
       };
+    }
+
+    // Switching oysters while the card is up: the new details fade in from 97% size, same 180ms as the
+    // slide, so the swap reads as a change instead of a reload. Animates the inner details (not the card),
+    // so it never fights slideDetail. A fast second tap restarts it. Reduced-motion users get the instant swap.
+    var swapAnim = null;
+    function swapDetail() {
+      if (still.matches || !detail.animate) return;
+      if (swapAnim) swapAnim.cancel();
+      var a = detail.animate(
+        [{ opacity: 0, transform: 'scale(.97)' }, { opacity: 1, transform: 'none' }],
+        { duration: DETAIL_MS, easing: 'cubic-bezier(.2,.7,.3,1)' });
+      swapAnim = a;
+      a.onfinish = function () { if (swapAnim === a) swapAnim = null; };
     }
 
     function reset() {
