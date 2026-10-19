@@ -113,6 +113,12 @@
   .oa-detail-panel[hidden] { display: none; }
   /* Legend and picked-oyster cards: border at 50% opacity, darker than the other panels */
   .map-legend-panel, .oa-detail-panel { border-color: color-mix(in srgb, var(--line) 50%, transparent); }
+  /* Oyster species: just its title while shut (no border or background); the panel appears once it opens.
+     It stays during the closing slide and fades out after, so the list never shows without its panel. */
+  .map-legend-panel { transition: background-color .18s ease, border-color .18s ease; }
+  .map-legend-panel:has(.map-legend:not([open])) {
+    background: transparent; border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
   .oa-detail-panel .oa-detail { margin: 0; }
   /* The legend and the phone's Regions menu (.map-menu) share one look: an uppercase title with + / –, and a plain list */
   .map-legend summary, .map-menu summary {
