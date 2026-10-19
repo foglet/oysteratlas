@@ -360,19 +360,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* Each area's outline, drawn like the style's Salish Sea outline ("salishSea-4677 F50"): #f50,
-     fading in by zoom 6 and thickening from 0.5px to 1px. It sits under the oyster glow so the oysters stay on top. */
+  /* Each area's outline, drawn like the style's Salish Sea ("salishSea-4677 F50" + "fill"): a #f50 line
+     fading in by zoom 6 and thickening from 0.5px to 1px, over a faint warm fill that fades out by zoom 8.
+     Both sit under the oyster glow so the oysters stay on top. */
   function drawOutlines() {
     Object.keys(SHAPES).forEach(function (key) {
       loadShape(key).then(function (gj) {
         var id = 'oa-outline-' + key;
         if (map.getSource(id)) return;
+        var under = map.getLayer('oyster-jsoninput-0.05 100px') ? 'oyster-jsoninput-0.05 100px' : undefined;
         map.addSource(id, { type: 'geojson', data: gj });
+        // its faint warm fill too, like "salishSea-4677 fill": half-strength when zoomed out, gone by zoom 8
+        map.addLayer({ id: id + '-fill', type: 'fill', source: id, paint: {
+          'fill-color': 'rgba(115,96,96,1)',
+          'fill-opacity': ['interpolate', ['linear'], ['zoom'], 0, 0.5, 8, 0]
+        } }, under);
         map.addLayer({ id: id, type: 'line', source: id, paint: {
           'line-color': '#f50',
           'line-opacity': ['interpolate', ['linear'], ['zoom'], 0, 0, 6, 0.5],
           'line-width': ['interpolate', ['linear'], ['zoom'], 0, 0, 6, 0.5, 9, 0.75, 12, 0.9, 15, 1]
-        } }, map.getLayer('oyster-jsoninput-0.05 100px') ? 'oyster-jsoninput-0.05 100px' : undefined);
+        } }, under);
       }).catch(function () {});
     });
   }
