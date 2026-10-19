@@ -29,6 +29,7 @@
     speciesKey: 'species',     // GeoJSON property with the species (common or Latin name)
     regionKey: 'region',       // optional
     localeKey: 'locale',       // optional: place shown in the details
+    placeKeys: ['waterBody', 'cityCounty', 'st', 'locale'],  // also searched, after names: "Kachemak", "Charleston", "South Carolina"
 
     maxResults: 50,
     flyZoom: 10,
@@ -94,13 +95,65 @@
     return /[\s\-'’.]/.test(n.charAt(i - 1)) ? 1 : 2;
   }
 
+  // State and province abbreviations, so "SC" and "South Carolina" find each other.
+  var STATES = {
+    al: 'alabama', ak: 'alaska', az: 'arizona', ar: 'arkansas', ca: 'california', co: 'colorado', ct: 'connecticut',
+    de: 'delaware', dc: 'district of columbia', fl: 'florida', ga: 'georgia', hi: 'hawaii', id: 'idaho', il: 'illinois',
+    in: 'indiana', ia: 'iowa', ks: 'kansas', ky: 'kentucky', la: 'louisiana', me: 'maine', md: 'maryland',
+    ma: 'massachusetts', mi: 'michigan', mn: 'minnesota', ms: 'mississippi', mo: 'missouri', mt: 'montana',
+    ne: 'nebraska', nv: 'nevada', nh: 'new hampshire', nj: 'new jersey', nm: 'new mexico', ny: 'new york',
+    nc: 'north carolina', nd: 'north dakota', oh: 'ohio', ok: 'oklahoma', or: 'oregon', pa: 'pennsylvania',
+    ri: 'rhode island', sc: 'south carolina', sd: 'south dakota', tn: 'tennessee', tx: 'texas', ut: 'utah',
+    vt: 'vermont', va: 'virginia', wa: 'washington', wv: 'west virginia', wi: 'wisconsin', wy: 'wyoming',
+    bc: 'british columbia', nb: 'new brunswick', ns: 'nova scotia', pe: 'prince edward island', pei: 'prince edward island',
+    nl: 'newfoundland', qc: 'quebec'
+  };
+  var STATE_ABBR = {};
+  Object.keys(STATES).forEach(function (k) { if (!STATE_ABBR[STATES[k]]) STATE_ABBR[STATES[k]] = k; });
+
+  // An oyster's places, searchable: each field normalized, plus the other spelling of its state.
+  function placesOf(p, keys) {
+    var out = [];
+    keys.forEach(function (k) {
+      var v = norm(p[k]).trim();
+      if (!v) return;
+      out.push(v);
+      if (STATES[v]) out.push(STATES[v]);           // "sc" → "south carolina"
+      else if (STATE_ABBR[v]) out.push(STATE_ABBR[v]); // "south carolina" → "sc"
+    });
+    return out;
+  }
+
+  // Where a query matches an oyster's places: 0 = a field starts with it, 1 = a word does, 2 = anywhere.
+  // Short queries (1–2 letters) must be a whole field or word, so "ma" finds Massachusetts, not every "Malpeque".
+  function placeRank(places, t) {
+    var best = -1;
+    for (var i = 0; i < places.length; i++) {
+      var r = rankOf(places[i], t);
+      if (r < 0) continue;
+      if (t.length < 3) {
+        var at = places[i].indexOf(t), end = places[i].charAt(at + t.length);
+        if (r === 2 || (end && !/[\s,\-.]/.test(end))) continue;
+      }
+      if (best < 0 || r < best) best = r;
+    }
+    return best;
+  }
+
+  // Order: names that start with the query or have a word that does; then places that do;
+  // then names containing it mid-word ("ak" in "Baker"); then places containing it mid-word.
+  var NAME_RANK = [0, 1, 4], PLACE_RANK = [2, 3, 5];
   function search(items, query, max) {
     var t = norm(query).trim();
     if (!t) return { total: 0, list: [] };
     var hits = [];
     for (var i = 0; i < items.length; i++) {
       var r = rankOf(items[i].key, t);
-      if (r >= 0) hits.push({ item: items[i], rank: r, at: items[i].key.indexOf(t), len: t.length });
+      var pr = placeRank(items[i].places || [], t);
+      if (r >= 0 && (pr < 0 || NAME_RANK[r] <= PLACE_RANK[pr]))
+        hits.push({ item: items[i], rank: NAME_RANK[r], at: items[i].key.indexOf(t), len: t.length });
+      else if (pr >= 0)
+        hits.push({ item: items[i], rank: PLACE_RANK[pr], at: -1, len: 0, byPlace: true });
     }
     hits.sort(function (a, b) { return a.rank - b.rank || a.item.name.localeCompare(b.item.name); });
     return { total: hits.length, list: hits.slice(0, max) };
@@ -211,7 +264,8 @@
         var coord = firstCoord(f.geometry);
         if (!name || !coord) return null;
         var sp = speciesOf(p[o.speciesKey]);
-        return { name: String(name), key: norm(name), species: sp.label, color: sp.color, region: p[o.regionKey] || '', locale: p[o.localeKey] || '', coord: coord };
+        return { name: String(name), key: norm(name), species: sp.label, color: sp.color, region: p[o.regionKey] || '', locale: p[o.localeKey] || '', coord: coord,
+                 places: placesOf(p, o.placeKeys) };
       }).filter(Boolean);
       if (input.value) render();
     }).catch(function (err) {
@@ -253,7 +307,11 @@
 
         li.appendChild(dot);   // same order as the legend: dot, name, species at right
         li.appendChild(name);
-        li.appendChild(el('span', 'oa-species', it.species));
+        // A place match shows where it's grown at right (why it's listed); a name match shows the species.
+        // Kept short: first and last parts, so the state shows ("Clarence Strait, The Tongass…, AK" → "Clarence Strait, AK")
+        var parts = (it.locale || '').replace(/[,\s]+$/, '').split(/\s*,\s*/).filter(Boolean);
+        var where = parts.length > 2 ? parts[0] + ', ' + parts[parts.length - 1] : parts.join(', ');
+        li.appendChild(h.byPlace && where ? el('span', 'oa-species oa-place', where) : el('span', 'oa-species', it.species));
         list.appendChild(li);
       });
 
@@ -263,7 +321,7 @@
 
       var t = q.trim();
       if (!t) setStatus(o.hintText);
-      else if (!res.total) setStatus('No oysters named “' + t + '”. Try fewer letters.');
+      else if (!res.total) setStatus('No oysters or places match “' + t + '”. Try fewer letters.');
       else if (res.total > shown.length) setStatus('Showing ' + shown.length + ' of ' + res.total + ' oysters');
       else setStatus(res.total === 1 ? '1 oyster' : res.total + ' oysters');
     }
@@ -494,5 +552,5 @@
     return { reset: reset };
   }
 
-  global.OysterSearch = { init: init, _search: search, _norm: norm };
+  global.OysterSearch = { init: init, _search: search, _norm: norm, _placesOf: placesOf };
 })(window);

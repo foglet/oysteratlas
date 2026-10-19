@@ -68,6 +68,8 @@
 .oa-name mark { background: transparent; color: inherit; font-weight: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .oa-result .dot { background: var(--c); }
 .oa-species { margin-left: auto; padding-left: 12px; font-style: italic; color: var(--muted); white-space: nowrap; }
+/* A place match shows where it's grown instead of the species; long places trim so the name stays readable */
+.oa-species.oa-place { font-style: normal; flex: 0 1 auto; max-width: 55%; overflow: hidden; text-overflow: ellipsis; }
 
 /* Popup for a picked oyster */
 .oa-popup-wrap .mapboxgl-popup-content {
