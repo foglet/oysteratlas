@@ -49,7 +49,7 @@
   #map { position: fixed; inset: 0; }
 
   /* Panels floating over the map */
-  .map-places button, .map-legend-panel, .oa-detail-panel, .title {
+  .map-places button, .map-legend-panel, .map-menu-panel, .oa-detail-panel, .title {
     background: color-mix(in srgb, var(--bg) 80%, transparent);
     -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
     color: var(--ink); border: 1px solid var(--line);
@@ -114,18 +114,40 @@
   /* Legend and picked-oyster cards: border at 50% opacity, darker than the other panels */
   .map-legend-panel, .oa-detail-panel { border-color: color-mix(in srgb, var(--line) 50%, transparent); }
   .oa-detail-panel .oa-detail { margin: 0; }
-  .map-legend summary {
+  /* The legend and the phone's Regions menu (.map-menu) share one look: an uppercase title with + / –, and a plain list */
+  .map-legend summary, .map-menu summary {
     list-style: none; cursor: pointer; padding: 10px 14px; min-height: 40px;
     font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
   }
-  .map-legend summary::-webkit-details-marker { display: none; }
-  .map-legend summary::after { content: " +"; color: var(--muted); }
-  .map-legend[open] summary::after { content: " –"; }
-  .map-legend summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 8px; }
-  .map-legend ul { list-style: none; margin: 0; padding: 0 14px 12px; display: grid; gap: 6px; font-size: .9rem; }
+  .map-legend summary::-webkit-details-marker, .map-menu summary::-webkit-details-marker { display: none; }
+  .map-legend summary::after, .map-menu summary::after { content: " +"; color: var(--muted); }
+  .map-legend[open] summary::after, .map-menu[open] summary::after { content: " –"; }
+  .map-legend summary:focus-visible, .map-menu summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 8px; }
+  .map-legend ul, .map-menu ul { list-style: none; margin: 0; padding: 0 14px 12px; display: grid; gap: 6px; font-size: .9rem; }
   .map-legend li { display: flex; align-items: center; gap: 8px; }  /* color dot far left, name, Latin name far right */
   .map-legend li i { color: var(--muted); margin-left: auto; padding-left: 12px; white-space: nowrap; }
   .dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+
+  /* Phones: the pill row gives way to a Regions menu under the title, in the legend's style.
+     Its rows are made from the pills (script below), so the pills stay the one place to edit regions. */
+  .map-menu-panel { display: none; pointer-events: auto; width: fit-content; min-width: 200px; max-width: calc(100% - 24px);
+                    margin-left: 12px; border-radius: 8px; border-color: color-mix(in srgb, var(--line) 50%, transparent);
+                    max-height: calc(100vh - 200px - var(--sat) - var(--sab)); overflow-y: auto; }
+  .map-menu li button {
+    all: unset; box-sizing: border-box; display: flex; align-items: center; width: 100%; min-height: 28px; cursor: pointer; color: var(--ink);
+  }
+  .map-menu li button:hover { color: var(--accent); }
+  .map-menu li button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .map-menu li button[aria-current="true"] { font-weight: 700; }   /* the region on screen, bold like a selected pill */
+  @media (max-width: 759px) {
+    .map-places-wrap { display: none; }
+    /* Title and Regions menu centered across the top */
+    .top { text-align: center; }
+    .title { margin-left: 0; }
+    .map-menu-panel { display: block; margin: 0 auto; text-align: center; }
+    .map-menu summary { justify-content: center; }
+    .map-menu li button { justify-content: center; }
+  }
 
   /* Search: its own card at bottom right, stacked just above the zoom buttons.
      It is added as a Mapbox control, so it always sits right above them. Hidden until the map places it. */
@@ -160,7 +182,9 @@
   /* Touch screens (iPhone): 44-point tap targets, Apple's minimum */
   @media (pointer: coarse) {
     .map-places button { min-height: 44px; }
-    .map-legend summary { min-height: 44px; display: flex; align-items: center; gap: .3em; }  /* gap keeps the space before + / – */
+    .map-legend summary, .map-menu summary { min-height: 44px; display: flex; align-items: center; gap: .3em; }  /* gap keeps the space before + / – */
+    .map-menu li button { min-height: 44px; }
+    .map-menu ul { gap: 0; }
     .mapboxgl-map .mapboxgl-ctrl-group button { width: 42px; height: 44px; }  /* + 2px border = 44, same as the glass */
     .mapboxgl-ctrl.oa-search .oa-field { height: 44px; }
     .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { width: 44px; height: 44px; }  /* glass stays the same width as zoom */
@@ -194,6 +218,12 @@
       <button type="button" data-name="Gulf Coast"                    data-center="[-90, 29]"        data-zoom="6"  data-bearing="6">Gulf Coast</button>
       <button type="button" data-name="France"                        data-center="[-1.1, 45.80]"    data-zoom="11" data-bearing="0">France</button>
     </nav>
+  </div>
+  <div class="map-menu-panel">
+    <details class="map-menu">
+      <summary>Regions</summary>
+      <ul aria-label="Fly to a region"></ul>  <!-- filled from the pills above -->
+    </details>
   </div>
 </div>
 
@@ -393,7 +423,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (x.dataset.shape === key) { x.setAttribute('aria-pressed', 'true'); reveal(x, instant); }
         else x.removeAttribute('aria-pressed');
       });
-      var top = Math.round(row.parentNode.getBoundingClientRect().bottom) + 12;
+      // below whichever navigation is showing: the pill row, or on phones the Regions menu's title (it shuts as we fly)
+      var navEl = row.parentNode.offsetParent ? row.parentNode : document.querySelector('.map-menu summary') || row.parentNode;
+      var top = Math.round(navEl.getBoundingClientRect().bottom) + 12;
       var pad = { top: Math.min(top, map.getContainer().clientHeight / 3), bottom: 70, left: 24, right: 24 };
       var still = instant || calm.matches;
       map.fitBounds(b, Object.assign({ padding: pad, maxZoom: 9 }, still ? { duration: 0 } : FLY));
@@ -452,28 +484,57 @@ document.addEventListener('DOMContentLoaded', function () {
   /* Legend: starts collapsed everywhere and opens only when its title is tapped. Nothing else opens it.
      The list slides open/shut in 180ms. <details> can't animate its own height in Safari, so the tap is handled here.
      Tapping again mid-slide reverses from where it is. Reduced-motion users get the instant native toggle. */
-  var legend = document.querySelector('.map-legend');
-  var legendSum = legend && legend.querySelector('summary'), legendList = legend && legend.querySelector('ul');
-  if (legendSum && legendList) {
+  /* The same slide is used by the phone's Regions menu. sliding(menu, open) opens or shuts it from code. */
+  function slidingMenu(menu) {
+    var sum = menu && menu.querySelector('summary'), list = menu && menu.querySelector('ul');
+    if (!sum || !list) return function () {};
     var slide = null, shutting = false;
-    legendSum.addEventListener('click', function (e) {
-      if (calm.matches || !legendList.animate) return;   /* native instant toggle */
-      e.preventDefault();
-      var opening = !legend.open || shutting;
-      var from = legend.open ? legendList.getBoundingClientRect().height : 0;  /* current height if mid-slide */
+    function toggle(opening) {
+      if (calm.matches || !list.animate) { menu.open = opening; return; }   /* instant */
+      var from = menu.open ? list.getBoundingClientRect().height : 0;  /* current height if mid-slide */
       if (slide) slide.cancel();
-      legend.open = true;
-      var to = opening ? legendList.scrollHeight : 0;
+      menu.open = true;
+      var to = opening ? list.scrollHeight : 0;
       shutting = !opening;
-      legendList.style.overflow = 'hidden';
-      slide = legendList.animate({ height: [from + 'px', to + 'px'] },
+      list.style.overflow = 'hidden';
+      slide = list.animate({ height: [from + 'px', to + 'px'] },
         { duration: 180, easing: opening ? 'cubic-bezier(.2,.7,.3,1)' : 'cubic-bezier(.4,0,.8,.3)', fill: 'forwards' });
       slide.onfinish = function () {
-        if (shutting) legend.open = false;
+        if (shutting) menu.open = false;
         slide.cancel(); slide = null; shutting = false;
-        legendList.style.overflow = '';
+        list.style.overflow = '';
       };
+    }
+    sum.addEventListener('click', function (e) {
+      if (calm.matches || !list.animate) return;   /* native instant toggle */
+      e.preventDefault();
+      toggle(!menu.open || shutting);
     });
+    return function (open) { if (open !== (menu.open && !shutting)) toggle(open); };
+  }
+  slidingMenu(document.querySelector('.map-legend'));
+
+  /* Phones: the Regions menu. One row per pill, in the same order; a row taps its pill, so it flies
+     exactly the same way, then the menu shuts. The region on screen is bold, kept in step with the pills. */
+  var regionMenu = document.querySelector('.map-menu');
+  if (regionMenu) {
+    var menuList = regionMenu.querySelector('ul'), setMenu = slidingMenu(regionMenu), rows = [];
+    Array.prototype.forEach.call(pills, function (b) {
+      var li = document.createElement('li'), btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = b.dataset.name || b.textContent.trim();
+      btn.addEventListener('click', function () { b.click(); setMenu(false); });
+      li.appendChild(btn); menuList.appendChild(li);
+      rows.push([b, btn]);
+    });
+    var syncMenu = function () {
+      rows.forEach(function (r) {
+        if (r[0].getAttribute('aria-pressed') === 'true') r[1].setAttribute('aria-current', 'true');
+        else r[1].removeAttribute('aria-current');
+      });
+    };
+    syncMenu();
+    if (window.MutationObserver) new MutationObserver(syncMenu).observe(row, { subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
   }
 });
 </script>
