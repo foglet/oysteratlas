@@ -731,13 +731,18 @@ document.addEventListener('DOMContentLoaded', function () {
     var searchWas = searchOpen();
     new MutationObserver(function () {
       var now = searchOpen();
-      if (now !== searchWas) { searchWas = now; quiet('search', now); }
+      if (now !== searchWas) {
+        searchWas = now; quiet('search', now);
+        if (now && typeof setPop === 'function') setPop(false);   // search and Regions are either/or: search opening shuts the menu
+      }
     }).observe(searchCard, { attributes: true, attributeFilter: ['class'] });
   }
 
   /* The folded-map button's Regions menu (phones and desktop). Tap the button: the lines run up into place one by one
      like kids forming a line, the "Regions" title first and then each row below it (OysterSearch.slideLines).
-     Shutting fades the whole menu down at once (180ms). A row taps its pill, so it flies exactly the same way, then the menu shuts.
+     Shutting eases the whole menu out at once (240ms, fading and drifting down, ease-out). Picking a row taps its pill,
+     so it flies exactly the same way, and the menu eases out: it never stays open after a pick.
+     Search and Regions are either/or: opening the menu shuts search down to its glass, and opening search shuts the menu.
      A tap anywhere else, or Escape, shuts it. No row is marked as picked: every open starts plain. */
   var pin = document.querySelector('.oa-pin'), pop = document.getElementById('oa-regions-pop');
   if (pin && pop) {
@@ -749,6 +754,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (open === isOpen()) return;
       pin.setAttribute('aria-expanded', open ? 'true' : 'false');
       quiet('regions', open);
+      if (open && search && search.minimize) search.minimize();   // either/or with search
       stopPop();
       pop.hidden = false;
       if (calm.matches || !pop.animate) { pop.hidden = !open; return; }
@@ -756,7 +762,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // The title first, then each row (shared with the oyster details: OysterSearch.slideLines)
         popAnims = OysterSearch.slideLines([pop.querySelector('.oa-regions-title')].concat(Array.prototype.slice.call(popList.children)));
       } else {
-        var a = pop.animate(POP_OUT, { duration: 180, easing: 'cubic-bezier(.4,0,1,1)', fill: 'forwards' });
+        var a = pop.animate(POP_OUT, { duration: 240, easing: 'cubic-bezier(0,0,.2,1)', fill: 'forwards' });   // ease-out
         popAnims = [a];
         a.onfinish = function () { popAnims = []; pop.hidden = true; a.cancel(); };
       }

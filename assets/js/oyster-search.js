@@ -600,7 +600,8 @@
     if (clearBtn) clearBtn.addEventListener('click', function () { reset(); input.focus(); });
 
     // ready: resolves to the oysters once loaded. show(oyster, instant): go to one, as a search pick does.
-    return { reset: reset, ready: itemsReady, show: show };
+    // minimize(): shut the search down to its magnifying glass (the Regions menu calls it when it opens).
+    return { reset: reset, ready: itemsReady, show: show, minimize: function () { minimize(); } };
   }
 
   // Lines arrive like kids running up and forming a line: each one runs in on its own from 18px below,
