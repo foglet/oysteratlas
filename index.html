@@ -64,11 +64,12 @@
     font: 700 1.12rem/1 var(--font);  /* ~17.9px: 2pt (2.67px) up from .95rem */
     letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
   }
-  /* .sky-text: the Regions and Oyster species titles, in the same blue.
+  /* .sky-text (above): the Regions and Oyster species titles, a solid version of this blue.
      The words take Fogday's "Selected Works" blue: the same left-to-right sky gradient
      (fogday.com --title-1 → --title-2). It sits on an inner span so the button keeps its frosted backdrop.
      Contrast on the navy: 4.3:1 and 5.3:1. Hover keeps the chartreuse accent. */
-  .title-text, .sky-text {
+  .sky-text { color: #4a90c8; }   /* solid: the title gradient's lighter end (5.3:1 on the navy) */
+  .title-text {
     background-image: linear-gradient(to right, #2f7fc1, #4a90c8);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
