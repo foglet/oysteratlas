@@ -603,16 +603,23 @@
     return { reset: reset, ready: itemsReady, show: show };
   }
 
-  // Lines ease in one by one: each fades in while drifting up just 4px (320ms, gentle ease-in-out), 45ms apart,
-  // top line first: the fixed-place line (the oyster's name, the "Regions" title) lands first, then the lines below it.
-  // No overshoot and only a small drift, so the lines arrive one at a time instead of unrolling as a strip.
+  // Lines arrive like kids running up and forming a line: each one runs in on its own from 18px below,
+  // slows into its spot and stops with a tiny skid (2px past, then back), 420ms each. They set off one after
+  // another, top line first: the fixed-place line (the oyster's name, the "Regions" title) lands first, then
+  // the lines below. Starts are 60ms apart, slightly uneven (±15ms) so it reads as separate runners, not one
+  // strip unrolling; long lists tighten the spacing so the whole line-up stays under about 0.8s.
   // Shared by the oyster details and the Regions menu (index.html), so the two move the same way.
   // Returns the animations (cancel them to stop). Caller handles reduced motion.
-  var LINE_IN = [{ opacity: 0, transform: 'translateY(4px)' }, { opacity: 1, transform: 'none' }];
-  var LINE_MS = 320, LINE_GAP = 45, LINE_EASE = 'cubic-bezier(.4,0,.2,1)';
+  var LINE_IN = [{ opacity: 0, transform: 'translateY(18px)', easing: 'cubic-bezier(.2,.7,.35,1)' },
+                 { opacity: 1, transform: 'translateY(-2px)', offset: .78, easing: 'ease-in-out' },  // a tiny skid past...
+                 { opacity: 1, transform: 'none' }];                                                    // ...and stop
+  var LINE_MS = 420, LINE_GAP = 60, LINE_JITTER = 15, LINE_SPREAD = 380;
   function slideLines(els) {
-    return Array.prototype.slice.call(els).map(function (el, i) {
-      return el.animate(LINE_IN, { duration: LINE_MS, delay: i * LINE_GAP, easing: LINE_EASE, fill: 'backwards' });
+    els = Array.prototype.slice.call(els);
+    var gap = els.length > 1 ? Math.min(LINE_GAP, LINE_SPREAD / (els.length - 1)) : 0, at = 0;
+    return els.map(function (el, i) {
+      if (i) at += gap + (Math.random() * 2 - 1) * Math.min(LINE_JITTER, gap / 3);
+      return el.animate(LINE_IN, { duration: LINE_MS, delay: Math.max(0, at), fill: 'backwards' });
     });
   }
 

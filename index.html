@@ -735,8 +735,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }).observe(searchCard, { attributes: true, attributeFilter: ['class'] });
   }
 
-  /* The folded-map button's Regions menu (phones and desktop). Tap the button: each line eases in on its own,
-     one after another, the "Regions" title first and then each row below it (320ms a line, 45ms apart).
+  /* The folded-map button's Regions menu (phones and desktop). Tap the button: the lines run up into place one by one
+     like kids forming a line, the "Regions" title first and then each row below it (OysterSearch.slideLines).
      Shutting fades the whole menu down at once (180ms). A row taps its pill, so it flies exactly the same way, then the menu shuts.
      A tap anywhere else, or Escape, shuts it. No row is marked as picked: every open starts plain. */
   var pin = document.querySelector('.oa-pin'), pop = document.getElementById('oa-regions-pop');
