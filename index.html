@@ -118,10 +118,19 @@
   /* Legend: starts collapsed; opens only when tapped. */
   .map-legend-panel { min-height: 0; overflow-y: auto; border-radius: 8px; }
   /* Picked oyster: its own card, shown only once one is chosen (from search or a tap on the map) */
-  .oa-detail-panel { flex: none; padding: 10px 14px; border-radius: 8px; }
+  /* No card and no border: each line (name, locale, region) gets its own background, only as wide as
+     that line's text (up to the column's 320px, then it wraps). Locale and region stay indented under the name. */
+  .oa-detail-panel { flex: none; align-self: flex-start; max-width: 100%; padding: 0; border: 0;
+                     background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .oa-detail-panel .oa-detail-name, .oa-detail-panel .oa-detail-locale, .oa-detail-panel .oa-detail-region {
+    width: fit-content; max-width: 100%; box-sizing: border-box; padding: 2px 8px; border-radius: 4px;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  }
+  .oa-detail-panel .oa-detail-locale, .oa-detail-panel .oa-detail-region { margin-left: 20px; margin-top: 2px; max-width: calc(100% - 20px); }
   .oa-detail-panel[hidden] { display: none; }
-  /* Legend and picked-oyster cards: border at 50% opacity, darker than the other panels */
-  .map-legend-panel, .oa-detail-panel { border-color: color-mix(in srgb, var(--line) 50%, transparent); }
+  /* Legend card: border at 50% opacity, darker than the other panels */
+  .map-legend-panel { border-color: color-mix(in srgb, var(--line) 50%, transparent); }
   /* Oyster species: just its title while shut (no border or background); the panel appears once it opens.
      It stays during the closing slide and fades out after, so the list never shows without its panel. */
   .map-legend-panel { transition: background-color .18s ease, border-color .18s ease; }
