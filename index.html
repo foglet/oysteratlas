@@ -64,10 +64,11 @@
     font: 700 1.12rem/1 var(--font);  /* ~17.9px: 2pt (2.67px) up from .95rem */
     letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
   }
-  /* The words take Fogday's "Selected Works" blue: the same left-to-right sky gradient
+  /* .sky-text: the Regions and Oyster species titles, in the same blue.
+     The words take Fogday's "Selected Works" blue: the same left-to-right sky gradient
      (fogday.com --title-1 → --title-2). It sits on an inner span so the button keeps its frosted backdrop.
      Contrast on the navy: 4.3:1 and 5.3:1. Hover keeps the chartreuse accent. */
-  .title-text {
+  .title-text, .sky-text {
     background-image: linear-gradient(to right, #2f7fc1, #4a90c8);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
@@ -264,7 +265,6 @@
   /* Beat Mapbox's light-gray hover on control buttons (it sticks after a tap on phones): only the line's own background shows */
   .mapboxgl-ctrl .oa-regions-pop li button:not(:disabled):hover { background-color: transparent; }
   .oa-regions-pop li button:focus-visible span { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .oa-regions-pop li button[aria-current="true"] { font-weight: 700; }   /* the region on screen */
 
   /* Touch screens (iPhone): 44-point tap targets, Apple's minimum */
   @media (pointer: coarse) {
@@ -319,7 +319,7 @@
 <div id="oa-detail-panel" class="oa-detail-panel" hidden></div>  <!-- the picked oyster; filled by oyster-search.js -->
 <div class="map-legend-panel">
 <details class="map-legend">
-  <summary>Oyster species</summary>
+  <summary><span class="sky-text">Oyster species</span></summary>
   <!-- One place to edit species: search reads names, Latin names and colors from these rows -->
   <ul>
     <li><span class="dot" style="--c:#7D12B3"></span><span class="sp-name">Belon</span><i>(Ostrea edulis)</i></li>
@@ -340,7 +340,7 @@
     <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg>
   </button>
   <div class="oa-regions-pop" id="oa-regions-pop" hidden>
-    <p class="oa-regions-title">Regions</p>
+    <p class="oa-regions-title"><span class="sky-text">Regions</span></p>
     <ul aria-label="Fly to a region"></ul>  <!-- filled from the pills -->
   </div>
 </div>
@@ -737,10 +737,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* The folded-map button's Regions menu (phones and desktop). Tap the button: the menu slides up and fades in to its left
      with a small bounce (340ms), and slides down / fades out faster (180ms). A row taps its pill, so it flies exactly the same way, then the menu shuts.
-     A tap anywhere else, or Escape, shuts it. The region on screen is bold, kept in step with the pills. */
+     A tap anywhere else, or Escape, shuts it. No row is marked as picked: every open starts plain. */
   var pin = document.querySelector('.oa-pin'), pop = document.getElementById('oa-regions-pop');
   if (pin && pop) {
-    var popList = pop.querySelector('ul'), popRows = [], popAnim = null;
+    var popList = pop.querySelector('ul'), popAnim = null;
     var isOpen = function () { return pin.getAttribute('aria-expanded') === 'true'; };
     var POP_IN = [{ opacity: 0, transform: 'translateY(14px)' },
                   { opacity: 1, transform: 'translateY(-3px)', offset: .65 },   // overshoot a hair...
@@ -766,16 +766,7 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.appendChild(label);
       btn.addEventListener('click', function () { b.click(); setPop(false); });
       li.appendChild(btn); popList.appendChild(li);
-      popRows.push([b, btn]);
     });
-    var syncPop = function () {
-      popRows.forEach(function (r) {
-        if (r[0].getAttribute('aria-pressed') === 'true') r[1].setAttribute('aria-current', 'true');
-        else r[1].removeAttribute('aria-current');
-      });
-    };
-    syncPop();
-    if (window.MutationObserver) new MutationObserver(syncPop).observe(row, { subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
     pin.addEventListener('click', function () { setPop(!isOpen()); });
     document.addEventListener('pointerdown', function (e) { if (isOpen() && !regionsCtrl.contains(e.target)) setPop(false); }, true);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) { setPop(false); pin.focus(); } });
