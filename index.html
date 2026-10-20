@@ -650,9 +650,26 @@ document.addEventListener('DOMContentLoaded', function () {
   if (pin && pop) {
     var popList = pop.querySelector('ul'), popRows = [], popAnim = null;
     var isOpen = function () { return pin.getAttribute('aria-expanded') === 'true'; };
+    /* While the menu is open, the map's oyster names fade out so they don't crowd it; they fade back in place
+       when it shuts (row picked, tap elsewhere, Escape, or the button). The map doesn't move, and the dots stay.
+       Labels = the style's symbol layers showing {marketName}; only their text opacity changes, so placement is kept. */
+    var labelOpacity = {};   // layer id → its original text-opacity (undefined = the default)
+    var hideLabels = function (hide) {
+      var layers = [];
+      try { layers = (map.getStyle() && map.getStyle().layers) || []; } catch (err) { return; }   // style not ready: the menu still opens
+      layers.forEach(function (l) {
+        if (l.type !== 'symbol' || !l.layout || JSON.stringify(l.layout['text-field'] || '').indexOf('{marketName}') < 0) return;
+        if (!(l.id in labelOpacity)) labelOpacity[l.id] = map.getPaintProperty(l.id, 'text-opacity');
+        try {
+          map.setPaintProperty(l.id, 'text-opacity-transition', { duration: calm.matches ? 0 : 200, delay: 0 });
+          map.setPaintProperty(l.id, 'text-opacity', hide ? 0 : labelOpacity[l.id]);
+        } catch (err) { /* leave this layer as it is */ }
+      });
+    };
     var setPop = function (open) {
       if (open === isOpen()) return;
       pin.setAttribute('aria-expanded', open ? 'true' : 'false');
+      hideLabels(open);
       if (popAnim) { popAnim.cancel(); popAnim = null; }
       pop.hidden = false;
       if (calm.matches || !pop.animate) { pop.hidden = !open; return; }
@@ -680,17 +697,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     syncPop();
     if (window.MutationObserver) new MutationObserver(syncPop).observe(row, { subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
-    /* Opening the menu zooms out to 7 if closer than that, so oyster names on the map don't crowd the menu.
-       Center and rotation stay put; already at 7 or farther out, the map doesn't move. */
-    var MENU_ZOOM = 7;
-    pin.addEventListener('click', function () {
-      var opening = !isOpen();
-      setPop(opening);
-      if (opening && map.getZoom() > MENU_ZOOM) {
-        if (calm.matches) map.jumpTo({ zoom: MENU_ZOOM });
-        else map.easeTo({ zoom: MENU_ZOOM, duration: 400 });
-      }
-    });
+    pin.addEventListener('click', function () { setPop(!isOpen()); });
     document.addEventListener('pointerdown', function (e) { if (isOpen() && !regionsCtrl.contains(e.target)) setPop(false); }, true);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) { setPop(false); pin.focus(); } });
   }
