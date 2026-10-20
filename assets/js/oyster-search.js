@@ -191,26 +191,64 @@
     });
   }
 
+  // The picked oyster's own name label, for oysters the style doesn't label (74 of them are missing from the
+  // Mapbox tileset, e.g. everything in oysterater.geojson). It copies the style's label layer (same font, size,
+  // color, offset), bolded, and shows only when no style label for that name is drawn on screen.
+  var HIT_LABEL_ID = 'oa-search-hit-label', hitTurn = 0;
+  function styleLabelLayers(map, nameKey) {
+    var layers = (map.getStyle() && map.getStyle().layers) || [];
+    return layers.filter(function (l) {
+      return l.type === 'symbol' && l.layout && JSON.stringify(l.layout['text-field'] || '').indexOf('{' + nameKey + '}') >= 0;
+    });
+  }
+  function addHitLabel(map, nameKey) {
+    if (map.getLayer(HIT_LABEL_ID)) return;
+    var model = styleLabelLayers(map, nameKey)[0];
+    var layout = Object.assign({}, model ? model.layout : {}), paint = Object.assign({}, model ? model.paint : {});
+    delete layout.visibility; delete layout['symbol-sort-key']; delete paint['text-opacity'];
+    layout['text-field'] = ['get', nameKey];
+    var fonts = layout['text-font'];
+    if (Array.isArray(fonts) && fonts.every(function (f) { return typeof f === 'string'; })) layout['text-font'] = boldFont(fonts);
+    layout['text-allow-overlap'] = true; layout['text-ignore-placement'] = true;   // the picked one always shows
+    map.addLayer({ id: HIT_LABEL_ID, type: 'symbol', source: HIT_ID, filter: ['==', ['get', 'fallback'], true],
+                   minzoom: model && model.minzoom || 0, layout: layout, paint: paint });
+  }
   function setHit(map, coord, color, name, nameKey) {
-    var data = {
-      type: 'FeatureCollection',
-      features: coord ? [{ type: 'Feature', geometry: { type: 'Point', coordinates: coord }, properties: { color: color } }] : []
-    };
-    function apply() {
-      setBoldLabel(map, nameKey || 'name', coord ? name : null);
+    nameKey = nameKey || 'name';
+    var turn = ++hitTurn;
+    function data(fallback) {
+      var props = { color: color, fallback: !!fallback };
+      props[nameKey] = name || '';
+      return { type: 'FeatureCollection',
+               features: coord ? [{ type: 'Feature', geometry: { type: 'Point', coordinates: coord }, properties: props }] : [] };
+    }
+    // Once the map settles, show our label only if the style drew none for this oyster.
+    function check() {
+      if (turn !== hitTurn || !coord) return;
+      var ids = styleLabelLayers(map, nameKey).map(function (l) { return l.id; });
+      var drawn = [];
+      try { drawn = ids.length ? map.queryRenderedFeatures({ layers: ids }) : []; } catch (err) { drawn = []; }
+      var has = drawn.some(function (f) { return f.properties && f.properties[nameKey] === name; });
       var src = map.getSource(HIT_ID);
-      if (src) { src.setData(data); return; }
-      if (!coord) return;
-      map.addSource(HIT_ID, { type: 'geojson', data: data });
-      map.addLayer({
-        id: HIT_ID, type: 'circle', source: HIT_ID,
-        paint: {
-          'circle-radius': DOT_RADIUS,      // never larger than the style's own dots
-          'circle-blur': DOT_BLUR,
-          'circle-opacity': 0.9,
-          'circle-color': ['get', 'color']   // species color fill only, no outline
-        }
-      }); // no beforeId → above every style layer, heatmap included
+      if (src) src.setData(data(!has));
+    }
+    function apply() {
+      setBoldLabel(map, nameKey, coord ? name : null);
+      var src = map.getSource(HIT_ID);
+      if (src) src.setData(data(false));
+      else if (coord) {
+        map.addSource(HIT_ID, { type: 'geojson', data: data(false) });
+        map.addLayer({
+          id: HIT_ID, type: 'circle', source: HIT_ID,
+          paint: {
+            'circle-radius': DOT_RADIUS,      // never larger than the style's own dots
+            'circle-blur': DOT_BLUR,
+            'circle-opacity': 0.9,
+            'circle-color': ['get', 'color']   // species color fill only, no outline
+          }
+        }); // no beforeId → above every style layer, heatmap included
+      }
+      if (coord && map.getSource(HIT_ID)) { addHitLabel(map, nameKey); map.once('idle', check); }
     }
     if (map.isStyleLoaded()) apply(); else map.once('idle', apply);
   }
@@ -257,7 +295,7 @@
           return { type: 'FeatureCollection', features: [].concat.apply([], ok.map(function (fc) { return fc.features || []; })) };
         });
 
-    ready.then(function (fc) {
+    var itemsReady = ready.then(function (fc) {
       items = (fc.features || []).map(function (f) {
         var p = f.properties || {};
         var name = p[o.nameKey];
@@ -268,7 +306,9 @@
                  places: placesOf(p, o.placeKeys) };
       }).filter(Boolean);
       if (input.value) render();
-    }).catch(function (err) {
+      return items;
+    });
+    itemsReady.catch(function (err) {
       input.disabled = true;
       setStatus('Search is unavailable right now.');
       if (global.console) console.error('OysterSearch: could not load oyster data', err);
@@ -339,20 +379,32 @@
     function pick(i, byKeyboard) {
       var h = shown[i];
       if (!h) return;
-      var it = h.item;
       setActive(i);
+      goTo(h.item, false);
+      minimize(byKeyboard);   // phones and desktop alike: tuck the list away so the map and details are in view
+    }
+
+    // Go to one oyster: its pin, its bolded name, then its card. Zoomed to at least flyZoom (10), where its
+    // name label shows. instant: jump there (page load); otherwise fly. Used by search picks and by the page.
+    function goTo(it, instant) {
       // Fly first, then fade the details in once the map lands, so the card doesn't ride along mid-flight.
       // Any older card fades away as the flight starts.
       clearDetail();
       var mine = ++landing;
       var land = function () { if (mine === landing) { landing++; showDetail(it); } };
-      fly({ center: it.coord, zoom: Math.max(map.getZoom(), o.flyZoom) });
+      var view = { center: it.coord, zoom: Math.max(instant ? 0 : map.getZoom(), o.flyZoom) };
+      if (instant) map.jumpTo(view); else fly(view);
       // Listen only after the flight starts: starting it can end an earlier flight, and that 'moveend'
       // isn't ours. Reduced motion jumps instantly, so the map is already still and we land right away.
       if (map.isMoving()) map.once('moveend', land); else land();
       setTimeout(land, 8000);   // backstop: show the card even if no 'moveend' ever arrives
       setHit(map, it.coord, it.color, it.name, o.nameKey);
-      minimize(byKeyboard);   // phones and desktop alike: tuck the list away so the map and details are in view
+    }
+    // The page's version: also clears any old search text, like a tap on an oyster does.
+    function show(it, instant) {
+      if (!it) return;
+      input.value = ''; active = -1; render();
+      goTo(it, instant);
     }
     var landing = 0;   // counts picks and taps; a flight shows its card only if nothing newer happened meanwhile
 
@@ -553,7 +605,8 @@
     });
     if (clearBtn) clearBtn.addEventListener('click', function () { reset(); input.focus(); });
 
-    return { reset: reset };
+    // ready: resolves to the oysters once loaded. show(oyster, instant): go to one, as a search pick does.
+    return { reset: reset, ready: itemsReady, show: show };
   }
 
   global.OysterSearch = { init: init, _search: search, _norm: norm, _placesOf: placesOf };
