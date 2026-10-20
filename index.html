@@ -232,21 +232,28 @@
   @media (hover: hover) { .mapboxgl-ctrl button.oa-pin:not(:disabled):hover { background-color: color-mix(in srgb, var(--ink) 8%, var(--panel)); } }
   .oa-pin[aria-expanded="true"] { color: var(--accent); }
   .oa-pin:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* Regions menu: no panel behind it. Like the picked-oyster lines, the title and each row get their own
+     background, only as wide as that line's text. The menu itself is as wide as its longest line. */
   .oa-regions-pop {
-    position: absolute; right: calc(100% + 8px); bottom: 0; min-width: 200px; padding: 0 0 12px; border-radius: 8px;
+    position: absolute; right: calc(100% + 8px); bottom: 0; padding: 0;
     max-height: calc(100vh - 160px - var(--sat) - var(--sab)); overflow-y: auto; overscroll-behavior: contain;
-    background: color-mix(in srgb, var(--bg) 80%, transparent);
-    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
     color: var(--ink); font: 400 1rem/1.4 var(--font); text-align: left;
   }
   .oa-regions-pop[hidden] { display: none; }
-  .oa-regions-title { margin: 0; padding: 10px 14px; font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
-  .oa-regions-pop ul { list-style: none; margin: 0; padding: 0 14px; display: grid; gap: 6px; font-size: .9rem; }
+  .oa-regions-title, .oa-regions-pop li button span {
+    display: block; width: fit-content; box-sizing: border-box; padding: 2px 8px; border-radius: 4px;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  }
+  .oa-regions-title { margin: 0; font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+  .oa-regions-pop ul { list-style: none; margin: 0; padding: 0; display: grid; justify-items: start; gap: 2px; font-size: .9rem; }
+  /* The row's button is the tap target; its span carries the background */
   .oa-regions-pop li button {
-    all: unset; box-sizing: border-box; display: flex; align-items: center; width: 100%; min-height: 28px; cursor: pointer; color: var(--ink); white-space: nowrap;
+    all: unset; box-sizing: border-box; display: flex; align-items: center; cursor: pointer; color: var(--ink); white-space: nowrap;
   }
   .oa-regions-pop li button:hover { color: var(--accent); }
-  .oa-regions-pop li button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .oa-regions-pop li button:focus-visible span { outline: 2px solid var(--accent); outline-offset: 2px; }
   .oa-regions-pop li button[aria-current="true"] { font-weight: 700; }   /* the region on screen */
   @media (min-width: 760px) { .mapboxgl-ctrl.oa-regions { display: none; } }
 
@@ -650,7 +657,9 @@ document.addEventListener('DOMContentLoaded', function () {
     Array.prototype.forEach.call(pills, function (b) {
       var li = document.createElement('li'), btn = document.createElement('button');
       btn.type = 'button';
-      btn.textContent = b.dataset.name || b.textContent.trim();
+      var label = document.createElement('span');   // carries the line's background, only as wide as the name
+      label.textContent = b.dataset.name || b.textContent.trim();
+      btn.appendChild(label);
       btn.addEventListener('click', function () { b.click(); setPop(false); });
       li.appendChild(btn); popList.appendChild(li);
       popRows.push([b, btn]);
