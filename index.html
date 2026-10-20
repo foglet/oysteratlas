@@ -245,7 +245,7 @@
   .oa-regions-pop {
     position: absolute; right: calc(100% + 8px); bottom: 0; padding: 0;
     max-height: calc(100vh - 160px - var(--sat) - var(--sab)); overflow-y: auto; overscroll-behavior: contain;
-    display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 0;  /* lines stacked flush */
     color: var(--ink); font: 400 1rem/1.4 var(--font); text-align: left;
   }
   .oa-regions-pop[hidden] { display: none; }
@@ -255,7 +255,7 @@
     -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   }
   .oa-regions-title { margin: 0; font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
-  .oa-regions-pop ul { list-style: none; margin: 0; padding: 0; display: grid; justify-items: start; gap: 2px; font-size: .9rem; }
+  .oa-regions-pop ul { list-style: none; margin: 0; padding: 0; display: grid; justify-items: start; gap: 0; font-size: .9rem; }
   /* The row's button is the tap target; its span carries the background */
   .oa-regions-pop li button {
     all: unset; box-sizing: border-box; display: flex; align-items: center; cursor: pointer; color: var(--ink); white-space: nowrap;
@@ -269,8 +269,6 @@
   /* Touch screens (iPhone): 44-point tap targets, Apple's minimum */
   @media (pointer: coarse) {
     .oa-pin { width: 44px; height: 44px; }   /* same as the glass and zoom */
-    .oa-regions-pop ul { gap: 0; }
-    .oa-regions-pop li button { min-height: 44px; }
     .map-places button { min-height: 44px; }
     .map-legend summary, .map-menu summary { min-height: 44px; display: flex; align-items: center; gap: .3em; }  /* gap keeps the space before + / – */
     .map-menu li button { min-height: 44px; }
@@ -737,13 +735,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }).observe(searchCard, { attributes: true, attributeFilter: ['class'] });
   }
 
-  /* The folded-map button's Regions menu (phones and desktop). Tap the button: the menu fades in to its left (250ms, soft ease-out)
-     and fades out faster (180ms). A row taps its pill, so it flies exactly the same way, then the menu shuts.
+  /* The folded-map button's Regions menu (phones and desktop). Tap the button: the menu slides up and fades in to its left
+     with a small bounce (340ms), and slides down / fades out faster (180ms). A row taps its pill, so it flies exactly the same way, then the menu shuts.
      A tap anywhere else, or Escape, shuts it. The region on screen is bold, kept in step with the pills. */
   var pin = document.querySelector('.oa-pin'), pop = document.getElementById('oa-regions-pop');
   if (pin && pop) {
     var popList = pop.querySelector('ul'), popRows = [], popAnim = null;
     var isOpen = function () { return pin.getAttribute('aria-expanded') === 'true'; };
+    var POP_IN = [{ opacity: 0, transform: 'translateY(14px)' },
+                  { opacity: 1, transform: 'translateY(-3px)', offset: .65 },   // overshoot a hair...
+                  { opacity: 1, transform: 'none' }];                            // ...and settle
+    var POP_OUT = [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(10px)' }];
     var setPop = function (open) {
       if (open === isOpen()) return;
       pin.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -751,9 +753,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (popAnim) { popAnim.cancel(); popAnim = null; }
       pop.hidden = false;
       if (calm.matches || !pop.animate) { pop.hidden = !open; return; }
-      var a = pop.animate([{ opacity: 0, transform: 'translateX(6px)' }, { opacity: 1, transform: 'none' }],
-        { duration: open ? 250 : 180, easing: open ? 'cubic-bezier(.16,1,.3,1)' : 'cubic-bezier(.4,0,1,1)',
-          direction: open ? 'normal' : 'reverse', fill: 'forwards' });
+      var a = pop.animate(open ? POP_IN : POP_OUT,
+        { duration: open ? 340 : 180, easing: open ? 'cubic-bezier(.2,.8,.3,1)' : 'cubic-bezier(.4,0,1,1)', fill: 'forwards' });
       popAnim = a;
       a.onfinish = function () { popAnim = null; if (!open) pop.hidden = true; a.cancel(); };
     };
