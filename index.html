@@ -267,6 +267,18 @@
   .mapboxgl-ctrl .oa-regions-pop li button:not(:disabled):hover { background-color: transparent; }
   .oa-regions-pop li button:focus-visible span { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+  /* Background toggle: the top of the bottom-right stack, just above the search glass, in the same .oa-pin format.
+     Tapping it switches the controls between the dark panels above (default) and outline mode: no background,
+     no border, just the icons, with a navy halo so they still read over the map. The open search bar keeps its panel. */
+  .oa-bgtoggle[hidden] { display: none; }
+  .oa-outline .mapboxgl-ctrl-group { background: transparent; border-color: transparent; }
+  .oa-outline .mapboxgl-ctrl-group button + button { border-top-color: transparent; }
+  .oa-outline .oa-pin { background: transparent; border-color: transparent; }
+  .oa-outline .mapboxgl-ctrl button.oa-pin:not(:disabled):hover { background-color: transparent; }
+  .oa-outline .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { background: transparent; border-color: transparent; }
+  .oa-outline .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { filter: url(#oa-ctrl-tint) drop-shadow(0 0 1.5px var(--bg)) drop-shadow(0 0 1.5px var(--bg)); }
+  .oa-outline .oa-pin svg, .oa-outline .oa-search.oa-collapsed .oa-field svg { filter: drop-shadow(0 0 1.5px var(--bg)) drop-shadow(0 0 1.5px var(--bg)); }
+
   /* Touch screens (iPhone): 44-point tap targets, Apple's minimum */
   @media (pointer: coarse) {
     .oa-pin { width: 44px; height: 44px; }   /* same as the glass and zoom */
@@ -346,6 +358,11 @@
     <ul aria-label="Fly to a region"></ul>  <!-- filled from the pills -->
   </div>
 </div>
+<div class="oa-bgtoggle" hidden>  <!-- top of the stack, above the search glass: dark panels ⇄ outlines only -->
+  <button type="button" class="oa-pin" aria-pressed="false" aria-label="Outline-only controls" title="Outline-only controls">
+    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 14L14 4M10 20L20 10"/></svg>
+  </button>
+</div>
 <div class="oa-search oa-collapsed" role="search" hidden>  <!-- starts closed: just the magnifying glass; tap it to open -->
   <div class="oa-field">
     <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -381,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function () {
     center: START.center, zoom: START.zoom, bearing: START.bearing || 0,
     customAttribution: '<a href="https://fogday.com/">© Fogday Studios</a> | <a href="https://www.instagram.com/fogfish/">@fogfish</a>'  /* our credit, in Mapbox's credit line */
   });
-  /* Bottom-right stack, top to bottom: search, folded map (Regions), zoom + compass.
+  /* Bottom-right stack, top to bottom: background toggle, search, folded map (Regions), zoom + compass.
      Mapbox stacks bottom-corner controls upward in the order added, so they're added bottom first. */
   map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');  /* zoom + compass */
   /* The folded-map button, added next so it stacks just above zoom. */
@@ -395,6 +412,25 @@ document.addEventListener('DOMContentLoaded', function () {
   map.addControl({
     onAdd: function () { searchCard.classList.add('mapboxgl-ctrl'); searchCard.hidden = false; return searchCard; },
     onRemove: function () { searchCard.remove(); }
+  }, 'bottom-right');
+  /* Background toggle, added after search so it sits on top of the stack. Switches every control between the
+     dark panels (default) and outlines only; the choice is remembered in this browser. */
+  var bgCtrl = document.querySelector('.oa-bgtoggle'), bgBtn = bgCtrl.querySelector('button'), mapEl = map.getContainer();
+  function setOutline(on) {
+    mapEl.classList.toggle('oa-outline', on);
+    bgBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+  var savedOutline = false;
+  try { savedOutline = localStorage.getItem('oa-controls') === 'outline'; } catch (e) {}
+  setOutline(savedOutline);
+  bgBtn.addEventListener('click', function () {
+    var on = !mapEl.classList.contains('oa-outline');
+    setOutline(on);
+    try { localStorage.setItem('oa-controls', on ? 'outline' : 'dark'); } catch (e) {}
+  });
+  map.addControl({
+    onAdd: function () { bgCtrl.classList.add('mapboxgl-ctrl'); bgCtrl.hidden = false; return bgCtrl; },
+    onRemove: function () { bgCtrl.remove(); }
   }, 'bottom-right');
 
   /* iPhone keyboard: it covers the bottom of the screen without resizing the page, which would hide the
@@ -744,7 +780,7 @@ document.addEventListener('DOMContentLoaded', function () {
      so it flies exactly the same way, and the menu eases out: it never stays open after a pick.
      Search and Regions are either/or: opening the menu shuts search down to its glass, and opening search shuts the menu.
      A tap anywhere else, or Escape, shuts it. No row is marked as picked: every open starts plain. */
-  var pin = document.querySelector('.oa-pin'), pop = document.getElementById('oa-regions-pop');
+  var pin = document.querySelector('.oa-regions .oa-pin'), pop = document.getElementById('oa-regions-pop');
   if (pin && pop) {
     var popList = pop.querySelector('ul'), popAnims = [];
     var isOpen = function () { return pin.getAttribute('aria-expanded') === 'true'; };
