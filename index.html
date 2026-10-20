@@ -652,13 +652,13 @@ document.addEventListener('DOMContentLoaded', function () {
   /* Quiet mode, shared by the Regions menu and search: while either is open, the map's oyster names fade out
      and the picked oyster's card eases away, so neither crowds the open panel. Both come back when it shuts.
      quiet(reason, on): the map stays quiet while any reason is on. The map doesn't move, and the dots stay. */
-  /* Labels = the style's symbol layers showing {marketName}; only their text opacity changes, so placement is kept. */
+  /* Labels = symbol layers showing marketName (the style's, plus the picked oyster's own); only their text opacity changes, so placement is kept. */
   var labelOpacity = {};   // layer id → its original text-opacity (undefined = the default)
   var hideLabels = function (hide) {
     var layers = [];
     try { layers = (map.getStyle() && map.getStyle().layers) || []; } catch (err) { return; }   // style not ready: nothing to hide
     layers.forEach(function (l) {
-      if (l.type !== 'symbol' || !l.layout || JSON.stringify(l.layout['text-field'] || '').indexOf('{marketName}') < 0) return;
+      if (l.type !== 'symbol' || !l.layout || JSON.stringify(l.layout['text-field'] || '').indexOf('marketName') < 0) return;   // style labels and the picked oyster's own label
       if (!(l.id in labelOpacity)) labelOpacity[l.id] = map.getPaintProperty(l.id, 'text-opacity');
       try {
         map.setPaintProperty(l.id, 'text-opacity-transition', { duration: calm.matches ? 0 : 200, delay: 0 });
