@@ -201,7 +201,7 @@
     border-radius: 8px; background: color-mix(in srgb, var(--bg) 80%, transparent);
     -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   }
-  .mapboxgl-ctrl.oa-search .oa-status { margin: 4px 0 0; padding: 6px 10px; }
+  .mapboxgl-ctrl.oa-search .oa-status { margin: 4px 0 0; padding: 6px 10px; align-self: flex-start; width: fit-content; max-width: 100%; box-sizing: border-box; }  /* only as wide as its text */
   .mapboxgl-ctrl.oa-search .oa-results { margin-top: 4px; padding: 4px; }
   .mapboxgl-ctrl.oa-search .oa-field { margin-left: auto; }
   .mapboxgl-ctrl.oa-search .oa-field:not(:focus-within) { border-color: color-mix(in srgb, var(--line) 50%, transparent); }  /* 50% like the legend; focus keeps its highlight */              /* bar hugs the right edge, over the zoom buttons */
@@ -278,7 +278,7 @@
     .mapboxgl-ctrl.oa-search .oa-field { height: 44px; }
     .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { width: 44px; height: 44px; }  /* glass stays the same width as zoom */
     .oa-input { font-size: 16px; }  /* under 16px, iPhone Safari zooms the whole page when the box is tapped */
-    .oa-result { height: 44px; }
+    .oa-result { min-height: 44px; }
     .oa-results { max-height: calc(5 * 44px); }
   }
 </style>
