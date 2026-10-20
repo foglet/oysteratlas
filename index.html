@@ -278,6 +278,7 @@
     .mapboxgl-ctrl.oa-search .oa-field { height: 44px; }
     .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { width: 44px; height: 44px; }  /* glass stays the same width as zoom */
     .oa-input { font-size: 16px; }  /* under 16px, iPhone Safari zooms the whole page when the box is tapped */
+    .mapboxgl-ctrl.oa-search:not(.oa-collapsed), .mapboxgl-ctrl.oa-search:not(.oa-collapsed) .oa-field { width: 290px; }  /* +20px so the 16px hint ("…Nova Scotia") isn't cut off */
     .oa-result { min-height: 44px; }
     .oa-results { max-height: calc(5 * 44px); }
   }
@@ -350,7 +351,7 @@
     <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
     <input id="oa-search-input" class="oa-input" type="search"
            role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="oa-search-results"
-           autocomplete="off" spellcheck="false" placeholder="E.g., Hog Island" aria-label="Search oysters by market name">
+           autocomplete="off" spellcheck="false" placeholder="E.g., Malagash, NS, or Nova Scotia" aria-label="Search oysters by market name">
   </div>
   <p id="oa-search-status" class="oa-status" aria-live="polite"></p>
   <ul id="oa-search-results" class="oa-results" role="listbox" aria-label="Matching oysters"></ul>
