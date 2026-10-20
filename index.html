@@ -680,9 +680,9 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     syncPop();
     if (window.MutationObserver) new MutationObserver(syncPop).observe(row, { subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
-    /* Opening the menu zooms out to 8 if closer than that, so oyster names on the map don't crowd the menu.
-       Center and rotation stay put; already at 8 or farther out, the map doesn't move. */
-    var MENU_ZOOM = 8;
+    /* Opening the menu zooms out to 7 if closer than that, so oyster names on the map don't crowd the menu.
+       Center and rotation stay put; already at 7 or farther out, the map doesn't move. */
+    var MENU_ZOOM = 7;
     pin.addEventListener('click', function () {
       var opening = !isOpen();
       setPop(opening);
