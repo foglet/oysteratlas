@@ -191,15 +191,21 @@
   /* Search: its own card at bottom right, at the top of the stack (above the folded-map button on phones, above zoom on desktop).
      It is added as a Mapbox control, so it always stays in that stack. Hidden until the map places it. */
   .oa-search[hidden] { display: none; }
+  /* Open: no card around the bar (no border, background or padding). The bar keeps its own look, and
+     the status line and results list each get the panels' frosted background so they stay readable over the map. */
   .mapboxgl-ctrl.oa-search {
-    width: 300px; max-width: calc(100vw - 20px); padding: 8px; border-radius: 8px;
-    background: color-mix(in srgb, var(--bg) 80%, transparent);
-    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-    color: var(--ink); border: 1px solid var(--line); font: 400 1rem/1.4 var(--font);
+    width: 270px; max-width: calc(100vw - 20px); padding: 0; border: 0; background: none;
+    color: var(--ink); font: 400 1rem/1.4 var(--font);
   }
+  .mapboxgl-ctrl.oa-search .oa-status, .mapboxgl-ctrl.oa-search .oa-results {
+    border-radius: 8px; background: color-mix(in srgb, var(--bg) 80%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  }
+  .mapboxgl-ctrl.oa-search .oa-status { margin: 4px 0 0; padding: 6px 10px; }
+  .mapboxgl-ctrl.oa-search .oa-results { margin-top: 4px; padding: 4px; }
   .mapboxgl-ctrl.oa-search .oa-field { margin-left: auto; }
   .mapboxgl-ctrl.oa-search .oa-field:not(:focus-within) { border-color: color-mix(in srgb, var(--line) 50%, transparent); }  /* 50% like the legend; focus keeps its highlight */              /* bar hugs the right edge, over the zoom buttons */
-  .mapboxgl-ctrl.oa-search.oa-collapsed { width: auto; max-width: min(300px, calc(100vw - 20px)); }
+  .mapboxgl-ctrl.oa-search.oa-collapsed { width: auto; max-width: min(270px, calc(100vw - 20px)); }
   /* Minimized: just the magnifying-glass button, no card around it */
   .mapboxgl-ctrl.oa-search.oa-collapsed { padding: 0; border: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
   /* Minimized glass: same size, corners and edges as the zoom buttons below it, so the two line up */
