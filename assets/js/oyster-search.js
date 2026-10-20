@@ -429,10 +429,14 @@
       render();
     }
 
-    input.addEventListener('input', function () { active = -1; clearDetail(); expand(); render(); });
+    // Opening or typing in search no longer clears the picked oyster's card: the page tucks it away while
+    // search is open and brings it back when search shuts (see quiet() in index.html). Only a card still
+    // waiting for its flight to land is dropped. A new pick, a tap on empty map, or Escape still clear it.
+    function holdDetail() { landing++; }
+    input.addEventListener('input', function () { active = -1; holdDetail(); expand(); render(); });
 
     // ----- details + minimizing -----
-    // The details clear only when the search box gets focus or on a tap elsewhere
+    // The details clear on a new pick or a tap elsewhere
     // (taps in the species legend don't count: they leave the picked oyster in place).
     // Dragging or pinching the map never counts as a tap, so it leaves them in place.
     // A tap outside the search also minimizes it (hides the list, drops the phone keyboard)
@@ -450,7 +454,7 @@
       if (shown.length) input.setAttribute('aria-expanded', 'true');
     }
     input.addEventListener('focus', function () {
-      clearDetail();
+      holdDetail();
       card.classList.remove('oa-collapsed');
       if (shown.length) input.setAttribute('aria-expanded', 'true');
     });
