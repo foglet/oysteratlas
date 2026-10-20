@@ -426,8 +426,8 @@
       var appearing = detailBox.hidden || leaving;
       detail.hidden = false;
       if (detailPanel) detailPanel.hidden = false;
-      if (appearing) slideDetail(true);   // card was hidden: slide it up
-      else swapDetail();                  // already up (switching oysters): the new text fades + zooms in
+      if (appearing) slideDetail(true);   // card was hidden: its lines slide in
+      else swapDetail();                  // already up (switching oysters): the new lines slide in
     }
     function clearDetail() {
       landing++;   // a card still waiting for its flight to land shouldn't appear after this
@@ -435,43 +435,37 @@
       slideDetail(false, function () { detail.hidden = true; detail.textContent = ''; if (detailPanel) detailPanel.hidden = true; });
     }
 
-    // The details card fades in like the ohlonesky.com menu overlay: 500ms, rising 16px (1rem),
-    // Tailwind's ease-out (cubic-bezier(0,0,.2,1)), no scale. It leaves faster (180ms, ease-in), the
-    // same speed as the search bar shrinking to its magnifying glass. Reduced-motion users get the instant show/hide.
-    var DETAIL_IN_MS = 500, DETAIL_OUT_MS = 180, SWAP_MS = 250;
-    var EASE_IN = 'cubic-bezier(.4,0,1,1)', EASE_OUT = 'cubic-bezier(0,0,.2,1)', SWAP_EASE = 'cubic-bezier(.16,1,.3,1)';
-    var detailBox = detailPanel || detail, detailAnim = null, leaving = false;
-    detailBox.style.transformOrigin = '0 100%';
+    // The details card's lines (name, place, region) slide in one by one, the same as the Regions menu's
+    // (slideLines, below): on first appearing and when switching oysters. It leaves as one piece, faster
+    // (180ms fade + 16px drop, ease-in), the same speed as the search bar shrinking to its magnifying glass.
+    // Reduced-motion users get the instant show/hide.
+    var DETAIL_OUT_MS = 180, EASE_IN = 'cubic-bezier(.4,0,1,1)';
+    var detailBox = detailPanel || detail, detailAnim = null, leaving = false, lineAnims = [];
     var still = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: true };
+    function stopLines() { lineAnims.forEach(function (a) { a.cancel(); }); lineAnims = []; }
+    function linesIn() {
+      stopLines();
+      if (still.matches || !detail.animate) return;
+      lineAnims = slideLines(detail.children);
+    }
     function slideDetail(show, done) {
       if (detailAnim) { detailAnim.cancel(); detailAnim = null; }
       leaving = !show;
+      if (show) { linesIn(); if (done) done(); return; }
+      stopLines();
       if (still.matches || !detailBox.animate) { leaving = false; if (done) done(); return; }
       var a = detailBox.animate(
-        [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }],
-        { duration: show ? DETAIL_IN_MS : DETAIL_OUT_MS, easing: show ? EASE_OUT : EASE_IN,
-          direction: show ? 'normal' : 'reverse', fill: 'forwards' });
+        [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(16px)' }],
+        { duration: DETAIL_OUT_MS, easing: EASE_IN, fill: 'forwards' });
       detailAnim = a;
       a.onfinish = function () {
         detailAnim = null; leaving = false;
         if (done) done();
-        a.cancel();   // drop the held frame once it's hidden (or fully shown)
+        a.cancel();   // drop the held frame once it's hidden
       };
     }
-
-    // Switching oysters while the card is up: the new details fade in from 97% size over 250ms
-    // with a soft ease-out, so the swap reads as a change instead of a reload. Animates the inner details
-    // (not the card), so it never fights slideDetail. A fast second tap restarts it. Reduced-motion users get the instant swap.
-    var swapAnim = null;
-    function swapDetail() {
-      if (still.matches || !detail.animate) return;
-      if (swapAnim) swapAnim.cancel();
-      var a = detail.animate(
-        [{ opacity: 0, transform: 'scale(.97)' }, { opacity: 1, transform: 'none' }],
-        { duration: SWAP_MS, easing: SWAP_EASE });
-      swapAnim = a;
-      a.onfinish = function () { if (swapAnim === a) swapAnim = null; };
-    }
+    // Switching oysters while the card is up: the new lines slide in the same way.
+    function swapDetail() { linesIn(); }
 
     function reset() {
       input.value = '';
@@ -609,5 +603,19 @@
     return { reset: reset, ready: itemsReady, show: show };
   }
 
-  global.OysterSearch = { init: init, _search: search, _norm: norm, _placesOf: placesOf };
+  // Lines slide in one by one: each rises 12px and fades in, overshoots ~2px and settles (380ms),
+  // 35ms apart, top line first: the fixed-place line (the oyster's name, the "Regions" title) lands first,
+  // then the lines below it. Shared by the oyster details and the Regions menu (index.html),
+  // so the two move the same way. Returns the animations (cancel them to stop). Caller handles reduced motion.
+  var LINE_IN = [{ opacity: 0, transform: 'translateY(12px)' },
+                 { opacity: 1, transform: 'translateY(-2px)', offset: .7 },   // overshoot a hair...
+                 { opacity: 1, transform: 'none' }];                           // ...and settle
+  var LINE_MS = 380, LINE_GAP = 35, LINE_EASE = 'cubic-bezier(.25,.8,.35,1)';
+  function slideLines(els) {
+    return Array.prototype.slice.call(els).map(function (el, i) {
+      return el.animate(LINE_IN, { duration: LINE_MS, delay: i * LINE_GAP, easing: LINE_EASE, fill: 'backwards' });
+    });
+  }
+
+  global.OysterSearch = { init: init, slideLines: slideLines, _search: search, _norm: norm, _placesOf: placesOf };
 })(window);
