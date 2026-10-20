@@ -278,6 +278,11 @@
   .oa-outline .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { background: transparent; border-color: transparent; }
   .oa-outline .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { filter: url(#oa-ctrl-tint) drop-shadow(0 0 1.5px var(--bg)) drop-shadow(0 0 1.5px var(--bg)); }
   .oa-outline .oa-pin svg, .oa-outline .oa-search.oa-collapsed .oa-field svg { filter: drop-shadow(0 0 1.5px var(--bg)) drop-shadow(0 0 1.5px var(--bg)); }
+  /* Outline icons 2px bigger than the dark ones. Ours: 18 → 20px. Mapbox's: its plus is 12/29 of the icon box,
+     so the box grows 29 → 34px (42 → 47px on touch) to add 2px to the glyph. */
+  .oa-outline .oa-pin svg, .oa-outline .oa-search.oa-collapsed .oa-field svg { width: 20px; height: 20px; }
+  .oa-outline .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { background-size: 34px 34px; }
+  @media (pointer: coarse) { .oa-outline .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { background-size: 47px 47px; } }
 
   /* Touch screens (iPhone): 44-point tap targets, Apple's minimum */
   @media (pointer: coarse) {
