@@ -278,6 +278,7 @@
     .mapboxgl-ctrl.oa-search .oa-field { height: 44px; }
     .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { width: 44px; height: 44px; }  /* glass stays the same width as zoom */
     .oa-input { font-size: 16px; }  /* under 16px, iPhone Safari zooms the whole page when the box is tapped */
+    .mapboxgl-ctrl.oa-search:not(.oa-collapsed), .mapboxgl-ctrl.oa-search:not(.oa-collapsed) .oa-field { width: 290px; }  /* +20px so the 16px hint ("…Nova Scotia") isn't cut off */
     .oa-result { min-height: 44px; }
     .oa-results { max-height: calc(5 * 44px); }
   }
