@@ -224,8 +224,8 @@
   .mapboxgl-map .mapboxgl-ctrl-group button:not(:disabled):hover { background-color: color-mix(in srgb, var(--ink) 8%, transparent); }
   .mapboxgl-map .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { filter: url(#oa-ctrl-tint); }  /* Mapbox's icons → the glass's muted color (filter below the map div) */
 
-  /* Phones: a folded-map button between the search glass and zoom, in the glass's format. Tapping it opens the
-     Regions menu to its left (rows made from the pills, script below). Desktop keeps the pill row. */
+  /* A folded-map button between the search glass and zoom (phones and desktop), in the glass's format. Tapping it opens the
+     Regions menu to its left (rows made from the pills, script below). Desktop also keeps the pill row. */
   .oa-regions[hidden] { display: none; }
   .mapboxgl-ctrl.oa-regions { position: relative; }
   .oa-pin {
@@ -263,7 +263,6 @@
   .mapboxgl-ctrl .oa-regions-pop li button:not(:disabled):hover { background-color: transparent; }
   .oa-regions-pop li button:focus-visible span { outline: 2px solid var(--accent); outline-offset: 2px; }
   .oa-regions-pop li button[aria-current="true"] { font-weight: 700; }   /* the region on screen */
-  @media (min-width: 760px) { .mapboxgl-ctrl.oa-regions { display: none; } }
 
   /* Touch screens (iPhone): 44-point tap targets, Apple's minimum */
   @media (pointer: coarse) {
@@ -336,7 +335,7 @@
 </div>
 
 <!-- Regions button and search: moved into the map's bottom-right corner by the script below -->
-<div class="oa-regions" hidden>  <!-- phones: folded-map button between the search glass and zoom; tap it for the Regions menu -->
+<div class="oa-regions" hidden>  <!-- folded-map button between the search glass and zoom; tap it for the Regions menu -->
   <button type="button" class="oa-pin" aria-expanded="false" aria-controls="oa-regions-pop" aria-label="Regions" title="Regions">
     <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg>
   </button>
@@ -390,16 +389,16 @@ document.addEventListener('DOMContentLoaded', function () {
     center: START.center, zoom: START.zoom, bearing: START.bearing || 0,
     customAttribution: '<a href="https://fogday.com/">© Fogday Studios</a> | <a href="https://www.instagram.com/fogfish/">@fogfish</a>'  /* our credit, in Mapbox's credit line */
   });
-  /* Bottom-right stack, top to bottom: search, folded map (Regions, phones only), zoom + compass.
+  /* Bottom-right stack, top to bottom: search, folded map (Regions), zoom + compass.
      Mapbox stacks bottom-corner controls upward in the order added, so they're added bottom first. */
   map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');  /* zoom + compass */
-  /* Phones: the folded-map button, added next so it stacks just above zoom. */
+  /* The folded-map button, added next so it stacks just above zoom. */
   var regionsCtrl = document.querySelector('.oa-regions');
   map.addControl({
     onAdd: function () { regionsCtrl.classList.add('mapboxgl-ctrl'); regionsCtrl.hidden = false; return regionsCtrl; },
     onRemove: function () { regionsCtrl.remove(); }
   }, 'bottom-right');
-  /* Search card, added last so it sits on top, above the folded map (above zoom on desktop, where that button is hidden). */
+  /* Search card, added last so it sits on top, above the folded map. */
   var searchCard = document.querySelector('.oa-search');
   map.addControl({
     onAdd: function () { searchCard.classList.add('mapboxgl-ctrl'); searchCard.hidden = false; return searchCard; },
@@ -643,51 +642,68 @@ document.addEventListener('DOMContentLoaded', function () {
     if (window.MutationObserver) new MutationObserver(syncMenu).observe(row, { subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
   }
 
-  /* Phones: the folded-map button's Regions menu. Tap the button: the menu fades in to its left (250ms, soft ease-out)
+  /* Quiet mode, shared by the Regions menu and search: while either is open, the map's oyster names fade out
+     and the picked oyster's card eases away, so neither crowds the open panel. Both come back when it shuts.
+     quiet(reason, on): the map stays quiet while any reason is on. The map doesn't move, and the dots stay. */
+  /* Labels = the style's symbol layers showing {marketName}; only their text opacity changes, so placement is kept. */
+  var labelOpacity = {};   // layer id → its original text-opacity (undefined = the default)
+  var hideLabels = function (hide) {
+    var layers = [];
+    try { layers = (map.getStyle() && map.getStyle().layers) || []; } catch (err) { return; }   // style not ready: nothing to hide
+    layers.forEach(function (l) {
+      if (l.type !== 'symbol' || !l.layout || JSON.stringify(l.layout['text-field'] || '').indexOf('{marketName}') < 0) return;
+      if (!(l.id in labelOpacity)) labelOpacity[l.id] = map.getPaintProperty(l.id, 'text-opacity');
+      try {
+        map.setPaintProperty(l.id, 'text-opacity-transition', { duration: calm.matches ? 0 : 200, delay: 0 });
+        map.setPaintProperty(l.id, 'text-opacity', hide ? 0 : labelOpacity[l.id]);
+      } catch (err) { /* leave this layer as it is */ }
+    });
+  };
+  /* The picked oyster's card eases out (the same 180ms fade and 16px drop it uses when dismissed)
+     and comes back with its usual 500ms rise. Its content is left alone. */
+  var detailCard = document.getElementById('oa-detail-panel'), tuckAnim = null, tucked = false;
+  var tuckDetail = function (tuck) {
+    if (!detailCard || tuck === tucked) return;
+    if (tuck && detailCard.hidden) return;   // no oyster picked: nothing to tuck
+    tucked = tuck;
+    if (tuckAnim) { tuckAnim.cancel(); tuckAnim = null; }
+    detailCard.style.pointerEvents = tuck ? 'none' : '';
+    if (calm.matches || !detailCard.animate) { detailCard.style.visibility = tuck ? 'hidden' : ''; return; }
+    detailCard.style.visibility = '';
+    var a = detailCard.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(16px)' }],
+      { duration: tuck ? 180 : 500, easing: tuck ? 'cubic-bezier(.4,0,1,1)' : 'cubic-bezier(0,0,.2,1)',
+        direction: tuck ? 'normal' : 'reverse', fill: 'forwards' });
+    tuckAnim = a;
+    if (!tuck) a.onfinish = function () { if (tuckAnim === a) tuckAnim = null; a.cancel(); };   // fully back: drop the held frame
+  };
+  var quietFor = {};
+  var quiet = function (reason, on) {
+    quietFor[reason] = !!on;
+    var any = Object.keys(quietFor).some(function (k) { return quietFor[k]; });
+    hideLabels(any);
+    tuckDetail(any);
+  };
+  /* Search is open whenever its card isn't collapsed to the magnifying glass */
+  if (window.MutationObserver) {
+    var searchOpen = function () { return !searchCard.classList.contains('oa-collapsed'); };
+    var searchWas = searchOpen();
+    new MutationObserver(function () {
+      var now = searchOpen();
+      if (now !== searchWas) { searchWas = now; quiet('search', now); }
+    }).observe(searchCard, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  /* The folded-map button's Regions menu (phones and desktop). Tap the button: the menu fades in to its left (250ms, soft ease-out)
      and fades out faster (180ms). A row taps its pill, so it flies exactly the same way, then the menu shuts.
      A tap anywhere else, or Escape, shuts it. The region on screen is bold, kept in step with the pills. */
   var pin = document.querySelector('.oa-pin'), pop = document.getElementById('oa-regions-pop');
   if (pin && pop) {
     var popList = pop.querySelector('ul'), popRows = [], popAnim = null;
     var isOpen = function () { return pin.getAttribute('aria-expanded') === 'true'; };
-    /* While the menu is open, the map's oyster names fade out so they don't crowd it; they fade back in place
-       when it shuts (row picked, tap elsewhere, Escape, or the button). The map doesn't move, and the dots stay.
-       Labels = the style's symbol layers showing {marketName}; only their text opacity changes, so placement is kept. */
-    var labelOpacity = {};   // layer id → its original text-opacity (undefined = the default)
-    var hideLabels = function (hide) {
-      var layers = [];
-      try { layers = (map.getStyle() && map.getStyle().layers) || []; } catch (err) { return; }   // style not ready: the menu still opens
-      layers.forEach(function (l) {
-        if (l.type !== 'symbol' || !l.layout || JSON.stringify(l.layout['text-field'] || '').indexOf('{marketName}') < 0) return;
-        if (!(l.id in labelOpacity)) labelOpacity[l.id] = map.getPaintProperty(l.id, 'text-opacity');
-        try {
-          map.setPaintProperty(l.id, 'text-opacity-transition', { duration: calm.matches ? 0 : 200, delay: 0 });
-          map.setPaintProperty(l.id, 'text-opacity', hide ? 0 : labelOpacity[l.id]);
-        } catch (err) { /* leave this layer as it is */ }
-      });
-    };
-    /* The picked oyster's card also eases out while the menu is open (the same 180ms fade and 16px drop it uses
-       when dismissed) and comes back when the menu shuts (its usual 500ms rise). Its content is left alone. */
-    var detailCard = document.getElementById('oa-detail-panel'), tuckAnim = null, tucked = false;
-    var tuckDetail = function (tuck) {
-      if (!detailCard || tuck === tucked) return;
-      if (tuck && detailCard.hidden) return;   // no oyster picked: nothing to tuck
-      tucked = tuck;
-      if (tuckAnim) { tuckAnim.cancel(); tuckAnim = null; }
-      detailCard.style.pointerEvents = tuck ? 'none' : '';
-      if (calm.matches || !detailCard.animate) { detailCard.style.visibility = tuck ? 'hidden' : ''; return; }
-      detailCard.style.visibility = '';
-      var a = detailCard.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(16px)' }],
-        { duration: tuck ? 180 : 500, easing: tuck ? 'cubic-bezier(.4,0,1,1)' : 'cubic-bezier(0,0,.2,1)',
-          direction: tuck ? 'normal' : 'reverse', fill: 'forwards' });
-      tuckAnim = a;
-      if (!tuck) a.onfinish = function () { if (tuckAnim === a) tuckAnim = null; a.cancel(); };   // fully back: drop the held frame
-    };
     var setPop = function (open) {
       if (open === isOpen()) return;
       pin.setAttribute('aria-expanded', open ? 'true' : 'false');
-      hideLabels(open);
-      tuckDetail(open);
+      quiet('regions', open);
       if (popAnim) { popAnim.cancel(); popAnim = null; }
       pop.hidden = false;
       if (calm.matches || !pop.animate) { pop.hidden = !open; return; }
