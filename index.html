@@ -227,6 +227,19 @@
   .mapboxgl-map .mapboxgl-ctrl-group button + button { border-top: 1px solid color-mix(in srgb, var(--line) 50%, transparent); }
   .mapboxgl-map .mapboxgl-ctrl-group button:not(:disabled):hover { background-color: color-mix(in srgb, var(--ink) 8%, transparent); }
   .mapboxgl-map .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { filter: url(#oa-ctrl-tint); }  /* Mapbox's icons → the glass's muted color (filter below the map div) */
+  /* Thin zoom + compass: Mapbox's own icons are filled shapes (~3px bars) that read bold next to our 2px-stroke icons.
+     These are stroked redraws on the same 24-unit grid, shown at the same 18px, so every line is the same 1.5px.
+     Drawn dark (#333) and light (#ccc) like Mapbox's, so the tint filter above recolors them the same way. */
+  .mapboxgl-map .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { background-size: 18px 18px; }
+  .mapboxgl-map .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-in .mapboxgl-ctrl-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 4v16M4 12h16'/%3E%3C/svg%3E");
+  }
+  .mapboxgl-map .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-out .mapboxgl-ctrl-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 12h16'/%3E%3C/svg%3E");
+  }
+  .mapboxgl-map .mapboxgl-ctrl button.mapboxgl-ctrl-compass .mapboxgl-ctrl-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M7 11L12 2.5L17 11Z' stroke='%23333'/%3E%3Cpath d='M7 13L12 21.5L17 13Z' stroke='%23ccc'/%3E%3C/svg%3E");
+  }
 
   /* A folded-map button between the search glass and zoom (phones and desktop), in the glass's format. Tapping it opens the
      Regions menu to its left (rows made from the hidden pills, script below). */
@@ -278,11 +291,9 @@
   .oa-outline .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { background: transparent; border-color: transparent; }
   .oa-outline .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { filter: url(#oa-ctrl-tint) drop-shadow(0 0 1.5px var(--bg)) drop-shadow(0 0 1.5px var(--bg)); }
   .oa-outline .oa-pin svg, .oa-outline .oa-search.oa-collapsed .oa-field svg { filter: drop-shadow(0 0 1.5px var(--bg)) drop-shadow(0 0 1.5px var(--bg)); }
-  /* Outline icons 2px bigger than the dark ones. Ours: 18 → 20px. Mapbox's: its plus is 12/29 of the icon box,
-     so the box grows 29 → 34px (42 → 47px on touch) to add 2px to the glyph. */
+  /* Outline icons 2px bigger than the dark ones: 18 → 20px, ours and Mapbox's alike (same 24-unit drawings, see above). */
   .oa-outline .oa-pin svg, .oa-outline .oa-search.oa-collapsed .oa-field svg { width: 20px; height: 20px; }
-  .oa-outline .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { background-size: 34px 34px; }
-  @media (pointer: coarse) { .oa-outline .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { background-size: 47px 47px; } }
+  .oa-outline .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { background-size: 20px 20px; }
 
   /* Touch screens (iPhone): 44-point tap targets, Apple's minimum */
   @media (pointer: coarse) {
