@@ -295,7 +295,7 @@
 </svg>
 
 <div class="top">
-  <h1 style="margin:0"><button type="button" class="title" data-home title="Back to the overview"><span class="title-text">The Oyster Atlas</span></button></h1>
+  <h1 style="margin:0"><button type="button" class="title" data-home title="Go to another oyster"><span class="title-text">The Oyster Atlas</span></button></h1>
   <div class="map-places-wrap">
     <nav class="map-places" aria-label="Fly to a region">
       <!-- name · center [longitude, latitude] · zoom · bearing (map rotation, degrees) · optional speed/curve (default 1 / 1) — same as the original site -->
@@ -362,27 +362,17 @@ document.addEventListener('DOMContentLoaded', function () {
   var HOME = { center: [-123.05, 49], zoom: 4, bearing: 0, speed: 3, curve: 1 };  /* opening view: Salish Sea; quick flight home */
   var FLY = { speed: 1.8, curve: 1, easing: function (t) { return t; } };  /* default: steady (linear) glide, 1.8x the original site's speed (was 1) */
 
-  /* Each load opens on a random region pill (never the same one twice in a row in this tab);
-     the title button still flies back to HOME. Falls back to HOME if the pills are missing. */
-  var SKIP_START = ['France'];  /* regions never used as the opening view (their pills still work) */
-  var startPills = Array.prototype.filter.call(document.querySelectorAll('.map-places button[data-center]'),
-    function (b) { return SKIP_START.indexOf(b.dataset.name) < 0; }), startPill = null, START = HOME;
+  /* Each load opens on a random oyster, zoomed in to where its name shows (never the same one twice in a row
+     in this tab); clicking the title goes to another one. Chosen once the oyster data loads (see pickOyster below).
+     Until then, and if the data can't load, the map shows HOME. */
+  var SKIP_START = ['france'];  /* places never used as the opening oyster (they're still on the map and in search) */
+  var START = HOME;
 
   /* Areas you can link to by name (oysteratlas.com/#gulf-of-maine): the map fits the area's GeoJSON outline.
      A link like that opens there instead of on a random region. */
   var SHAPES = { 'gulf-of-maine': 'assets/data/regions/GOM_watershed_us-26919-84-50per.json' };
   function shapeKey() { var k = decodeURIComponent(location.hash.slice(1)).toLowerCase(); return SHAPES[k] ? k : null; }
   var linkedShape = shapeKey();
-
-  if (startPills.length && !linkedShape) {
-    var last = null;
-    try { last = sessionStorage.getItem('oa-start'); } catch (e) {}
-    var pool = Array.prototype.filter.call(startPills, function (b) { return b.dataset.name !== last; });
-    if (!pool.length) pool = Array.prototype.slice.call(startPills);
-    startPill = pool[Math.floor(Math.random() * pool.length)];
-    try { sessionStorage.setItem('oa-start', startPill.dataset.name); } catch (e) {}
-    START = { center: JSON.parse(startPill.dataset.center), zoom: +startPill.dataset.zoom, bearing: +startPill.dataset.bearing || 0 };
-  }
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiZm9nZmlzaCIsImEiOiJOeXZlMF9FIn0.I3vP7TOUVxyKTaW27p_IqA';
   var map = new mapboxgl.Map({
@@ -444,11 +434,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Search by market name. Adds its own pin layer on top; the style's heatmap and labels are left alone.
      Point url at the oyster GeoJSON; set nameKey / speciesKey if its properties are named differently. */
-  OysterSearch.init({ map: map, url: ['assets/data/oysters.geojson', 'assets/data/oysterater.geojson'], nameKey: 'marketName', speciesKey: 'species',
+  var search = OysterSearch.init({ map: map, url: ['assets/data/oysters.geojson', 'assets/data/oysterater.geojson'], nameKey: 'marketName', speciesKey: 'species',
     fly: function (v) {
       Array.prototype.forEach.call(pills, function (x) { x.removeAttribute('aria-pressed'); });  // a search pick drops the region highlight
       go(v);
     } });
+
+  /* A random oyster, never the last one shown in this tab (and not in SKIP_START). */
+  function pickOyster(all) {
+    var last = null;
+    try { last = sessionStorage.getItem('oa-oyster'); } catch (e) {}
+    var pool = all.filter(function (it) {
+      return it.name !== last && !(it.places || []).some(function (p) { return SKIP_START.indexOf(p) >= 0; });
+    });
+    if (!pool.length) pool = all;
+    var it = pool[Math.floor(Math.random() * pool.length)];
+    try { sessionStorage.setItem('oa-oyster', it.name); } catch (e) {}
+    return it;
+  }
+  var oysters = [], movesAtLoad = moveTurn;
+  search.ready.then(function (all) {
+    oysters = all || [];
+    if (!oysters.length || linkedShape) return;   // a #gulf-of-maine style link opens on its area instead
+    if (moveTurn !== movesAtLoad) return;         // someone already picked a region while the data loaded: leave them there
+    search.show(pickOyster(oysters), true);       // load: jump straight there, card and all
+  }).catch(function () {});
 
   /* Region pills */
   var row = document.querySelector('.map-places');
@@ -473,11 +483,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var to = row.scrollLeft;
     if (left < to) to = left; else if (right > to) to = right;
     if (to !== row.scrollLeft) row.scrollTo({ left: to, behavior: instant || calm.matches ? 'auto' : 'smooth' });
-  }
-  /* Highlight the region this load opened on, and slide its pill into view (no animation on load) */
-  if (startPill) {
-    startPill.setAttribute('aria-pressed', 'true');
-    reveal(startPill, true);
   }
 
   /* Fit an area's outline on screen (its pill or its link), clear of the pill row (top) and the search card
@@ -541,11 +546,11 @@ document.addEventListener('DOMContentLoaded', function () {
   if (linkedShape) fitShape(linkedShape, true);
   window.addEventListener('hashchange', function () { var k = shapeKey(); if (k) fitShape(k, false); });
 
-  /* Title: back to the overview */
+  /* Title: fly to another random oyster, as on load (the overview if the oyster data didn't load) */
   document.querySelector('[data-home]').addEventListener('click', function () {
     Array.prototype.forEach.call(pills, function (x) { x.removeAttribute('aria-pressed'); });
     row.scrollTo({ left: 0, behavior: calm.matches ? 'auto' : 'smooth' });
-    go(HOME);
+    if (oysters.length) search.show(pickOyster(oysters), false); else go(HOME);
   });
 
   /* Edge fades: only the side with more regions past it */

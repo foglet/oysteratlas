@@ -257,7 +257,7 @@
           return { type: 'FeatureCollection', features: [].concat.apply([], ok.map(function (fc) { return fc.features || []; })) };
         });
 
-    ready.then(function (fc) {
+    var itemsReady = ready.then(function (fc) {
       items = (fc.features || []).map(function (f) {
         var p = f.properties || {};
         var name = p[o.nameKey];
@@ -268,7 +268,9 @@
                  places: placesOf(p, o.placeKeys) };
       }).filter(Boolean);
       if (input.value) render();
-    }).catch(function (err) {
+      return items;
+    });
+    itemsReady.catch(function (err) {
       input.disabled = true;
       setStatus('Search is unavailable right now.');
       if (global.console) console.error('OysterSearch: could not load oyster data', err);
@@ -339,20 +341,32 @@
     function pick(i, byKeyboard) {
       var h = shown[i];
       if (!h) return;
-      var it = h.item;
       setActive(i);
+      goTo(h.item, false);
+      minimize(byKeyboard);   // phones and desktop alike: tuck the list away so the map and details are in view
+    }
+
+    // Go to one oyster: its pin, its bolded name, then its card. Zoomed to at least flyZoom (10), where its
+    // name label shows. instant: jump there (page load); otherwise fly. Used by search picks and by the page.
+    function goTo(it, instant) {
       // Fly first, then fade the details in once the map lands, so the card doesn't ride along mid-flight.
       // Any older card fades away as the flight starts.
       clearDetail();
       var mine = ++landing;
       var land = function () { if (mine === landing) { landing++; showDetail(it); } };
-      fly({ center: it.coord, zoom: Math.max(map.getZoom(), o.flyZoom) });
+      var view = { center: it.coord, zoom: Math.max(instant ? 0 : map.getZoom(), o.flyZoom) };
+      if (instant) map.jumpTo(view); else fly(view);
       // Listen only after the flight starts: starting it can end an earlier flight, and that 'moveend'
       // isn't ours. Reduced motion jumps instantly, so the map is already still and we land right away.
       if (map.isMoving()) map.once('moveend', land); else land();
       setTimeout(land, 8000);   // backstop: show the card even if no 'moveend' ever arrives
       setHit(map, it.coord, it.color, it.name, o.nameKey);
-      minimize(byKeyboard);   // phones and desktop alike: tuck the list away so the map and details are in view
+    }
+    // The page's version: also clears any old search text, like a tap on an oyster does.
+    function show(it, instant) {
+      if (!it) return;
+      input.value = ''; active = -1; render();
+      goTo(it, instant);
     }
     var landing = 0;   // counts picks and taps; a flight shows its card only if nothing newer happened meanwhile
 
@@ -553,7 +567,8 @@
     });
     if (clearBtn) clearBtn.addEventListener('click', function () { reset(); input.focus(); });
 
-    return { reset: reset };
+    // ready: resolves to the oysters once loaded. show(oyster, instant): go to one, as a search pick does.
+    return { reset: reset, ready: itemsReady, show: show };
   }
 
   global.OysterSearch = { init: init, _search: search, _norm: norm, _placesOf: placesOf };
