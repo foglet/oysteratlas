@@ -666,10 +666,28 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch (err) { /* leave this layer as it is */ }
       });
     };
+    /* The picked oyster's card also eases out while the menu is open (the same 180ms fade and 16px drop it uses
+       when dismissed) and comes back when the menu shuts (its usual 500ms rise). Its content is left alone. */
+    var detailCard = document.getElementById('oa-detail-panel'), tuckAnim = null, tucked = false;
+    var tuckDetail = function (tuck) {
+      if (!detailCard || tuck === tucked) return;
+      if (tuck && detailCard.hidden) return;   // no oyster picked: nothing to tuck
+      tucked = tuck;
+      if (tuckAnim) { tuckAnim.cancel(); tuckAnim = null; }
+      detailCard.style.pointerEvents = tuck ? 'none' : '';
+      if (calm.matches || !detailCard.animate) { detailCard.style.visibility = tuck ? 'hidden' : ''; return; }
+      detailCard.style.visibility = '';
+      var a = detailCard.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(16px)' }],
+        { duration: tuck ? 180 : 500, easing: tuck ? 'cubic-bezier(.4,0,1,1)' : 'cubic-bezier(0,0,.2,1)',
+          direction: tuck ? 'normal' : 'reverse', fill: 'forwards' });
+      tuckAnim = a;
+      if (!tuck) a.onfinish = function () { if (tuckAnim === a) tuckAnim = null; a.cancel(); };   // fully back: drop the held frame
+    };
     var setPop = function (open) {
       if (open === isOpen()) return;
       pin.setAttribute('aria-expanded', open ? 'true' : 'false');
       hideLabels(open);
+      tuckDetail(open);
       if (popAnim) { popAnim.cancel(); popAnim = null; }
       pop.hidden = false;
       if (calm.matches || !pop.animate) { pop.hidden = !open; return; }
