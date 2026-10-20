@@ -737,28 +737,38 @@ document.addEventListener('DOMContentLoaded', function () {
     }).observe(searchCard, { attributes: true, attributeFilter: ['class'] });
   }
 
-  /* The folded-map button's Regions menu (phones and desktop). Tap the button: the menu slides up and fades in to its left
-     with a small bounce (340ms), and slides down / fades out faster (180ms). A row taps its pill, so it flies exactly the same way, then the menu shuts.
+  /* The folded-map button's Regions menu (phones and desktop). Tap the button: each line slides up into place on its own,
+     one after another from the bottom (nearest the button) to the "Regions" title, with a slight bounce (380ms a line, 35ms apart).
+     Shutting fades the whole menu down at once (180ms). A row taps its pill, so it flies exactly the same way, then the menu shuts.
      A tap anywhere else, or Escape, shuts it. No row is marked as picked: every open starts plain. */
   var pin = document.querySelector('.oa-pin'), pop = document.getElementById('oa-regions-pop');
   if (pin && pop) {
-    var popList = pop.querySelector('ul'), popAnim = null;
+    var popList = pop.querySelector('ul'), popAnims = [];
     var isOpen = function () { return pin.getAttribute('aria-expanded') === 'true'; };
-    var POP_IN = [{ opacity: 0, transform: 'translateY(14px)' },
-                  { opacity: 1, transform: 'translateY(-3px)', offset: .65 },   // overshoot a hair...
-                  { opacity: 1, transform: 'none' }];                            // ...and settle
+    var LINE_IN = [{ opacity: 0, transform: 'translateY(12px)' },
+                   { opacity: 1, transform: 'translateY(-2px)', offset: .7 },   // overshoot a hair...
+                   { opacity: 1, transform: 'none' }];                           // ...and settle
+    var LINE_MS = 380, LINE_GAP = 35;
     var POP_OUT = [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(10px)' }];
+    var stopPop = function () { popAnims.forEach(function (a) { a.cancel(); }); popAnims = []; };
     var setPop = function (open) {
       if (open === isOpen()) return;
       pin.setAttribute('aria-expanded', open ? 'true' : 'false');
       quiet('regions', open);
-      if (popAnim) { popAnim.cancel(); popAnim = null; }
+      stopPop();
       pop.hidden = false;
       if (calm.matches || !pop.animate) { pop.hidden = !open; return; }
-      var a = pop.animate(open ? POP_IN : POP_OUT,
-        { duration: open ? 340 : 180, easing: open ? 'cubic-bezier(.2,.8,.3,1)' : 'cubic-bezier(.4,0,1,1)', fill: 'forwards' });
-      popAnim = a;
-      a.onfinish = function () { popAnim = null; if (!open) pop.hidden = true; a.cancel(); };
+      if (open) {
+        // Bottom line first: the title plus each row, read from the bottom up
+        var lines = [pop.querySelector('.oa-regions-title')].concat(Array.prototype.slice.call(popList.children)).reverse();
+        popAnims = lines.map(function (el, i) {
+          return el.animate(LINE_IN, { duration: LINE_MS, delay: i * LINE_GAP, easing: 'cubic-bezier(.25,.8,.35,1)', fill: 'backwards' });
+        });
+      } else {
+        var a = pop.animate(POP_OUT, { duration: 180, easing: 'cubic-bezier(.4,0,1,1)', fill: 'forwards' });
+        popAnims = [a];
+        a.onfinish = function () { popAnims = []; pop.hidden = true; a.cancel(); };
+      }
     };
     Array.prototype.forEach.call(pills, function (b) {
       var li = document.createElement('li'), btn = document.createElement('button');
