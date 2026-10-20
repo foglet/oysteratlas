@@ -603,14 +603,13 @@
     return { reset: reset, ready: itemsReady, show: show };
   }
 
-  // Lines slide in one by one: each rises 12px and fades in, overshoots ~2px and settles (380ms),
-  // 35ms apart, top line first: the fixed-place line (the oyster's name, the "Regions" title) lands first,
-  // then the lines below it. Shared by the oyster details and the Regions menu (index.html),
-  // so the two move the same way. Returns the animations (cancel them to stop). Caller handles reduced motion.
-  var LINE_IN = [{ opacity: 0, transform: 'translateY(12px)' },
-                 { opacity: 1, transform: 'translateY(-2px)', offset: .7 },   // overshoot a hair...
-                 { opacity: 1, transform: 'none' }];                           // ...and settle
-  var LINE_MS = 380, LINE_GAP = 35, LINE_EASE = 'cubic-bezier(.25,.8,.35,1)';
+  // Lines ease in one by one: each fades in while drifting up just 4px (320ms, gentle ease-in-out), 45ms apart,
+  // top line first: the fixed-place line (the oyster's name, the "Regions" title) lands first, then the lines below it.
+  // No overshoot and only a small drift, so the lines arrive one at a time instead of unrolling as a strip.
+  // Shared by the oyster details and the Regions menu (index.html), so the two move the same way.
+  // Returns the animations (cancel them to stop). Caller handles reduced motion.
+  var LINE_IN = [{ opacity: 0, transform: 'translateY(4px)' }, { opacity: 1, transform: 'none' }];
+  var LINE_MS = 320, LINE_GAP = 45, LINE_EASE = 'cubic-bezier(.4,0,.2,1)';
   function slideLines(els) {
     return Array.prototype.slice.call(els).map(function (el, i) {
       return el.animate(LINE_IN, { duration: LINE_MS, delay: i * LINE_GAP, easing: LINE_EASE, fill: 'backwards' });
