@@ -303,6 +303,9 @@
     .map-menu li button { min-height: 44px; }
     .map-menu ul { gap: 0; }
     .mapboxgl-map .mapboxgl-ctrl-group button { width: 42px; height: 44px; }  /* + 2px border = 44, same as the glass */
+    /* Phones pinch to zoom, so +/- go; the compass stays (shows north, tap resets it). Its divider goes too: it's now alone. */
+    .mapboxgl-map .mapboxgl-ctrl-zoom-in, .mapboxgl-map .mapboxgl-ctrl-zoom-out { display: none; }
+    .mapboxgl-map .mapboxgl-ctrl-group button.mapboxgl-ctrl-compass { border-top: 0; height: 42px; }  /* + 2px border = 44, a square like the buttons above */
     .mapboxgl-ctrl.oa-search .oa-field { height: 44px; }
     .mapboxgl-ctrl.oa-search.oa-collapsed .oa-field { width: 44px; height: 44px; }  /* glass stays the same width as zoom */
     .oa-input { font-size: 16px; }  /* under 16px, iPhone Safari zooms the whole page when the box is tapped */
