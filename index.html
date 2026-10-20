@@ -680,7 +680,17 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     syncPop();
     if (window.MutationObserver) new MutationObserver(syncPop).observe(row, { subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
-    pin.addEventListener('click', function () { setPop(!isOpen()); });
+    /* Opening the menu zooms out to 8 if closer than that, so oyster names on the map don't crowd the menu.
+       Center and rotation stay put; already at 8 or farther out, the map doesn't move. */
+    var MENU_ZOOM = 8;
+    pin.addEventListener('click', function () {
+      var opening = !isOpen();
+      setPop(opening);
+      if (opening && map.getZoom() > MENU_ZOOM) {
+        if (calm.matches) map.jumpTo({ zoom: MENU_ZOOM });
+        else map.easeTo({ zoom: MENU_ZOOM, duration: 400 });
+      }
+    });
     document.addEventListener('pointerdown', function (e) { if (isOpen() && !regionsCtrl.contains(e.target)) setPop(false); }, true);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) { setPop(false); pin.focus(); } });
   }
