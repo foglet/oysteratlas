@@ -491,6 +491,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* Search by market name. Adds its own pin layer on top; the style's heatmap and labels are left alone.
      Point url at the oyster GeoJSON; set nameKey / speciesKey if its properties are named differently. */
   var search = OysterSearch.init({ map: map, url: ['assets/data/oysters.geojson', 'assets/data/oysterater.geojson'], nameKey: 'marketName', speciesKey: 'species',
+    onPick: function (name) { sprinkle.pick(name); },   // the picked oyster's name is never one of the late ones
     fly: function (v) {
       Array.prototype.forEach.call(pills, function (x) { x.removeAttribute('aria-pressed'); });  // a search pick drops the region highlight
       go(v);
@@ -541,9 +542,118 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     return tryOne(12);
   }
+  /* Sprinkle: zooming in, the oyster names don't all pop in at the zoom their label layer starts at.
+     Each name gets a random slot (new every load): slot 0 shows at that zoom (say 11), slot 1 at +0.2 (11.2),
+     slot 2 at 11.4, and so on until all are in by +0.8. Each one fades in over the 0.2 before its slot.
+     The picked oyster's name is always slot 0, so it shows wherever its card does.
+     Names not in our GeoJSON get a slot from their length. Only text-opacity changes; layers whose opacity
+     curve we can't read are left as they are. Mapbox still places a hidden name, so it can keep a
+     neighbor's name off the map until it fades in. */
+  var sprinkle = (function () {
+    var STEP = 0.2, SLOTS = 5, NAME = 'marketName', SRC_LAYER = 'oyster-jsonInput';
+    var originals = null, slots = null, picked = null;
+    // The value of a number / zoom curve at zoom z (null if it isn't one we can read)
+    function zoomStops(v) {
+      if (v === undefined) return { kind: 'const', value: 1 };
+      if (typeof v === 'number') return { kind: 'const', value: v };
+      var stops = [], kind, b = 1, i;
+      if (v && !Array.isArray(v) && typeof v === 'object') {
+        if (v.property || !Array.isArray(v.stops)) return null;
+        kind = v.type === 'interval' ? 'step' : 'interp'; b = v.base || 1; stops = v.stops.slice();
+      } else if (Array.isArray(v) && /^interpolate/.test(v[0]) && Array.isArray(v[2]) && v[2][0] === 'zoom') {
+        kind = 'interp'; b = v[1][0] === 'exponential' ? v[1][1] : 1;
+        for (i = 3; i < v.length; i += 2) stops.push([v[i], v[i + 1]]);
+      } else if (Array.isArray(v) && v[0] === 'step' && Array.isArray(v[1]) && v[1][0] === 'zoom') {
+        kind = 'step'; stops.push([-Infinity, v[2]]);
+        for (i = 3; i < v.length; i += 2) stops.push([v[i], v[i + 1]]);
+      } else return null;
+      if (stops.some(function (s) { return typeof s[1] !== 'number'; })) return null;
+      return { kind: kind, base: b, stops: stops };
+    }
+    function at(c, z) {
+      if (c.kind === 'const') return c.value;
+      var s = c.stops, i;
+      if (c.kind === 'step') { var v = s[0][1]; for (i = 0; i < s.length; i++) if (z >= s[i][0]) v = s[i][1]; return v; }
+      if (z <= s[0][0]) return s[0][1];
+      for (i = 1; i < s.length; i++) if (z <= s[i][0]) {
+        var z0 = s[i - 1][0], z1 = s[i][0], t = c.base === 1 ? (z - z0) / (z1 - z0) : (Math.pow(c.base, z - z0) - 1) / (Math.pow(c.base, z1 - z0) - 1);
+        return s[i - 1][1] + t * (s[i][1] - s[i - 1][1]);
+      }
+      return s[s.length - 1][1];
+    }
+    // ["match", name, [names in slots ≤ k], 1, …] — 1 if this name has shown by slot k, else 0
+    function upTo(k) {
+      var name = ['to-string', ['get', NAME]], m = ['match', name], shown = [];
+      Object.keys(slots).forEach(function (n) { if (n !== picked && slots[n] <= k) shown.push(n); });
+      if (picked) shown.push(picked);
+      var hidden = Object.keys(slots).filter(function (n) { return n !== picked && slots[n] > k; });
+      if (shown.length) m.push(shown, 1);
+      if (hidden.length) m.push(hidden, 0);
+      if (m.length === 2) return ['case', ['<=', ['%', ['length', name], SLOTS], k], 1, 0];
+      m.push(['case', ['<=', ['%', ['length', name], SLOTS], k], 1, 0]);   // names we don't have
+      return m;
+    }
+    function expr(o) {
+      var out = ['interpolate', ['linear'], ['zoom']], last = o.start + STEP * (SLOTS - 1);
+      for (var k = 0; k < SLOTS; k++) {
+        var z = +(o.start + STEP * k).toFixed(4), c = at(o.curve, z);
+        out.push(z, k === SLOTS - 1 ? c : ['*', c, upTo(k)]);
+      }
+      if (o.curve.stops) o.curve.stops.forEach(function (s) { if (s[0] > last + 1e-6 && isFinite(s[0])) out.push(s[0], at(o.curve, s[0])); });
+      return out;
+    }
+    function read() {
+      originals = [];
+      var layers = [];
+      try { layers = map.getStyle().layers || []; } catch (e) { return; }
+      layers.forEach(function (l) {
+        if (l.type !== 'symbol' || l['source-layer'] !== SRC_LAYER || !l.layout ||
+            JSON.stringify(l.layout['text-field'] || '').indexOf(NAME) < 0) return;
+        var orig = map.getPaintProperty(l.id, 'text-opacity'), curve = zoomStops(orig);
+        if (!curve) return;
+        var start = l.minzoom;   // where the names first show
+        if (!start && curve.stops) {
+          var on = curve.stops.filter(function (s) { return s[1] > 0 && isFinite(s[0]); })[0];
+          start = on && on[0];
+        }
+        if (!start) return;
+        originals.push({ id: l.id, orig: orig, curve: curve, start: start });
+      });
+    }
+    function apply() {
+      if (!slots || calm.matches) return;
+      if (!originals) read();
+      var anyQuiet = Object.keys(quietFor || {}).some(function (k) { return quietFor[k]; });
+      originals.forEach(function (o) {
+        var e = expr(o);
+        if (labelOpacity && o.id in labelOpacity) labelOpacity[o.id] = e;   // quiet mode puts this back, not the old one
+        if (rain && rain.adopt(o.id, 'text-opacity', e)) return;            // still raining: rain fades to this
+        if (anyQuiet) return;                                             // hidden by quiet mode: it restores this later
+        try { map.setPaintProperty(o.id, 'text-opacity', e); } catch (err) {}
+      });
+    }
+    return {
+      // all: the oysters from our GeoJSON, given random slots (an even spread, shuffled)
+      start: function (all) {
+        var names = [];
+        all.forEach(function (it) { if (names.indexOf(it.name) < 0) names.push(it.name); });
+        for (var i = names.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = names[i]; names[i] = names[j]; names[j] = t; }
+        slots = {};
+        names.forEach(function (n, i) { slots[n] = i % SLOTS; });
+        styleReady.then(apply);
+      },
+      pick: function (name) {
+        if (name === picked) return;
+        picked = name || null;
+        if (slots) styleReady.then(apply);
+      }
+    };
+  })();
+
   var oysters = [], movesAtLoad = moveTurn;
   search.ready.then(function (all) {
     oysters = all || [];
+    sprinkle.start(oysters);
     if (!oysters.length || linkedShape) return;   // a #gulf-of-maine style link opens on its area instead
     return pickOyster(oysters).then(function (it) {
       if (moveTurn !== movesAtLoad) return;       // someone already picked a region meanwhile: leave them there
@@ -685,7 +795,16 @@ document.addEventListener('DOMContentLoaded', function () {
     styleReady.then(hide);
     map.on('moveend', function (e) { if (state === 'raining' && !e.originalEvent) enqueue(shuffle(onScreen())); });
     map.on('movestart', function (e) { if (e.originalEvent) finish(); });   // the visitor took the wheel: show everything
-    return { start: start, finish: finish };
+    // A layer property rain is holding: swap its "original" (what rain fades to and puts back). true if rain had it.
+    function adopt(id, prop, value) {
+      if (state !== 'hidden' && state !== 'raining') return false;
+      var hit = saved.filter(function (s) { return s[0] === id && s[1] === prop; })[0];
+      if (!hit || scaled(value, 0, hit[3]) === null) return false;
+      hit[2] = value;
+      paint(performance.now());
+      return true;
+    }
+    return { start: start, finish: finish, adopt: adopt };
   })();
 
   /* Region pills */
