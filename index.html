@@ -549,7 +549,144 @@ document.addEventListener('DOMContentLoaded', function () {
       if (moveTurn !== movesAtLoad) return;       // someone already picked a region meanwhile: leave them there
       search.show(it, true);                      // load: jump straight there, card and all
     });
-  }).catch(function () {});
+  }).catch(function () {}).then(function () { rain.start(); });   // opening view settled: let the oysters rain in
+
+  /* Rain: on load the style's oysters (dot, glow and name together) start hidden, then the ones on screen
+     drop in one at a time, 250ms apart, in random order, each fading in over 400ms. The opening oyster drops first.
+     A pill/title flight mid-rain adds the oysters it lands on to the queue; a drag, pinch or scroll, or opening
+     search or Regions, ends it and shows everything. When the queue runs dry every layer gets its own style back.
+     Only opacity (and the glow's weight) changes, so label placement is never touched. Reduced motion: no rain. */
+  var rain = (function () {
+    var STEP = 250, FADE = 400, NAME = 'marketName', SRC_LAYER = 'oyster-jsonInput';
+    var PROPS = { circle: { 'circle-opacity': 1, 'circle-stroke-opacity': 1 },
+                  symbol: { 'text-opacity': 1, 'icon-opacity': 1 },
+                  heatmap: { 'heatmap-weight': 1 } };
+    var saved = [];          // [layer id, prop, original value, default] for every property we took over
+    var state = 'off';       // off → hidden (waiting) → raining → done
+    var queue = [], fading = [], shown = {}, nextAt = 0, frame = 0, lastDraw = 0;
+
+    function isZoom(x) { return Array.isArray(x) && x.length === 1 && x[0] === 'zoom'; }
+    // Legacy {stops, base, type} zoom functions (old Studio styles) → an expression; property functions aren't handled.
+    function modern(v) {
+      if (!v || Array.isArray(v) || typeof v !== 'object') return v;
+      if (v.property || !Array.isArray(v.stops)) return null;
+      var out = v.type === 'interval' ? ['step', ['zoom'], v.stops[0][1]] : ['interpolate', ['exponential', v.base || 1], ['zoom']];
+      v.stops.forEach(function (s, i) { if (v.type === 'interval') { if (i) out.push(s[0], s[1]); } else out.push(s[0], s[1]); });
+      return out;
+    }
+    // value × factor. ["zoom"] may only drive a top-level interpolate/step, so there each output is scaled instead.
+    function scaled(v, factor, def) {
+      v = modern(v);
+      if (v === null) return null;
+      if (v === undefined) v = def;
+      if (typeof v === 'number') return ['*', v, factor];
+      if (!Array.isArray(v)) return null;
+      var i, out = v.slice();
+      if (/^interpolate/.test(v[0]) && isZoom(v[2])) { for (i = 4; i < v.length; i += 2) if ((out[i] = scaled(v[i], factor, def)) === null) return null; return out; }
+      if (v[0] === 'step' && isZoom(v[1])) { for (i = 2; i < v.length; i += 2) if ((out[i] = scaled(v[i], factor, def)) === null) return null; return out; }
+      if (JSON.stringify(v).indexOf('["zoom"]') >= 0) return null;   // zoom tucked somewhere else: leave this one alone
+      return ['*', v, factor];
+    }
+    // Per-oyster factor: 1 for landed drops, 0–1 while fading in, 0 for the rest.
+    function factor(now) {
+      var m = ['match', ['to-string', ['get', NAME]]], done = Object.keys(shown);
+      if (done.length) m.push(done, 1);
+      fading.forEach(function (d) {
+        var t = Math.min(1, (now - d.t0) / FADE);
+        m.push(d.name, 1 - Math.pow(1 - t, 3));   // ease-out
+      });
+      if (m.length === 2) m.push('\u0000', 0);      // match needs at least one arm
+      m.push(0);
+      return m;
+    }
+    function paint(now) {
+      var f = factor(now);
+      saved.forEach(function (s) {
+        try { map.setPaintProperty(s[0], s[1], scaled(s[2], f, s[3])); } catch (e) {}
+      });
+    }
+    function restore() {
+      cancelAnimationFrame(frame);
+      saved.forEach(function (s) { try { map.setPaintProperty(s[0], s[1], s[2]); } catch (e) {} });
+      saved = []; queue = []; fading = [];
+    }
+    function hide() {
+      if (state !== 'off' || calm.matches) return;
+      var layers = [];
+      try { layers = map.getStyle().layers || []; } catch (e) { return; }
+      layers.forEach(function (l) {
+        var props = l['source-layer'] === SRC_LAYER && PROPS[l.type];
+        if (!props) return;
+        Object.keys(props).forEach(function (p) {
+          var orig = map.getPaintProperty(l.id, p);
+          if (scaled(orig, 0, props[p]) !== null) saved.push([l.id, p, orig, props[p]]);   // skip what we can't scale safely
+        });
+      });
+      if (!saved.length) return;
+      state = 'hidden';
+      paint(0);
+      setTimeout(start, 6000);   // safety net: rain anyway if the opening pick never settles
+    }
+    function shuffle(a) {
+      for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; }
+      return a;
+    }
+    // Oysters on screen and not yet queued: what Mapbox drew, plus our data's points inside the view.
+    function onScreen() {
+      var names = {}, ids = saved.map(function (s) { return s[0]; }).filter(function (id, i, a) { return a.indexOf(id) === i; });
+      try { map.queryRenderedFeatures({ layers: ids }).forEach(function (f) { if (f.properties && f.properties[NAME] != null) names[f.properties[NAME]] = 1; }); } catch (e) {}
+      var b = map.getBounds();
+      oysters.forEach(function (it) { if (it.coord && b.contains(it.coord)) names[it.name] = 1; });
+      var seen = {};
+      queue.forEach(function (n) { seen[n] = 1; });
+      fading.forEach(function (d) { seen[d.name] = 1; });
+      return Object.keys(names).filter(function (n) { return !shown[n] && !seen[n]; });
+    }
+    function tick(now) {
+      frame = 0;
+      if (state !== 'raining') return;
+      while (queue.length && now >= nextAt) {
+        fading.push({ name: queue.shift(), t0: nextAt });
+        nextAt += STEP;
+      }
+      fading = fading.filter(function (d) { if (now - d.t0 >= FADE) { shown[d.name] = 1; return false; } return true; });
+      if (!queue.length && !fading.length) { finish(); return; }
+      if (now - lastDraw >= 30) { lastDraw = now; paint(now); }   // ~30fps is plenty for a fade
+      frame = requestAnimationFrame(tick);
+    }
+    function enqueue(names) {
+      if (!names.length) return;
+      var now = performance.now();
+      if (!queue.length) nextAt = Math.max(nextAt, now);
+      queue = queue.concat(names);
+      if (!frame) frame = requestAnimationFrame(tick);
+    }
+    function start() {
+      if (state !== 'hidden') return;
+      state = 'raining';
+      var go = function () {
+        if (state !== 'raining') return;
+        var names = shuffle(onScreen()), first = null;
+        try { first = sessionStorage.getItem('oa-oyster'); } catch (e) {}
+        var at = names.indexOf(first);
+        if (at > 0) names.unshift(names.splice(at, 1)[0]);   // the opening oyster lands first, under its card
+        enqueue(names);
+        if (!queue.length && !fading.length) finish();
+      };
+      map.once('idle', go);
+      map.triggerRepaint();   // so 'idle' fires even if the map is already settled
+    }
+    function finish() {
+      if (state === 'done') return;
+      var was = state;
+      state = 'done';
+      if (was !== 'off') restore();
+    }
+    styleReady.then(hide);
+    map.on('moveend', function (e) { if (state === 'raining' && !e.originalEvent) enqueue(shuffle(onScreen())); });
+    map.on('movestart', function (e) { if (e.originalEvent) finish(); });   // the visitor took the wheel: show everything
+    return { start: start, finish: finish };
+  })();
 
   /* Region pills */
   var row = document.querySelector('.map-places');
@@ -777,6 +914,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var quietFor = {};
   var quiet = function (reason, on) {
     quietFor[reason] = !!on;
+    if (on) rain.finish();   // a panel opening ends the rain first, so the labels it hides keep their real opacity
     var any = Object.keys(quietFor).some(function (k) { return quietFor[k]; });
     hideLabels(any);
     tuckDetail(any);
