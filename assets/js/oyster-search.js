@@ -34,7 +34,8 @@
     maxResults: 50,
     flyZoom: 10,
     fallbackColor: '#8fa3b1',
-    hintText: ''               // shown when the box is empty; blank = nothing
+    hintText: '',              // shown when the box is empty; blank = nothing
+    onPick: null               // optional: called with the picked oyster's name (null when cleared)
   };
 
   var HIT_ID = 'oa-search-hit';
@@ -399,6 +400,7 @@
       if (map.isMoving()) map.once('moveend', land); else land();
       setTimeout(land, 8000);   // backstop: show the card even if no 'moveend' ever arrives
       setHit(map, it.coord, it.color, it.name, o.nameKey);
+      if (o.onPick) o.onPick(it.name);
     }
     // The page's version: also clears any old search text, like a tap on an oyster does.
     function show(it, instant) {
@@ -472,6 +474,7 @@
       active = -1;
       clearDetail();
       setHit(map, null, null, null, o.nameKey);
+      if (o.onPick) o.onPick(null);
       render();
     }
 
@@ -532,6 +535,7 @@
         active = -1;
         render();
         setHit(map, hit.coord, hit.color, hit.name, o.nameKey);
+        if (o.onPick) o.onPick(hit.name);
         landing++;               // this tap wins over a search pick still in flight
         showDetail(hit);
       }
