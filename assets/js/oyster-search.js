@@ -412,6 +412,12 @@
 
     // Details for one oyster, used by search picks and by taps on the map:
     // ● name, then where it's grown, its lat, lon, then the region (skipped when the locale already names it).
+    // Decimal degrees → 45°44′56″N (minutes and seconds padded: 65°04′16″W). Rounds to the nearest whole second first, so 59.6″ carries up instead of showing 60″.
+    function dms(deg, pos, neg) {
+      var t = Math.round(Math.abs(deg) * 3600);
+      var d = Math.floor(t / 3600), m = Math.floor(t % 3600 / 60), s = t % 60;
+      return d + '\u00b0' + (m < 10 ? '0' : '') + m + '\u2032' + (s < 10 ? '0' : '') + s + '\u2033' + (deg < 0 ? neg : pos);
+    }
     function showDetail(it) {
       detail.textContent = '';
       var head = el('div', 'oa-detail-name');
@@ -424,8 +430,8 @@
       var place = (it.locale || '').replace(/[,\s]+$/, '');
       var region = it.region && place.toLowerCase().indexOf(String(it.region).toLowerCase()) < 0 ? it.region : '';
       if (place) detail.appendChild(el('div', 'oa-detail-locale', place));
-      // lat, lon as stored in the GeoJSON (decimal degrees, no rounding); GeoJSON keeps them as [lon, lat]
-      if (it.coord) detail.appendChild(el('div', 'oa-detail-coord', it.coord[1] + ', ' + it.coord[0]));
+      // lat, lon from the GeoJSON ([lon, lat]), shown as degrees-minutes-seconds: 45°44′56″N 21°13′16″E
+      if (it.coord) detail.appendChild(el('div', 'oa-detail-coord', dms(it.coord[1], 'N', 'S') + ' ' + dms(it.coord[0], 'E', 'W')));
       if (region) detail.appendChild(el('div', 'oa-detail-region', region));
       var appearing = detailBox.hidden || leaving;
       detail.hidden = false;
