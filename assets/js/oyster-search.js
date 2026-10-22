@@ -411,7 +411,7 @@
     var landing = 0;   // counts picks and taps; a flight shows its card only if nothing newer happened meanwhile
 
     // Details for one oyster, used by search picks and by taps on the map:
-    // ● name, then where it's grown, then the region (skipped when the locale already names it).
+    // ● name, then where it's grown, its lat, lon, then the region (skipped when the locale already names it).
     function showDetail(it) {
       detail.textContent = '';
       var head = el('div', 'oa-detail-name');
@@ -424,6 +424,8 @@
       var place = (it.locale || '').replace(/[,\s]+$/, '');
       var region = it.region && place.toLowerCase().indexOf(String(it.region).toLowerCase()) < 0 ? it.region : '';
       if (place) detail.appendChild(el('div', 'oa-detail-locale', place));
+      // lat, lon as stored in the GeoJSON (decimal degrees, no rounding); GeoJSON keeps them as [lon, lat]
+      if (it.coord) detail.appendChild(el('div', 'oa-detail-coord', it.coord[1] + ', ' + it.coord[0]));
       if (region) detail.appendChild(el('div', 'oa-detail-region', region));
       var appearing = detailBox.hidden || leaving;
       detail.hidden = false;

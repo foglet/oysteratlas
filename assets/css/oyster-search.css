@@ -96,3 +96,4 @@
 .oa-detail-name .dot { background: var(--c); }
 .oa-detail-locale { margin-top: 2px; padding-left: 20px; color: var(--ink); }
 .oa-detail-region { padding-left: 20px; color: var(--muted); }
+.oa-detail-coord { padding-left: 20px; color: var(--muted); font-variant-numeric: tabular-nums; }
