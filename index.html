@@ -314,6 +314,15 @@
     .oa-result { min-height: 44px; }
     .oa-results { max-height: calc(5 * 44px); }
   }
+  /* Map credits (© Mapbox © OpenStreetMap), muted to sit back: smaller text, soft color, the panels' navy behind.
+     Mapbox allows restyling the text if it stays legible: the 90% navy keeps --muted at 4.5:1+ even over white map.
+     The Mapbox logo (.mapboxgl-ctrl-logo) must not be styled, so it's left alone. */
+  .mapboxgl-ctrl.mapboxgl-ctrl-attrib { font-size: 10px; line-height: 1.4;
+    background: color-mix(in srgb, var(--bg) 90%, transparent); }
+  .mapboxgl-ctrl-attrib, .mapboxgl-ctrl-attrib a { color: var(--muted); }
+  .mapboxgl-ctrl-attrib a:hover, .mapboxgl-ctrl-attrib a:focus-visible { color: var(--ink); }
+  /* Phones fold the credits into an (i) button; its icon is dark, so lighten it to show on the navy */
+  .mapboxgl-ctrl-attrib.mapboxgl-compact .mapboxgl-ctrl-attrib-button { filter: invert(1) brightness(.75); background-color: transparent; }
 </style>
 </head>
 <body>
