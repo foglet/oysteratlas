@@ -340,7 +340,7 @@
   <div class="map-places-wrap">
     <nav class="map-places" aria-label="Fly to a region">
       <!-- name · center [longitude, latitude] · zoom · bearing (map rotation, degrees) · optional speed/curve (default 1 / 1) — same as the original site -->
-      <button type="button" data-name="Washington • British Columbia" data-center="[-123.05, 49]"   data-zoom="6"  data-bearing="6" data-speed="1.2" data-curve="1.42">Washington • British Columbia</button>
+      <button type="button" data-name="Washington • British Columbia" data-center="[-123.05, 49]"   data-zoom="6"  data-bearing="6" data-speed="1.8" data-curve="1.42">Washington • British Columbia</button>
       <button type="button" data-name="Tomales Bay"                   data-center="[-122.84, 38.10]" data-zoom="7"  data-bearing="0">Tomales Bay</button>
       <button type="button" data-name="Maritime Provinces"            data-center="[-63.8, 46.7]"    data-zoom="7"  data-bearing="5">Maritime Provinces</button>
       <button type="button" data-name="Damariscotta"                  data-shape="gulf-of-maine">Damariscotta</button>  <!-- fits the Gulf of Maine outline (SHAPES below) -->
@@ -405,8 +405,8 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  var HOME = { center: [-123.05, 49], zoom: 4, bearing: 0, speed: 3, curve: 1 };  /* opening view: Salish Sea; quick flight home */
-  var FLY = { speed: 1.8, curve: 1, easing: function (t) { return t; } };  /* default: steady (linear) glide, 1.8x the original site's speed (was 1) */
+  var HOME = { center: [-123.05, 49], zoom: 4, bearing: 0, speed: 4.5, curve: 1 };  /* opening view: Salish Sea; quick flight home */
+  var FLY = { speed: 2.7, curve: 1, easing: function (t) { return t; } };  /* default: steady (linear) glide, 2.7x the original site's speed (was 1.8, originally 1) */
 
   /* Each load opens on a random oyster, zoomed in to where its name shows (never the same one twice in a row
      in this tab); clicking the title goes to another one. Chosen once the oyster data loads (see pickOyster below).
